@@ -59,80 +59,82 @@ if [ -d /srv/eyesofreport ]; then
 fi
 
 #create eyessofreport yum repository
-if [ $(rpm -qa | grep -c deltarpm-3.6-3) -eq 0 ]; then
-	rpm -ivh $BASEDIR/CORE/createrepo/deltarpm-3.6-3.el7.x86_64.rpm
-fi
 
-if [ $(rpm -qa | grep -c libxml2-2.9.1-5.el7_1.2.x86_64) -eq 0 ]; then
-	rpm -ivh --replacefiles $BASEDIR/CORE/createrepo/libxml2-2.9.1-5.el7_1.2.x86_64.rpm 2> /dev/null
-fi
+# if [ $(rpm -qa | grep -c deltarpm-3.6-3) -eq 0 ]; then
+	# rpm -ivh $BASEDIR/CORE/createrepo/deltarpm-3.6-3.el7.x86_64.rpm
+# fi
 
-if [ $(rpm -qa | grep -c libxml2-python-2.9.1-5) -eq 0 ]; then
-	rpm -ivh $BASEDIR/CORE/createrepo/libxml2-python-2.9.1-5.el7_1.2.x86_64.rpm
-fi
+# if [ $(rpm -qa | grep -c libxml2-2.9.1-5.el7_1.2.x86_64) -eq 0 ]; then
+	# rpm -ivh --replacefiles $BASEDIR/CORE/createrepo/libxml2-2.9.1-5.el7_1.2.x86_64.rpm 2> /dev/null
+# fi
 
-if [ $(rpm -qa | grep -c python-deltarpm-3.6-3) -eq 0 ]; then
-	rpm -ivh $BASEDIR/CORE/createrepo/python-deltarpm-3.6-3.el7.x86_64.rpm
-fi
+# if [ $(rpm -qa | grep -c libxml2-python-2.9.1-5) -eq 0 ]; then
+	# rpm -ivh $BASEDIR/CORE/createrepo/libxml2-python-2.9.1-5.el7_1.2.x86_64.rpm
+# fi
 
-if [ $(rpm -qa | grep -c createrepo-0.9.9-23) -eq 0 ]; then
-	rpm -ivh $BASEDIR/CORE/createrepo/createrepo-0.9.9-23.el7.noarch.rpm
-fi
+# if [ $(rpm -qa | grep -c python-deltarpm-3.6-3) -eq 0 ]; then
+	# rpm -ivh $BASEDIR/CORE/createrepo/python-deltarpm-3.6-3.el7.x86_64.rpm
+# fi
 
-mkdir -p /srv/eyesofreport/depot-1.0
-ln -s /srv/eyesofreport/depot-1.0 /srv/eyesofreport/depot
+# if [ $(rpm -qa | grep -c createrepo-0.9.9-23) -eq 0 ]; then
+	# rpm -ivh $BASEDIR/CORE/createrepo/createrepo-0.9.9-23.el7.noarch.rpm
+# fi
 
-cp $BASEDIR/CORE/rpm/* /srv/eyesofreport/depot
+# mkdir -p /srv/eyesofreport/depot-1.0
+# ln -s /srv/eyesofreport/depot-1.0 /srv/eyesofreport/depot
 
-echo "[localrepo]" > /etc/yum.repos.d/localrepo.repo
-echo "name=Eyesofreport repository" >> /etc/yum.repos.d/localrepo.repo
-echo "baseurl=file:///srv/eyesofreport/depot" >> /etc/yum.repos.d/localrepo.repo
-echo "gpgcheck=0" >> /etc/yum.repos.d/localrepo.repo
-echo "enabled=1" >> /etc/yum.repos.d/localrepo.repo
+# cp $BASEDIR/CORE/rpm/* /srv/eyesofreport/depot
 
-createrepo -v /srv/eyesofreport/depot/ > /dev/null
+# echo "[localrepo]" > /etc/yum.repos.d/localrepo.repo
+# echo "name=Eyesofreport repository" >> /etc/yum.repos.d/localrepo.repo
+# echo "baseurl=file:///srv/eyesofreport/depot" >> /etc/yum.repos.d/localrepo.repo
+# echo "gpgcheck=0" >> /etc/yum.repos.d/localrepo.repo
+# echo "enabled=1" >> /etc/yum.repos.d/localrepo.repo
 
-echo -e "Eyes Of Report repository creation \e[92m[OK] \e[39m"
+# createrepo -v /srv/eyesofreport/depot/ > /dev/null
+
+# echo -e "Eyes Of Report repository creation \e[92m[OK] \e[39m"
 
 #Delete all rpm http and php installed on the machine
 
-if [ $(rpm -qa | grep -c httpd-tools) -gt 0 ]; then
-	yum remove -y httpd 2&>1 /dev/null
-fi
-if [ $(rpm -qa | grep -c httpd) -gt 0 ]; then
-	yum remove -y httpd-tools 2&>1 /dev/null
-fi
-if [ $(rpm -qa | grep -c php-common) -gt 0 ]; then
-	yum remove -y php-common 2&>1 /dev/null
-fi
-if [ $(rpm -qa | grep -c php-pdo) -gt 0 ]; then
-	yum remove -y php-pdo 2&>1 /dev/null
-fi
-if [ $(rpm -qa | grep -c php-mysql) -gt 0 ]; then
-	yum remove -y php-mysql 2&>1 /dev/null
-fi
-if [ $(rpm -qa | grep -c php-cli) -gt 0 ]; then
-	yum remove -y php-cli 2&>1 /dev/null
-fi
-if [ $(rpm -qa | grep -c php-xmlrpc) -gt 0 ]; then
-	yum remove -y php-xmlrpc 2&>1 /dev/null
-fi
-if [ $(rpm -qa | grep -c php-xml) -gt 0 ]; then
-	yum remove -y php-xml 2&>1 /dev/null
-fi
-if [ $(rpm -qa | grep -c php-ldap) -gt 0 ]; then
-	yum remove -y php-ldap 2&>1 /dev/null
-fi
-if [ $(rpm -qa | grep -c php) -gt 0 ]; then
-	yum remove -y php 2&>1 /dev/null
-fi
+# if [ $(rpm -qa | grep -c httpd-tools) -gt 0 ]; then
+	# yum remove -y httpd 2&>1 /dev/null
+# fi
+# if [ $(rpm -qa | grep -c httpd) -gt 0 ]; then
+	# yum remove -y httpd-tools 2&>1 /dev/null
+# fi
+# if [ $(rpm -qa | grep -c php-common) -gt 0 ]; then
+	# yum remove -y php-common 2&>1 /dev/null
+# fi
+# if [ $(rpm -qa | grep -c php-pdo) -gt 0 ]; then
+	# yum remove -y php-pdo 2&>1 /dev/null
+# fi
+# if [ $(rpm -qa | grep -c php-mysql) -gt 0 ]; then
+	# yum remove -y php-mysql 2&>1 /dev/null
+# fi
+# if [ $(rpm -qa | grep -c php-cli) -gt 0 ]; then
+	# yum remove -y php-cli 2&>1 /dev/null
+# fi
+# if [ $(rpm -qa | grep -c php-xmlrpc) -gt 0 ]; then
+	# yum remove -y php-xmlrpc 2&>1 /dev/null
+# fi
+# if [ $(rpm -qa | grep -c php-xml) -gt 0 ]; then
+	# yum remove -y php-xml 2&>1 /dev/null
+# fi
+# if [ $(rpm -qa | grep -c php-ldap) -gt 0 ]; then
+	# yum remove -y php-ldap 2&>1 /dev/null
+# fi
+# if [ $(rpm -qa | grep -c php) -gt 0 ]; then
+	# yum remove -y php 2&>1 /dev/null
+# fi
 
 mkdir -p /var/lib/docker
 
 echo  "Eyes Of Report packages installation..."
 
-yum install -y --disablerepo="*" --enablerepo="localrepo" perl net-tools nano docker unzip zip rsync bind-utils-9.9.4-18.el7_1.5.x86_64 patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
-yum install -y --disablerepo="*" --enablerepo="localrepo" httpd-tools httpd mod_auth_form-2.05-1.eon.x86_64 libxslt php-common php-mysql php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
+yum install -y perl net-tools nano docker unzip zip rsync bind-utils-9.9.4-18.el7_1.5.x86_64 patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
+yum install -y httpd-tools httpd libxslt php-common php-mysql php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
+yum localinstall $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm 2&>> $BASEDIR/log_packet_install.log
 
 mysql_port=3306
 snmpd_port=161

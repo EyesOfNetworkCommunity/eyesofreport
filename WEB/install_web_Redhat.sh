@@ -125,9 +125,9 @@ find . -type d -exec chmod o-rwx {} \;
 find . -type d -exec chmod o+x {} \;
 find . -type f -exec chmod o-rwx {} \;
 
-yes | mv  $BASEDIR/httpd.service /etc/systemd/system/
+#yes | mv  $BASEDIR/httpd.service /etc/systemd/system/
 systemctl daemon-reload
-systemctl enable httpd.service
+systemctl enable httpd
 
 exit 0
 

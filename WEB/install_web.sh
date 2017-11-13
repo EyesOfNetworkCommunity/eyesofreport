@@ -66,6 +66,8 @@ cp -r $installation_path/${eor_web_folder} $web_path
 
 #tar xvf httpd.tar > /dev/null
 yes | cp ./httpd/conf.d/* /etc/httpd/conf.d/ > /dev/null
+yes | cp /etc/httpd/httpd.conf /etc/httpd/httpd.conf.old
+yes | cp ./httpd/conf/httpd.conf /etc/httpd/conf.d/ > /dev/null
 
 cd $web_path
 
@@ -123,9 +125,9 @@ find . -type d -exec chmod o-rwx {} \;
 find . -type d -exec chmod o+x {} \;
 find . -type f -exec chmod o-rwx {} \;
 
-yes | mv  $BASEDIR/httpd.service /etc/systemd/system/
+#yes | mv  $BASEDIR/httpd.service /etc/systemd/system/
 systemctl daemon-reload
-systemctl enable httpd.service
+systemctl enable httpd
 
 exit 0
 
