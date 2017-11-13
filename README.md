@@ -15,45 +15,6 @@ Eyes Of report is composed of 4 main bricks :
 
 Data base management system used is Mariadb (Embedded in Eyes Of report installation)
 
-<p align="center">
-  <a href="https://raw.githubusercontent.com/eyesofreport/eyesofreport/master/SAMPLES/Reporting_2.PNG" target="_blank">
-  <img src="https://github.com/eyesofreport/eyesofreport/blob/master/SAMPLES/Reporting_2.PNG" width="100" height="100"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/eyesofreport/eyesofreport/master/SAMPLES/Threshold.PNG" target="_blank">
-  <img src="https://github.com/eyesofreport/eyesofreport/blob/master/SAMPLES/Threshold.PNG" width="100" height="100"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/eyesofreport/eyesofreport/master/SAMPLES/Time_Period.PNG" target="_blank">
-  <img src="https://github.com/eyesofreport/eyesofreport/blob/master/SAMPLES/Time_Period.PNG" width="100" height="100"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/eyesofreport/eyesofreport/master/SAMPLES/application_report.JPG" target="_blank">
-  <img src="https://github.com/eyesofreport/eyesofreport/blob/master/SAMPLES/application_report.JPG" width="100" height="100"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/eyesofreport/eyesofreport/master/SAMPLES/application_report_2.JPG" target="_blank">
-  <img src="https://github.com/eyesofreport/eyesofreport/blob/master/SAMPLES/application_report_2.JPG" width="100" height="100"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/eyesofreport/eyesofreport/master/SAMPLES/application_report_3.JPG" target="_blank">
-  <img src="https://github.com/eyesofreport/eyesofreport/blob/master/SAMPLES/application_report_3.JPG" width="100" height="100"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/eyesofreport/eyesofreport/master/SAMPLES/application_tree.png" target="_blank">
-  <img src="https://github.com/eyesofreport/eyesofreport/blob/master/SAMPLES/application_tree.png" width="100" height="100"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/eyesofreport/eyesofreport/master/SAMPLES/outage_analysis.JPG" target="_blank">
-  <img src="https://github.com/eyesofreport/eyesofreport/blob/master/SAMPLES/outage_analysis.JPG" width="100" height="100"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/eyesofreport/eyesofreport/master/SAMPLES/Outage_analysis_2.JPG" target="_blank">
-  <img src="https://github.com/eyesofreport/eyesofreport/blob/master/SAMPLES/Outage_analysis_2.JPG" width="100" height="100"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/eyesofreport/eyesofreport/master/SAMPLES/service_catalog.png" target="_blank">
-  <img src="https://github.com/eyesofreport/eyesofreport/blob/master/SAMPLES/service_catalog.png" width="100" height="100"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/eyesofreport/eyesofreport/master/SAMPLES/COPIL_Report.JPG" target="_blank">
-  <img src="https://github.com/eyesofreport/eyesofreport/blob/master/SAMPLES/COPIL_Report.JPG" width="100" height="100"/>
-  </a>
-  <a href="https://raw.githubusercontent.com/eyesofreport/eyesofreport/master/SAMPLES/ETL_Detail_status_1.PNG" target="_blank">
-  <img src="https://github.com/eyesofreport/eyesofreport/blob/master/SAMPLES/ETL_Detail_status_1.PNG" width="100" height="100"/>
-  </a>
-</p>
-
 ## Installation Prerequisites
 
 **OS** : Centos 7 x64 7.1.1503. Download CentOS-7-x86_64-DVD-1503-01.iso at http://mirror.nsc.liu.se/centos-store/7.1.1503/isos/x86_64/CentOS-7-x86_64-Minimal-1503-01.iso
