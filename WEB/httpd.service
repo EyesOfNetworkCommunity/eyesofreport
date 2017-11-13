@@ -1,0 +1,14 @@
+[Unit]
+Description=Apache HTTP Server
+After=syslog.target network.target
+
+[Service]
+Type=forking
+ExecStartPre=/usr/bin/mkdir -p /run/httpd
+ExecStart=/etc/init.d/httpd start
+ExecReload=/etc/init.d/httpd restart
+ExecStop=/etc/init.d/httpd stop
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

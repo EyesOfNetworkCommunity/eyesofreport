@@ -1,0 +1,15 @@
+[Unit]
+Description=WildFly application server
+After=network.target
+
+[Service]
+Type=idle
+Environment=JAVA_HOME=/srv/eyesofreport/java JAVA=/srv/eyesofreport/java/bin/java "JAVA_OPTS=-Xms1024m -Xmx20480m -XX:MaxPermSize=768m"
+ExecStart=/srv/eyesofreport/appserver/wildfly/bin/standalone.sh -Djboss.bind.address=127.0.0.1 -Djboss.bind.address.management=127.0.0.1&
+ExecStop=/srv/eyesofreport/appserver/wildfly/bin/jboss-cli.sh --connect command=:shutdown
+WorkingDirectory=/srv/eyesofreport/appserver/wildfly/bin
+TimeoutStartSec=600
+TimeoutStopSec=600
+
+[Install]
+WantedBy=multi-user.target

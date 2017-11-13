@@ -1,0 +1,13 @@
+[Unit]
+Description=container_description
+Requires=docker.service mariadb.service
+Wants=mariadb.service
+After=docker.service mariadb.service
+
+[Service]
+ExecStartPre=-/usr/bin/docker stop container_name
+ExecStartPre=-/usr/bin/docker rm container_name
+ExecStart=/usr/bin/docker run -d --name $1 --volumes-from ssh_data -v /srv/eyesofreport/scripts:/srv/eyesofreport/scripts -v /srv/eyesofreport/source/$2/Archives:/srv/eyesofreport/external_depot/Archives/:z -v /var/lib/mysql/mysql.sock:/var/lib/mysql/mysql.sock:ro $1
+
+[Install]
+WantedBy=multi-user.target

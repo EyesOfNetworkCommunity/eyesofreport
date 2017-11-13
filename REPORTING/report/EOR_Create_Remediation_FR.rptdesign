@@ -1,0 +1,1716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.0.v201306041519 Build &lt;4.3.0.v20130613-1152></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <parameters>
+        <scalar-parameter name="host_id" id="1536">
+            <text-property name="promptText">Id du host</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">280</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="service_id" id="1537">
+            <text-property name="promptText">Id du service</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">218</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="host_table" id="1538">
+            <text-property name="promptText">Nom de la table host</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">f6dd1_host</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="service_table" id="1539">
+            <text-property name="promptText">Nom de la table service</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">f6dd1_service</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="message_table" id="1540">
+            <text-property name="promptText">Nom de la table message</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">f6dd1_plugin_output</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="log_table" id="1541">
+            <text-property name="promptText">Nom de la table de log</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">f6dd1_log</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="epoch_deb" id="1547">
+            <text-property name="promptText">Date heure début (epoch time)</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">integer</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">1454346983</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="epoch_end" id="1548">
+            <text-property name="promptText">Date heure fin (epoch time)</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">1454347966</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="source_prefix" id="1607">
+            <text-property name="promptText">Prefix source</text-property>
+            <property name="valueType">static</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">f6dd1</value>
+            </simple-property-list>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="ds_keycopter" id="1535">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://localhost:3306/eor_dwh</property>
+            <property name="odaUser">eyesofreport</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">U2FpbnRUaG9tYXMsMjAxNA==</encrypted-property>
+            <property name="odaJndiName">java:jboss/datasources/DWH</property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ds_host_service_message" id="1546">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">host_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">host_id</text-property>
+                    <text-property name="heading">host_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">service_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">service_id</text-property>
+                    <text-property name="heading">service_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">output_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">output_id</text-property>
+                    <text-property name="heading">output_id</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">host_id</property>
+                    <property name="paramName">host_id</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">service_id</property>
+                    <property name="paramName">service_id</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">host_id2</property>
+                    <property name="paramName">host_id</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">host_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">service_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">output_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <method name="beforeOpen"><![CDATA[var myQuery = String(this.queryText) 
+var myQuery = this.queryText.replace("f6dd1_service", params["service_table"].value);
+var myQuery2 = myQuery.replace("f6dd1_host", params["host_table"].value);
+var myQuery3 = myQuery2.replace("f6dd1_plugin_output", params["message_table"].value);
+this.queryText = myQuery3; ]]></method>
+            <property name="dataSource">ds_keycopter</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">host_id</property>
+                    <property name="nativeName">host_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">service_id</property>
+                    <property name="nativeName">service_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">output_id</property>
+                    <property name="nativeName">output_id</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[Select host_id, service_id, output_id 
+from
+(select host_id
+from thruk.f6dd1_host where host_name in (select dho_name from d_host where dho_id = ?)) a,
+(select output_id
+from thruk.f6dd1_plugin_output 
+where output ='OK;HARD;4;' limit 1) b,
+(select case when nb = 0 then -1 else service_id end as service_id
+from (select service_id, count(*) as nb
+	  from thruk.f6dd1_service s inner join thruk.f6dd1_host h on h.host_id = s.host_id
+	  where s.service_description in (select dse_name from d_service where dse_id = ?) and h.host_name in (select dho_name from d_host where dho_id = ?)) a) c]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>host_id</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>8</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>host_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>host_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>8</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>service_id</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>8</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>service_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>service_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>9</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>output_id</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>8</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>output_id</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>output_id</design:label>
+            <design:formattingHints>
+              <design:displaySize>8</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ds_date_remediation" id="1577">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">epoch_deb</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">epoch_deb</text-property>
+                    <text-property name="heading">epoch_deb</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">epoch_end</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">epoch_end</text-property>
+                    <text-property name="heading">epoch_end</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">date_begin</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">date_begin</text-property>
+                    <text-property name="heading">date_begin</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">date_end</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">date_end</text-property>
+                    <text-property name="heading">date_end</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">time_beg</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">time_beg</text-property>
+                    <text-property name="heading">time_beg</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">time_end</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">time_end</text-property>
+                    <text-property name="heading">time_end</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DHO_NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">dho_name</text-property>
+                    <text-property name="heading">dho_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">DSE_NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">dse_name</text-property>
+                    <text-property name="heading">dse_name</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">epoch_deb</property>
+                    <property name="paramName">epoch_deb</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">epoch_end</property>
+                    <property name="paramName">epoch_end</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">epoch_deb1</property>
+                    <property name="paramName">epoch_deb</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">3</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">epoch_end1</property>
+                    <property name="paramName">epoch_end</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">4</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">epoch_deb2</property>
+                    <property name="paramName">epoch_deb</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">5</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">epoch_end2</property>
+                    <property name="paramName">epoch_end</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">6</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">host_id</property>
+                    <property name="paramName">host_id</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">7</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">service_id</property>
+                    <property name="paramName">service_id</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">8</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">epoch_deb</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">epoch_end</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">date_begin</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">date_end</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">time_beg</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">time_end</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">DHO_NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">DSE_NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">ds_keycopter</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">epoch_deb</property>
+                    <property name="nativeName">epoch_deb</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">epoch_end</property>
+                    <property name="nativeName">epoch_end</property>
+                    <property name="dataType">decimal</property>
+                    <property name="nativeDataType">-5</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">date_begin</property>
+                    <property name="nativeName">date_begin</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">date_end</property>
+                    <property name="nativeName">date_end</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">time_beg</property>
+                    <property name="nativeName">time_beg</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">time_end</property>
+                    <property name="nativeName">time_end</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">DHO_NAME</property>
+                    <property name="nativeName">DHO_NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">DSE_NAME</property>
+                    <property name="nativeName">DSE_NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select unix_timestamp(date_format(from_unixtime(?),'%Y-%m-%d %H:%i:00')) as epoch_deb,
+unix_timestamp(date_format(from_unixtime(?),'%Y-%m-%d %H:%i:00')) as epoch_end,
+date_format(from_unixtime(?),'%d/%m/%Y') as date_begin,
+date_format(from_unixtime(?),'%d/%m/%Y') as date_end,
+date_format(from_unixtime(?),'%H:%i') as time_beg,
+date_format(from_unixtime(?),'%H:%i') as time_end,
+dho_name,
+dse_name
+from d_host_service 
+inner join d_host on dhs_host = dho_id
+inner join d_service on dhs_service = dse_id
+where dhs_host = ? and dhs_service = ?
+]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>3</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>4</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>5</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>6</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>7</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>8</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+        <joint-data-set name="ds_dumpfile_name" id="1590">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">ds_date_remediation::epoch_deb</property>
+                    <property name="alias">epoch_deb</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ds_date_remediation::epoch_deb</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ds_host_service_message::service_id</property>
+                    <property name="alias">service_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ds_host_service_message::service_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ds_host_service_message::output_id</property>
+                    <property name="alias">output_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ds_host_service_message::output_id</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ds_date_remediation::epoch_end</property>
+                    <property name="alias">epoch_end</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ds_date_remediation::epoch_end</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ds_host_service_message::host_id</property>
+                    <property name="alias">host_id</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ds_host_service_message::host_id</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">ds_host_service_message::host_name</property>
+                    <property name="dataType">string</property>
+                    <property name="position">0</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">ds_host_service_message::service_name</property>
+                    <property name="dataType">string</property>
+                    <property name="position">1</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">ds_host_service_message::host_name2</property>
+                    <property name="dataType">string</property>
+                    <property name="position">2</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">ds_date_remediation::epoch_deb</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">3</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">ds_date_remediation::epoch_end</property>
+                    <property name="dataType">integer</property>
+                    <property name="position">4</property>
+                    <property name="isOptional">false</property>
+                    <property name="allowNull">false</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">ds_host_service_message::host_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">ds_host_service_message::service_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">ds_host_service_message::output_id</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">ds_date_remediation::epoch_deb</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">ds_date_remediation::epoch_end</property>
+                        <property name="dataType">decimal</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">ds_date_remediation::date_begin</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">ds_date_remediation::date_end</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">ds_date_remediation::time_beg</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">ds_date_remediation::time_end</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">ds_date_remediation::DHO_NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">ds_date_remediation::DSE_NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <simple-property-list name="dataSets">
+                <value>ds_host_service_message</value>
+                <value>ds_date_remediation</value>
+            </simple-property-list>
+            <list-property name="joinConditions">
+                <structure>
+                    <property name="joinType">full-out</property>
+                    <property name="joinOperator">eq</property>
+                    <property name="leftDataSet">ds_host_service_message</property>
+                    <property name="rightDataSet">ds_date_remediation</property>
+                    <expression name="leftExpression">dataSetRow["host_id"]</expression>
+                    <expression name="rightExpression">dataSetRow["epoch_deb"]</expression>
+                </structure>
+            </list-property>
+        </joint-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab-cell" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="7">
+            <property name="marginTop">10pt</property>
+            <property name="marginLeft">10pt</property>
+            <property name="marginBottom">10pt</property>
+            <property name="dataSet">ds_date_remediation</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">epoch_deb</property>
+                    <text-property name="displayName">epoch_deb</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["epoch_deb"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">epoch_end</property>
+                    <text-property name="displayName">epoch_end</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["epoch_end"]</expression>
+                    <property name="dataType">decimal</property>
+                </structure>
+                <structure>
+                    <property name="name">date_begin</property>
+                    <text-property name="displayName">date_begin</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["date_begin"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">date_end</property>
+                    <text-property name="displayName">date_end</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["date_end"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">time_beg</property>
+                    <text-property name="displayName">time_beg</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["time_beg"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">time_end</property>
+                    <text-property name="displayName">time_end</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["time_end"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">DHO_NAME</property>
+                    <text-property name="displayName">dho_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["DHO_NAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">DSE_NAME</property>
+                    <text-property name="displayName">dse_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["DSE_NAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="8"/>
+            <row id="1572">
+                <cell id="1573">
+                    <label id="1574">
+                        <property name="fontFamily">"Calibri"</property>
+                        <property name="fontSize">18pt</property>
+                        <property name="fontWeight">normal</property>
+                        <property name="color">#FF8000</property>
+                        <text-property name="text">AVERTISSEMENT : faite une sauvegarde partielle de votre base de log avant d'effectuer tout acte de remédiation</text-property>
+                    </label>
+                    <grid id="1591">
+                        <property name="dataSet">ds_dumpfile_name</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">ds_host_service_message::host_id</property>
+                                <text-property name="displayName">ds_host_service_message::host_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_host_service_message::host_id"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ds_host_service_message::service_id</property>
+                                <text-property name="displayName">ds_host_service_message::service_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_host_service_message::service_id"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ds_host_service_message::output_id</property>
+                                <text-property name="displayName">ds_host_service_message::output_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_host_service_message::output_id"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ds_date_remediation::epoch_deb</property>
+                                <text-property name="displayName">ds_date_remediation::epoch_deb</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_date_remediation::epoch_deb"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ds_date_remediation::epoch_end</property>
+                                <text-property name="displayName">ds_date_remediation::epoch_end</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_date_remediation::epoch_end"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_epoch_deb</property>
+                                <text-property name="displayName">agg_epoch_deb</text-property>
+                                <property name="dataType">integer</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_date_remediation::epoch_deb"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_epoch_end</property>
+                                <text-property name="displayName">agg_epoch_end</text-property>
+                                <property name="dataType">integer</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_date_remediation::epoch_end"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_host_id</property>
+                                <text-property name="displayName">agg_host_id</text-property>
+                                <property name="dataType">integer</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_host_service_message::host_id"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_service_id</property>
+                                <text-property name="displayName">agg_service_id</text-property>
+                                <property name="dataType">integer</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_host_service_message::service_id"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_output_id</property>
+                                <text-property name="displayName">agg_output_id</text-property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_host_service_message::output_id"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="1592"/>
+                        <row id="1593">
+                            <cell id="1594">
+                                <text-data id="1580">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <property name="fontSize">12pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <property name="dataSet">ds_date_remediation</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">epoch_deb</property>
+                                            <text-property name="displayName">epoch_deb</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["epoch_deb"]</expression>
+                                            <property name="dataType">decimal</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">epoch_end</property>
+                                            <text-property name="displayName">epoch_end</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["epoch_end"]</expression>
+                                            <property name="dataType">decimal</property>
+                                        </structure>
+                                    </list-property>
+                                    <expression name="valueExpr">"Pour sauvegarder la database de log"</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                        </row>
+                        <row id="1595">
+                            <cell id="1596">
+                                <property name="backgroundColor">#000000</property>
+                                <text-data id="1649">
+                                    <property name="backgroundColor">#000000</property>
+                                    <property name="fontFamily">sans-serif</property>
+                                    <property name="fontSize">10pt</property>
+                                    <property name="fontWeight">normal</property>
+                                    <property name="color">#FFFFFF</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <property name="dataSet">ds_date_remediation</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">epoch_deb</property>
+                                            <text-property name="displayName">epoch_deb</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["epoch_deb"]</expression>
+                                            <property name="dataType">decimal</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">epoch_end</property>
+                                            <text-property name="displayName">epoch_end</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["epoch_end"]</expression>
+                                            <property name="dataType">decimal</property>
+                                        </structure>
+                                    </list-property>
+                                    <expression name="valueExpr">"mkdir -p /var/archives/eor/backup_injection"</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                                <text-data id="1576">
+                                    <property name="backgroundColor">#000000</property>
+                                    <property name="color">#FFFFFF</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <expression name="valueExpr">if(row["agg_service_id"] == -1)&#13;
+&#13;
+"mysqldump -uroot -p --skip-add-drop-table --no-create-info thruk " + params["log_table"].value + " --where \"time between " + row["agg_epoch_deb"] + " and " +  row["agg_epoch_end"] + "\" > /var/archives/eor/backup_injection/" + row["agg_epoch_deb"] + row["agg_epoch_end"] + row["agg_host_id"] + "_" + params["log_table"].value + ".sql";&#13;
+&#13;
+else "mysqldump -uroot -p --skip-add-drop-table --no-create-info thruk " + params["log_table"].value + " --where \"time between " + row["agg_epoch_deb"] + " and " +  row["agg_epoch_end"] + "\" > /var/archives/eor/backup_injection/" + row["agg_epoch_deb"] + row["agg_epoch_end"] + row["agg_host_id"] + row["agg_service_id"] + "_" + params["log_table"].value + ".sql";</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                        </row>
+                        <row id="1597">
+                            <cell id="1598">
+                                <text-data id="1583">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <property name="fontSize">12pt</property>
+                                    <property name="fontWeight">bold</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <property name="dataSet">ds_date_remediation</property>
+                                    <list-property name="boundDataColumns">
+                                        <structure>
+                                            <property name="name">epoch_deb</property>
+                                            <text-property name="displayName">epoch_deb</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["epoch_deb"]</expression>
+                                            <property name="dataType">decimal</property>
+                                        </structure>
+                                        <structure>
+                                            <property name="name">epoch_end</property>
+                                            <text-property name="displayName">epoch_end</text-property>
+                                            <expression name="expression" type="javascript">dataSetRow["epoch_end"]</expression>
+                                            <property name="dataType">decimal</property>
+                                        </structure>
+                                    </list-property>
+                                    <expression name="valueExpr">"Pour restaurer la database de log"</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                        </row>
+                        <row id="1599">
+                            <property name="backgroundColor">#000000</property>
+                            <cell id="1600">
+                                <text-data id="1586">
+                                    <property name="backgroundColor">#000000</property>
+                                    <property name="color">#FFFFFF</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <expression name="valueExpr">"mysql -u root -p thruk -e 'delete from " + params["log_table"].value + " where time between " + row["agg_epoch_deb"] + " and " +  row["agg_epoch_end"] + "'"</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                        </row>
+                        <row id="1601">
+                            <property name="backgroundColor">#000000</property>
+                            <cell id="1602">
+                                <text-data id="1589">
+                                    <property name="backgroundColor">#000000</property>
+                                    <property name="color">#FFFFFF</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <expression name="valueExpr">if(row["agg_service_id"] == -1)&#13;
+&#13;
+"mysql -u root -p thruk " + " &lt; /var/archives/eor/backup_injection/" + row["agg_epoch_deb"] + row["agg_epoch_end"] + row["agg_host_id"] + "_" + params["log_table"].value + ".sql";&#13;
+&#13;
+else "mysql -u root -p thruk " + " &lt; /var/archives/eor/backup_injection/" + row["agg_epoch_deb"] + row["agg_epoch_end"] + row["agg_host_id"] + row["agg_service_id"] + "_" + params["log_table"].value + ".sql";</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="9">
+                <cell id="10">
+                    <label id="21">
+                        <property name="fontFamily">"Calibri"</property>
+                        <property name="fontSize">18pt</property>
+                        <property name="fontWeight">normal</property>
+                        <property name="color">#0000A0</property>
+                        <property name="marginTop">5pt</property>
+                        <text-property name="text">Injection de maintenance</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1612">
+                <cell id="1613">
+                    <grid id="1620">
+                        <property name="dataSet">ds_dumpfile_name</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">ds_host_service_message::host_id</property>
+                                <text-property name="displayName">ds_host_service_message::host_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_host_service_message::host_id"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ds_host_service_message::service_id</property>
+                                <text-property name="displayName">ds_host_service_message::service_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_host_service_message::service_id"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ds_host_service_message::output_id</property>
+                                <text-property name="displayName">ds_host_service_message::output_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_host_service_message::output_id"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ds_date_remediation::epoch_deb</property>
+                                <text-property name="displayName">ds_date_remediation::epoch_deb</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_date_remediation::epoch_deb"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ds_date_remediation::epoch_end</property>
+                                <text-property name="displayName">ds_date_remediation::epoch_end</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_date_remediation::epoch_end"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_epoch_deb</property>
+                                <text-property name="displayName">agg_epoch_deb</text-property>
+                                <property name="dataType">integer</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_date_remediation::epoch_deb"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_epoch_end</property>
+                                <text-property name="displayName">agg_epoch_end</text-property>
+                                <property name="dataType">integer</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_date_remediation::epoch_end"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_host_id</property>
+                                <text-property name="displayName">agg_host_id</text-property>
+                                <property name="dataType">integer</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_host_service_message::host_id"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_service_id</property>
+                                <text-property name="displayName">agg_service_id</text-property>
+                                <property name="dataType">integer</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_host_service_message::service_id"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_output_id</property>
+                                <text-property name="displayName">agg_output_id</text-property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_host_service_message::output_id"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="1621"/>
+                        <row id="1622">
+                            <cell id="1623">
+                                <text-data id="1616">
+                                    <property name="fontWeight">bold</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <property name="marginBottom">5pt</property>
+                                    <expression name="valueExpr">"Execute following command on EyesOfReport server (replace #ROOTPASSWORD with correct root password):"</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                        </row>
+                        <row id="1625">
+                            <cell id="1626">
+                                <property name="backgroundColor">#000000</property>
+                                <text-data id="1617">
+                                    <property name="backgroundColor">#000000</property>
+                                    <property name="color">#FFFFFF</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <expression name="valueExpr">if(row["agg_service_id"] == -1)&#13;
+"echo \"Valid;Date debut;Heure debut;Date fin;Heure fin;Type;Host;Service\" > /srv/eyesofreport/etl/injection/" + params["epoch_deb"].value + params["epoch_end"].value + row["agg_host_id"] + "_maintenance.csv";&#13;
+else&#13;
+"echo \"Valid;Date debut;Heure debut;Date fin;Heure fin;Type;Host;Service\" > /srv/eyesofreport/etl/injection/" + params["epoch_deb"].value + params["epoch_end"].value + row["agg_host_id"] + row["agg_service_id"] + "_maintenance.csv";</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                                <text-data id="1618">
+                                    <property name="backgroundColor">#000000</property>
+                                    <property name="color">#FFFFFF</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <expression name="valueExpr">if(row["agg_service_id"] == -1)&#13;
+"echo \"O;"+row._outer["date_begin"] +";"+row._outer["time_beg"]+";"+ row._outer["date_end"]+";"+row._outer["time_end"]+";"+"Maintenance"+";"+ row._outer["DHO_NAME"] +";Hoststatus" +"\" >> /srv/eyesofreport/etl/injection/" + params["epoch_deb"].value + params["epoch_end"].value + row["agg_host_id"] + "_maintenance.csv";&#13;
+else&#13;
+"echo \"O;"+row._outer["date_begin"] +";"+row._outer["time_beg"]+";"+ row._outer["date_end"]+";"+row._outer["time_end"]+";"+"Maintenance"+";"+ row._outer["DHO_NAME"] +";"+ row._outer["DSE_NAME"] +"\" >> /srv/eyesofreport/etl/injection/" + params["epoch_deb"].value + params["epoch_end"].value + row["agg_host_id"] + row["agg_service_id"] + "_maintenance.csv";</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                                <text-data id="1619">
+                                    <property name="backgroundColor">#000000</property>
+                                    <property name="fontWeight">normal</property>
+                                    <property name="color">#FFFFFF</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <property name="marginBottom">5pt</property>
+                                    <expression name="valueExpr">if(row["agg_service_id"] == -1)&#13;
+"/srv/eyesofreport/etl/scripts/massive_inject_HOST_downtime-or-outage.sh root #ROOTPASSWORD " + params["source_prefix"].value + " Downtime " + params["epoch_deb"].value + params["epoch_end"].value + row["agg_host_id"] + "_maintenance.csv";&#13;
+else&#13;
+"/srv/eyesofreport/etl/scripts/massive_inject_HOST_downtime-or-outage.sh root #ROOTPASSWORD " + params["source_prefix"].value + " Downtime " + params["epoch_deb"].value + params["epoch_end"].value + row["agg_host_id"] + row["agg_service_id"] + "_maintenance.csv";</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="13">
+                <cell id="14">
+                    <label id="22">
+                        <property name="fontFamily">"Calibri"</property>
+                        <property name="fontSize">18pt</property>
+                        <property name="fontWeight">normal</property>
+                        <property name="color">#0000A0</property>
+                        <text-property name="text">Injection d'outage</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="1637">
+                <cell id="1638">
+                    <grid id="1639">
+                        <property name="dataSet">ds_dumpfile_name</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">ds_host_service_message::host_id</property>
+                                <text-property name="displayName">ds_host_service_message::host_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_host_service_message::host_id"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ds_host_service_message::service_id</property>
+                                <text-property name="displayName">ds_host_service_message::service_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_host_service_message::service_id"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ds_host_service_message::output_id</property>
+                                <text-property name="displayName">ds_host_service_message::output_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_host_service_message::output_id"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ds_date_remediation::epoch_deb</property>
+                                <text-property name="displayName">ds_date_remediation::epoch_deb</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_date_remediation::epoch_deb"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ds_date_remediation::epoch_end</property>
+                                <text-property name="displayName">ds_date_remediation::epoch_end</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ds_date_remediation::epoch_end"]</expression>
+                                <property name="dataType">decimal</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_epoch_deb</property>
+                                <text-property name="displayName">agg_epoch_deb</text-property>
+                                <property name="dataType">integer</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_date_remediation::epoch_deb"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_epoch_end</property>
+                                <text-property name="displayName">agg_epoch_end</text-property>
+                                <property name="dataType">integer</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_date_remediation::epoch_end"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_host_id</property>
+                                <text-property name="displayName">agg_host_id</text-property>
+                                <property name="dataType">integer</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_host_service_message::host_id"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_service_id</property>
+                                <text-property name="displayName">agg_service_id</text-property>
+                                <property name="dataType">integer</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_host_service_message::service_id"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                            <structure>
+                                <property name="name">agg_output_id</property>
+                                <text-property name="displayName">agg_output_id</text-property>
+                                <property name="dataType">float</property>
+                                <property name="aggregateFunction">SUM</property>
+                                <list-property name="arguments">
+                                    <structure>
+                                        <property name="name">Expression</property>
+                                        <expression name="value" type="javascript">row["ds_host_service_message::output_id"]</expression>
+                                    </structure>
+                                </list-property>
+                                <property name="allowExport">true</property>
+                            </structure>
+                        </list-property>
+                        <column id="1640"/>
+                        <row id="1641">
+                            <cell id="1642">
+                                <text-data id="1667">
+                                    <property name="fontWeight">bold</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <property name="marginBottom">5pt</property>
+                                    <expression name="valueExpr">"Execute following command on EyesOfReport server (replace #ROOTPASSWORD with correct root password):"</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                        </row>
+                        <row id="1644">
+                            <cell id="1645">
+                                <property name="backgroundColor">#000000</property>
+                                <text-data id="1646">
+                                    <property name="backgroundColor">#000000</property>
+                                    <property name="color">#FFFFFF</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <expression name="valueExpr">if(row["agg_service_id"] == -1)&#13;
+"echo \"Valid;Date debut;Heure debut;Date fin;Heure fin;Type;Host;Service\" > /srv/eyesofreport/etl/injection/" + params["epoch_deb"].value + params["epoch_end"].value + row["agg_host_id"] + "_outage.csv";&#13;
+else&#13;
+"echo \"Valid;Date debut;Heure debut;Date fin;Heure fin;Type;Host;Service\" > /srv/eyesofreport/etl/injection/" + params["epoch_deb"].value + params["epoch_end"].value + row["agg_host_id"] + row["agg_service_id"] + "_outage.csv";</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                                <text-data id="1647">
+                                    <property name="backgroundColor">#000000</property>
+                                    <property name="color">#FFFFFF</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <expression name="valueExpr">if(row["agg_service_id"] == -1)&#13;
+"echo \"O;"+row._outer["date_begin"] +";"+row._outer["time_beg"]+";"+ row._outer["date_end"]+";"+row._outer["time_end"]+";"+"Incident"+";"+ row._outer["DHO_NAME"] +";Hoststatus\" >> /srv/eyesofreport/etl/injection/" + params["epoch_deb"].value + params["epoch_end"].value + row["agg_host_id"] + "_outage.csv";&#13;
+else&#13;
+"echo \"O;"+row._outer["date_begin"] +";"+row._outer["time_beg"]+";"+ row._outer["date_end"]+";"+row._outer["time_end"]+";"+"Incident"+";"+ row._outer["DHO_NAME"] +";"+ row._outer["DSE_NAME"] +"\" >> /srv/eyesofreport/etl/injection/" + params["epoch_deb"].value + params["epoch_end"].value + row["agg_host_id"] + row["agg_service_id"] + "_outage.csv";</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                                <text-data id="1648">
+                                    <property name="backgroundColor">#000000</property>
+                                    <property name="fontWeight">normal</property>
+                                    <property name="color">#FFFFFF</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <property name="marginBottom">5pt</property>
+                                    <expression name="valueExpr">if(row["agg_service_id"] == -1)&#13;
+"/srv/eyesofreport/etl/scripts/massive_inject_HOST_downtime-or-outage.sh root #ROOTPASSWORD " + params["source_prefix"].value + " Outage " + params["epoch_deb"].value + params["epoch_end"].value + row["agg_host_id"] + "_outage.csv";&#13;
+else&#13;
+"/srv/eyesofreport/etl/scripts/massive_inject_HOST_downtime-or-outage.sh root #ROOTPASSWORD " + params["source_prefix"].value + " Outage " + params["epoch_deb"].value + params["epoch_end"].value + row["agg_host_id"] + row["agg_service_id"] + "_outage.csv";</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="17">
+                <cell id="18">
+                    <label id="23">
+                        <property name="fontFamily">"Calibri"</property>
+                        <property name="fontSize">18pt</property>
+                        <property name="fontWeight">normal</property>
+                        <property name="color">#0000A0</property>
+                        <text-property name="text">Suppression d'outage</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="19">
+                <cell id="20">
+                    <grid id="28">
+                        <property name="marginTop">5pt</property>
+                        <property name="width">7.875in</property>
+                        <property name="dataSet">ds_host_service_message</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">host_id</property>
+                                <text-property name="displayName">host_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["host_id"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">service_id</property>
+                                <text-property name="displayName">service_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["service_id"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">output_id</property>
+                                <text-property name="displayName">output_id</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["output_id"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                        </list-property>
+                        <column id="29">
+                            <property name="width">2.4270833333333335in</property>
+                        </column>
+                        <column id="30">
+                            <property name="width">5.447916666666667in</property>
+                        </column>
+                        <row id="1556">
+                            <cell id="1557">
+                                <property name="colSpan">2</property>
+                                <property name="rowSpan">1</property>
+                                <text-data id="1668">
+                                    <property name="fontWeight">bold</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <property name="marginBottom">5pt</property>
+                                    <expression name="valueExpr">"Execute following command on EyesOfReport server:"</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                        </row>
+                        <row id="34">
+                            <cell id="35">
+                                <property name="colSpan">2</property>
+                                <property name="rowSpan">1</property>
+                                <property name="backgroundColor">#000000</property>
+                                <text-data id="1665">
+                                    <property name="backgroundColor">#000000</property>
+                                    <property name="color">#FFFFFF</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <expression name="valueExpr">if(row["service_id"] != -1) &#13;
+"mysql -uroot -p thruk -e \"update " + params["log_table"].value + " set message = " + row["output_id"] + " where  time between " + params["epoch_deb"].value + " and " + params["epoch_end"].value + " and state_type = 'HARD' and host_id = "  +row["host_id"] + " and service_id = " + row["service_id"] +"\"";&#13;
+else &#13;
+"mysql -uroot -p thruk -e \"update " + params["log_table"].value + " set message = " + row["output_id"] + " where  time between " + params["epoch_deb"].value + " and " + params["epoch_end"].value + " and state_type = 'HARD' and host_id = "  +row["host_id"] + " and service_id is null\"";</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                        </row>
+                        <row id="37">
+                            <cell id="38">
+                                <property name="colSpan">2</property>
+                                <property name="rowSpan">1</property>
+                                <property name="backgroundColor">#000000</property>
+                                <text-data id="1666">
+                                    <property name="backgroundColor">#000000</property>
+                                    <property name="color">#FFFFFF</property>
+                                    <property name="marginTop">5pt</property>
+                                    <property name="marginLeft">5pt</property>
+                                    <property name="marginBottom">5pt</property>
+                                    <expression name="valueExpr">if(row["service_id"] != -1) &#13;
+"mysql -uroot -p thruk -e \"update " + params["log_table"].value + " set state = 0 where time between " + params["epoch_deb"].value + " and " + params["epoch_end"].value + " and state_type = 'HARD' and host_id = "  +row["host_id"] + " and service_id = " + row["service_id"] +"\"";&#13;
+else &#13;
+"mysql -uroot -p thruk -e \"update " + params["log_table"].value + " set state = 0 where time between " + params["epoch_deb"].value + " and " + params["epoch_end"].value + " and state_type = 'HARD' and host_id = "  +row["host_id"] + " and service_id is null\"";</expression>
+                                    <property name="contentType">html</property>
+                                </text-data>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="1650">
+                <cell id="1651"/>
+            </row>
+        </grid>
+    </body>
+</report>

@@ -1,0 +1,12 @@
+[Unit]
+Description=container_description
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStartPre=-/usr/bin/docker stop container_name
+ExecStartPre=-/usr/bin/docker rm container_name
+ExecStart=/usr/bin/docker run -d -p $2:$2 --privileged -v /srv/eyesofreport/source/$3/Log_Nagios:/home/eyesofreport/external_depot/Log_Nagios -v /srv/eyesofreport/source/$3/Ged:/home/eyesofreport/external_depot/Ged -v /srv/eyesofreport/source/$3/Lilac:/home/eyesofreport/external_depot/Lilac -v /srv/eyesofreport/source/$3/Nagios_BP:/home/eyesofreport/external_depot/Nagios_BP -v /sys/fs/cgroup:/sys/fs/cgroup:ro --name container_name container_name
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,1326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.0.v201306041519 Build &lt;4.3.0.v20130613-1152></property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <property name="imageDPI">96</property>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="eor_sources" id="7">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://192.168.26.131:3306/global_nagiosbp</property>
+            <property name="odaUser">eyesofreport</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">U2FpbnRUaG9tYXMsMjAxNA==</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="ds_sources" id="8">
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">db_names</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">db_names</text-property>
+                    <text-property name="heading">db_names</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">nick_name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">nick_name</text-property>
+                    <text-property name="heading">nick_name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">thruk_idx</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">thruk_idx</text-property>
+                    <text-property name="heading">thruk_idx</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">name</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">name</text-property>
+                    <text-property name="heading">name</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">trigram_source</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">trigram_source</text-property>
+                    <text-property name="heading">trigram_source</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">ssh_port</property>
+                    <property name="analysis">measure</property>
+                    <text-property name="displayName">ssh_port</text-property>
+                    <text-property name="heading">ssh_port</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">container_ssh</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">container_ssh</text-property>
+                    <text-property name="heading">container_ssh</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">container_nagios</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">container_nagios</text-property>
+                    <text-property name="heading">container_nagios</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">trigram_site</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">trigram_site</text-property>
+                    <text-property name="heading">trigram_site</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">host_source</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">host_source</text-property>
+                    <text-property name="heading">host_source</text-property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">db_names</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">nick_name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">thruk_idx</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">name</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">trigram_source</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">ssh_port</property>
+                        <property name="dataType">integer</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">container_ssh</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">container_nagios</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">trigram_site</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">host_source</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">eor_sources</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">db_names</property>
+                    <property name="nativeName">db_names</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">nick_name</property>
+                    <property name="nativeName">nick_name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">thruk_idx</property>
+                    <property name="nativeName">thruk_idx</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">name</property>
+                    <property name="nativeName">name</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">trigram_source</property>
+                    <property name="nativeName">trigram_source</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">ssh_port</property>
+                    <property name="nativeName">ssh_port</property>
+                    <property name="dataType">integer</property>
+                    <property name="nativeDataType">4</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">container_ssh</property>
+                    <property name="nativeName">container_ssh</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">container_nagios</property>
+                    <property name="nativeName">container_nagios</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">trigram_site</property>
+                    <property name="nativeName">trigram_site</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">host_source</property>
+                    <property name="nativeName">host_source</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[select db_names,nick_name,thruk_idx,name,trigram_source,ssh_port,container_ssh,container_nagios,trigram_site,host_source from bp_sources where nick_name <> 'global';]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>db_names</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>db_names</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>db_names</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>nick_name</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>50</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>nick_name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>nick_name</design:label>
+            <design:formattingHints>
+              <design:displaySize>50</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>thruk_idx</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>10</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>thruk_idx</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>thruk_idx</design:label>
+            <design:formattingHints>
+              <design:displaySize>10</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>name</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>30</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>name</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>name</design:label>
+            <design:formattingHints>
+              <design:displaySize>30</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>trigram_source</design:name>
+              <design:position>5</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>3</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>trigram_source</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>trigram_source</design:label>
+            <design:formattingHints>
+              <design:displaySize>3</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>ssh_port</design:name>
+              <design:position>6</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>4</design:nativeDataTypeCode>
+            <design:precision>11</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>ssh_port</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>ssh_port</design:label>
+            <design:formattingHints>
+              <design:displaySize>11</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>container_ssh</design:name>
+              <design:position>7</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>container_ssh</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>container_ssh</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>container_nagios</design:name>
+              <design:position>8</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>container_nagios</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>container_nagios</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>trigram_site</design:name>
+              <design:position>9</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>trigram_site</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>trigram_site</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>host_source</design:name>
+              <design:position>10</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>45</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>host_source</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>host_source</design:label>
+            <design:formattingHints>
+              <design:displaySize>45</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab-cell" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="Normal" id="9">
+            <property name="fontFamily">"Calibri"</property>
+            <property name="fontSize">10pt</property>
+            <property name="color">#000000</property>
+            <property name="marginLeft">5pt</property>
+        </style>
+        <style name="h1" id="10">
+            <property name="backgroundColor">#0B65A2</property>
+            <property name="fontFamily">"Calibri"</property>
+            <property name="fontSize">16pt</property>
+            <property name="color">#FFFFFF</property>
+            <property name="marginTop">5pt</property>
+            <property name="marginLeft">0pt</property>
+            <property name="marginBottom">5pt</property>
+            <property name="pageBreakBefore">always</property>
+        </style>
+        <style name="h2" id="11">
+            <property name="fontFamily">"Calibri"</property>
+            <property name="fontSize">14pt</property>
+            <property name="color">#0B65A2</property>
+            <property name="marginTop">10pt</property>
+            <property name="marginLeft">0pt</property>
+            <property name="marginBottom">5pt</property>
+            <property name="display">inline</property>
+        </style>
+        <style name="h3" id="12">
+            <property name="fontFamily">"Calibri"</property>
+            <property name="fontSize">14pt</property>
+            <property name="color">#A02B69</property>
+            <property name="marginTop">5pt</property>
+            <property name="marginLeft">10pt</property>
+            <property name="marginBottom">5pt</property>
+        </style>
+        <style name="Code" id="13">
+            <property name="backgroundColor">#000000</property>
+            <property name="fontFamily">"Calibri"</property>
+            <property name="color">#FFFFFF</property>
+            <property name="marginTop">5pt</property>
+            <property name="marginLeft">5pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">custom</property>
+            <property name="topMargin">1.5cm</property>
+            <property name="leftMargin">2.5cm</property>
+            <property name="bottomMargin">1.5cm</property>
+            <property name="rightMargin">1.5cm</property>
+            <property name="height">29.7cm</property>
+            <property name="width">21cm</property>
+            <page-footer>
+                <text id="3">
+                    <property name="contentType">html</property>
+                    <text-property name="content"><![CDATA[<value-of>new Date()</value-of>]]></text-property>
+                </text>
+            </page-footer>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <grid id="14">
+            <property name="width">6.645833333333333in</property>
+            <property name="dataSet">ds_sources</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">db_names</property>
+                    <text-property name="displayName">db_names</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["db_names"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">nick_name</property>
+                    <text-property name="displayName">nick_name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["name"] + " (" + dataSetRow["host_source"] + ")"</expression>
+                    <property name="dataType">string</property>
+                    <property name="allowExport">true</property>
+                </structure>
+                <structure>
+                    <property name="name">thruk_idx</property>
+                    <text-property name="displayName">thruk_idx</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["thruk_idx"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">name</property>
+                    <text-property name="displayName">name</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">trigram_source</property>
+                    <text-property name="displayName">trigram_source</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["trigram_source"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">ssh_port</property>
+                    <text-property name="displayName">ssh_port</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["ssh_port"]</expression>
+                    <property name="dataType">integer</property>
+                </structure>
+                <structure>
+                    <property name="name">container_ssh</property>
+                    <text-property name="displayName">container_ssh</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["container_ssh"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">container_nagios</property>
+                    <text-property name="displayName">container_nagios</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["container_nagios"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">trigram_site</property>
+                    <text-property name="displayName">trigram_site</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["trigram_site"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">host_source</property>
+                    <text-property name="displayName">host_source</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["host_source"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="16">
+                <property name="width">6.645833333333333in</property>
+            </column>
+            <row id="18">
+                <cell id="20">
+                    <label id="54">
+                        <property name="style">h1</property>
+                        <structure name="toc">
+                            <property name="TOCStyle">h1</property>
+                        </structure>
+                        <text-property name="text">Introduction</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="22">
+                <cell id="24">
+                    <label id="55">
+                        <property name="style">Normal</property>
+                        <text-property name="text">Ce document est le document technique d’exploitation</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="26">
+                <cell id="28">
+                    <label id="56">
+                        <property name="style">h2</property>
+                        <structure name="toc">
+                            <property name="TOCStyle">h2</property>
+                        </structure>
+                        <text-property name="text">Objectifs</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="30">
+                <cell id="32">
+                    <label id="57">
+                        <property name="style">Normal</property>
+                        <text-property name="text">Ce document a pour but de définir les actions de maintenance, et d’indiquer la complexité et criticité associée.</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="34">
+                <cell id="36">
+                    <label id="58">
+                        <property name="style">h2</property>
+                        <text-property name="text">Légende</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="38">
+                <cell id="40">
+                    <grid id="59">
+                        <property name="borderBottomColor">#0B65A2</property>
+                        <property name="borderBottomStyle">solid</property>
+                        <property name="borderBottomWidth">thin</property>
+                        <property name="borderLeftColor">#0B65A2</property>
+                        <property name="borderLeftStyle">solid</property>
+                        <property name="borderLeftWidth">thin</property>
+                        <property name="borderRightColor">#0B65A2</property>
+                        <property name="borderRightStyle">solid</property>
+                        <property name="borderRightWidth">thin</property>
+                        <property name="borderTopColor">#0B65A2</property>
+                        <property name="borderTopStyle">solid</property>
+                        <property name="borderTopWidth">thin</property>
+                        <property name="marginTop">5pt</property>
+                        <property name="marginLeft">5pt</property>
+                        <property name="height">1.65625in</property>
+                        <property name="width">4.5625in</property>
+                        <column id="60">
+                            <property name="width">1.15625in</property>
+                        </column>
+                        <column id="61">
+                            <property name="width">1.1145833333333333in</property>
+                        </column>
+                        <column id="62">
+                            <property name="width">1.1145833333333333in</property>
+                        </column>
+                        <column id="63">
+                            <property name="width">1.1770833333333333in</property>
+                        </column>
+                        <row id="64">
+                            <property name="backgroundColor">#0B65A2</property>
+                            <property name="fontWeight">bold</property>
+                            <property name="color">#FFFFFF</property>
+                            <property name="height">0.34375in</property>
+                            <cell id="65">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="89">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">Catégorie	</text-property>
+                                </label>
+                            </cell>
+                            <cell id="66">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="93">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">Niveau (Faible)</text-property>
+                                </label>
+                            </cell>
+                            <cell id="67">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="94">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">Niveau (Moyen)</text-property>
+                                </label>
+                            </cell>
+                            <cell id="68">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="95">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">Niveau (Haut)</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                        <row id="69">
+                            <cell id="70">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="96">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">Complexité</text-property>
+                                </label>
+                            </cell>
+                            <cell id="71">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="textAlign">center</property>
+                                <image id="113">
+                                    <property name="height">0.25in</property>
+                                    <property name="width">0.21875in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">star.PNG</property>
+                                </image>
+                            </cell>
+                            <cell id="72">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="textAlign">center</property>
+                                <image id="115">
+                                    <property name="display">inline</property>
+                                    <property name="height">0.25in</property>
+                                    <property name="width">0.21875in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">star.PNG</property>
+                                </image>
+                                <image id="116">
+                                    <property name="display">inline</property>
+                                    <property name="height">0.25in</property>
+                                    <property name="width">0.21875in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">star.PNG</property>
+                                </image>
+                            </cell>
+                            <cell id="73">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="textAlign">center</property>
+                                <image id="117">
+                                    <property name="display">inline</property>
+                                    <property name="height">0.25in</property>
+                                    <property name="width">0.21875in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">star.PNG</property>
+                                </image>
+                                <image id="118">
+                                    <property name="display">inline</property>
+                                    <property name="height">0.25in</property>
+                                    <property name="width">0.21875in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">star.PNG</property>
+                                </image>
+                                <image id="119">
+                                    <property name="display">inline</property>
+                                    <property name="height">0.25in</property>
+                                    <property name="width">0.21875in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">star.PNG</property>
+                                </image>
+                            </cell>
+                        </row>
+                        <row id="74">
+                            <cell id="75">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="97">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">Criticité</text-property>
+                                </label>
+                            </cell>
+                            <cell id="76">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="textAlign">center</property>
+                                <image id="114">
+                                    <property name="display">inline</property>
+                                    <property name="height">0.21875in</property>
+                                    <property name="width">0.22916666666666666in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">flag.PNG</property>
+                                </image>
+                            </cell>
+                            <cell id="77">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="textAlign">center</property>
+                                <image id="120">
+                                    <property name="display">inline</property>
+                                    <property name="height">0.21875in</property>
+                                    <property name="width">0.22916666666666666in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">flag.PNG</property>
+                                </image>
+                                <image id="121">
+                                    <property name="display">inline</property>
+                                    <property name="height">0.21875in</property>
+                                    <property name="width">0.22916666666666666in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">flag.PNG</property>
+                                </image>
+                            </cell>
+                            <cell id="78">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="textAlign">center</property>
+                                <image id="122">
+                                    <property name="display">inline</property>
+                                    <property name="height">0.21875in</property>
+                                    <property name="width">0.22916666666666666in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">flag.PNG</property>
+                                </image>
+                                <image id="123">
+                                    <property name="display">inline</property>
+                                    <property name="height">0.21875in</property>
+                                    <property name="width">0.22916666666666666in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">flag.PNG</property>
+                                </image>
+                                <image id="124">
+                                    <property name="display">inline</property>
+                                    <property name="height">0.21875in</property>
+                                    <property name="width">0.22916666666666666in</property>
+                                    <property name="source">embed</property>
+                                    <property name="imageName">flag.PNG</property>
+                                </image>
+                            </cell>
+                        </row>
+                        <row id="79">
+                            <property name="height">0.3229166666666667in</property>
+                            <cell id="80">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="98">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">Fréquence</text-property>
+                                </label>
+                            </cell>
+                            <cell id="81">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="textAlign">center</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="106">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <text-property name="text">/Y</text-property>
+                                </label>
+                            </cell>
+                            <cell id="82">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="textAlign">center</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="107">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <text-property name="text">/M</text-property>
+                                </label>
+                            </cell>
+                            <cell id="83">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="textAlign">center</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="108">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <text-property name="text">/W or /D</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                        <row id="84">
+                            <property name="height">0.3125in</property>
+                            <cell id="85">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="99">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <property name="textAlign">center</property>
+                                    <text-property name="text">Temps moyen</text-property>
+                                </label>
+                            </cell>
+                            <cell id="86">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="textAlign">center</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="109">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <text-property name="text">Min</text-property>
+                                </label>
+                            </cell>
+                            <cell id="87">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="textAlign">center</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="110">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <text-property name="text">Min</text-property>
+                                </label>
+                            </cell>
+                            <cell id="88">
+                                <property name="borderBottomColor">#0B65A2</property>
+                                <property name="borderBottomStyle">solid</property>
+                                <property name="borderBottomWidth">thin</property>
+                                <property name="borderLeftColor">#0B65A2</property>
+                                <property name="borderLeftWidth">thin</property>
+                                <property name="borderRightColor">#0B65A2</property>
+                                <property name="borderRightWidth">thin</property>
+                                <property name="borderTopColor">#0B65A2</property>
+                                <property name="borderTopStyle">solid</property>
+                                <property name="borderTopWidth">thin</property>
+                                <property name="textAlign">center</property>
+                                <property name="verticalAlign">middle</property>
+                                <label id="111">
+                                    <property name="fontFamily">"Calibri"</property>
+                                    <text-property name="text">Min</text-property>
+                                </label>
+                            </cell>
+                        </row>
+                    </grid>
+                </cell>
+            </row>
+            <row id="42">
+                <cell id="44">
+                    <label id="125">
+                        <property name="style">h1</property>
+                        <structure name="toc">
+                            <property name="TOCStyle">h1</property>
+                        </structure>
+                        <text-property name="text"> Documentation d’exploitation</text-property>
+                    </label>
+                </cell>
+            </row>
+            <row id="46">
+                <cell id="48">
+                    <property name="verticalAlign">middle</property>
+                    <text-data id="168">
+                        <property name="style">h2</property>
+                        <expression name="valueExpr">"Sauvez les tables de log "</expression>
+                        <property name="contentType">html</property>
+                    </text-data>
+                    <image id="127">
+                        <property name="marginTop">0pt</property>
+                        <property name="marginBottom">0pt</property>
+                        <property name="display">inline</property>
+                        <property name="height">0.23958333333333334in</property>
+                        <property name="width">0.22916666666666666in</property>
+                        <property name="source">embed</property>
+                        <property name="imageName">star2.PNG</property>
+                    </image>
+                    <image id="128">
+                        <property name="marginTop">0pt</property>
+                        <property name="marginBottom">0pt</property>
+                        <property name="display">inline</property>
+                        <property name="height">0.22105263157894736in</property>
+                        <property name="width">0.2631578947368421in</property>
+                        <property name="source">embed</property>
+                        <property name="imageName">flag2.PNG</property>
+                    </image>
+                </cell>
+            </row>
+            <row id="142">
+                <cell id="143">
+                    <table id="147">
+                        <property name="dataSet">ds_sources</property>
+                        <list-property name="boundDataColumns">
+                            <structure>
+                                <property name="name">db_names</property>
+                                <text-property name="displayName">db_names</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["db_names"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">nick_name</property>
+                                <text-property name="displayName">nick_name</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["nick_name"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">thruk_idx</property>
+                                <text-property name="displayName">thruk_idx</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["thruk_idx"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">name</property>
+                                <text-property name="displayName">name</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["name"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">trigram_source</property>
+                                <text-property name="displayName">trigram_source</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["trigram_source"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">ssh_port</property>
+                                <text-property name="displayName">ssh_port</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["ssh_port"]</expression>
+                                <property name="dataType">integer</property>
+                            </structure>
+                            <structure>
+                                <property name="name">container_ssh</property>
+                                <text-property name="displayName">container_ssh</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["container_ssh"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">container_nagios</property>
+                                <text-property name="displayName">container_nagios</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["container_nagios"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">trigram_site</property>
+                                <text-property name="displayName">trigram_site</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["trigram_site"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                            <structure>
+                                <property name="name">host_source</property>
+                                <text-property name="displayName">host_source</text-property>
+                                <expression name="expression" type="javascript">dataSetRow["host_source"]</expression>
+                                <property name="dataType">string</property>
+                            </structure>
+                        </list-property>
+                        <column id="154"/>
+                        <group id="155">
+                            <property name="groupName">Source</property>
+                            <expression name="keyExpr" type="javascript">row["nick_name"]</expression>
+                            <structure name="toc">
+                                <expression name="expressionValue" type="javascript">row["nick_name"]</expression>
+                            </structure>
+                            <property name="hideDetail">false</property>
+                            <header>
+                                <row id="156">
+                                    <cell id="157">
+                                        <text-data id="161">
+                                            <property name="style">h3</property>
+                                            <property name="marginTop">10pt</property>
+                                            <expression name="valueExpr">row["name"] + " (" + row["host_source"] + ")"</expression>
+                                            <property name="contentType">html</property>
+                                        </text-data>
+                                    </cell>
+                                </row>
+                                <row id="164">
+                                    <cell id="165">
+                                        <text-data id="162">
+                                            <property name="style">Normal</property>
+                                            <property name="marginBottom">5pt</property>
+                                            <expression name="valueExpr">"Pour sauver les données de logs de la source " + row["name"] + " pour un mois donné (mars par exemple), vous devez exécuter la commande suivante : \n"</expression>
+                                            <property name="contentType">html</property>
+                                        </text-data>
+                                    </cell>
+                                </row>
+                                <row id="166">
+                                    <cell id="167">
+                                        <text-data id="163">
+                                            <property name="style">Code</property>
+                                            <expression name="valueExpr">"mysqldump -u root -p --skip-add-drop-table --no-create-info thruk "+ row["thruk_idx"] + "_log --where \"from_unixtime(time) like '2016-03%'\" > /home/eyesofreport/archives/201603_ " + row["thruk_idx"] + "_log.sql"</expression>
+                                            <property name="contentType">html</property>
+                                        </text-data>
+                                    </cell>
+                                </row>
+                            </header>
+                        </group>
+                    </table>
+                </cell>
+            </row>
+            <row id="144">
+                <cell id="145"/>
+            </row>
+        </grid>
+    </body>
+    <property name="pageVariables">
+        <variable-element name="EOR_IP">
+            <expression name="value" type="javascript">"192.168.26.131"</expression>
+            <property name="type">report</property>
+        </variable-element>
+    </property>
+    <list-property name="images">
+        <structure>
+            <property name="name">star.PNG</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAABYAAAAXCAYAAAAP6L+eAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+                YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADpSURBVEhL7ZO7CQJBEIavDeuwDdswtwKxgatALMAODMVA
+                TIwuMhDMTO1g5Zcbmcc/e4KIyX0wcOzj292Zuab8iFH85n/iaXsuzWJvYrbu+tmcVDzfXoxstbu9hH4s
+                g4q9FHG4PsrmdA/jmTyI2WakQ/BzCBzqCWKWU7xA8OlAsJwbMU7Wt/sUtseIdRrwPQTyK+t9OlIxotZW
+                k+XRrK2KMakXsw1A31TCE4qnb1LL99C6INa3kR7VLxF0d7B6BDGQTRCy9kL7ST10K2qoGLC/TwdSUeuc
+                VCxFYz8MXoF5VlghFX/LKO4p5Ql6phugCzVCQgAAAABJRU5ErkJggg==
+</property>
+        </structure>
+        <structure>
+            <property name="name">flag.PNG</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAAB8AAAAdCAYAAABSZrcyAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+                YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADwSURBVEhL7ZXhDYQgDEZvESdxEAdxEBdxFWfCfoEvIQ20
+                HCfhx/mSxgsgrxTwPmEir3wKr3wKtvy6ZIQMwXMAtvw8o3zfU8OztMnXNQZ+57EsaWAfMoMBy87IK8DE
+                fkjAlgNLgGTQ34n/JsQ1AeRDV869Lp149A2Vb1uU82kFzkGJ4yj2S4sD9xWBlQKslgcOEwOOqQWSV0ir
+                A7OmGEBunQWQV4oJKny5vlL59at9+ZgYorYVgvQ65DLAZHQZ9TehUGZNmtGBE3Kl1uGrlLiEjG6AZTRK
+                2EObnHf9i1W10CZnmR/+d2uTD+KVT+Ff5SHchsZC/B3tUbsAAAAASUVORK5CYII=
+</property>
+        </structure>
+        <structure>
+            <property name="name">star2.PNG</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAABMAAAATCAYAAAByUDbMAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+                YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADfSURBVDhP1ZO7DcJAEETdBnXQBm2QUwGiASpAFEAHhIjA
+                IiEiIkAiI6WDQ4M8aHZvMAg5YaSVrbv126+bMqD+FDZeHksz2wWbrE7dbS0Lm27OAbDYXp+QfJZVwTII
+                tr/cy/pwq84zMMDcByiVyncwBKICzPUImVK5VJj28AVDBM3iW4XMu2coEe+fhH7Rn6VaGKxvBUbzNvhW
+                MByogzqpNCMaFQagEfv6984vwDQqd0gzpnSq2t8Ag+gIiFsFrAr7q2sDVTDI/QVqKNNN3MLYeLfEyBb3
+                bjgW9qsGhJXyAIMG2bd8Psb3AAAAAElFTkSuQmCC
+</property>
+        </structure>
+        <structure>
+            <property name="name">flag2.PNG</property>
+            <property name="type">image/png</property>
+            <property name="data">
+                iVBORw0KGgoAAAANSUhEUgAAABkAAAAVCAYAAACzK0UYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+                YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADgSURBVEhL3ZThDYQgDIVvESdxEAdxEBdxFWfCvsCLTwrE
+                I5w/7ksaxUJfW8BPeIF/FDkOG9kQz8FcIvseRdY1fRiHF5nnaHhXm6Y08XtsdYLtomlFTKBT6BIBrUAQ
+                hb+D+yoI1AJBZEgl3IvSCYNviMiyRBE+W4Z9KrFtzm8jgX2HIXOA7LnxCAA4p2ZIUrAvArOgAIBIa6+A
+                Vs5EhPvK/Kjqsa79CZgArNJC8wgaFFA0K9/dqdyfkaIJXMjMW4eg0JoSNjOD5VdK78GL8K48zPIJXoTt
+                Gfg39iI/4AWREE5N6XB6jETFowAAAABJRU5ErkJggg==
+</property>
+        </structure>
+    </list-property>
+</report>

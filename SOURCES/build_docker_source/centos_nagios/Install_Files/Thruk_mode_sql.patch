@@ -1,0 +1,10 @@
+--- lib/Thruk/Backend/Provider/Mysql_old.pm      2015-10-19 13:54:15.657088466 +0000
++++ lib/Thruk/Backend/Provider/Mysql.pm  2015-10-19 13:54:26.395088593 +0000
+@@ -151,6 +151,7 @@
+         $dsn .= ";mysql_socket=".$self->{'dbsock'} if $self->{'dbsock'};
+         $self->{'mysql'} = DBI->connect($dsn, $self->{'dbuser'}, $self->{'dbpass'}, {RaiseError => 1, AutoCommit => 0,$
+         $self->{'mysql'}->do("SET NAMES utf8 COLLATE utf8_bin");
++        $self->{'mysql'}->do("SET SESSION sql_mode = ''");
+         #&timing_breakpoint('connected');
+     }
+     return $self->{'mysql'};

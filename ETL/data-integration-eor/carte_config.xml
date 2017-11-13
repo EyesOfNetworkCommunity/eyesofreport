@@ -1,0 +1,16 @@
+  <slave_config>
+ 
+   <slaveserver>
+     <name>master</name>
+     <hostname>localhost</hostname>
+     <port>8181</port>
+     <master>Y</master>
+   </slaveserver>
+ 
+   <repository>
+     <name>eor_repository</name>
+     <username>admin</username>
+     <password>admin</password>
+   </repository>
+ 
+  </slave_config>

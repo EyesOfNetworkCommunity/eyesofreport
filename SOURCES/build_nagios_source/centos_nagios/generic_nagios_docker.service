@@ -1,0 +1,13 @@
+[Unit]
+Description=container_description
+Requires=docker.service
+After=docker.service
+PartOf=mariadb.service
+
+[Service]
+ExecStartPre=-/usr/bin/docker stop container_name
+ExecStartPre=-/usr/bin/docker rm container_name
+ExecStart=/usr/bin/docker run -d --name $1 --privileged -v /srv/eyesofreport/source/$2/Log_Nagios/:/srv/eyesofnetwork/nagios/var/log/archives -v /srv/eyesofreport/source/$2:/srv/eyesofreport/external_depot -v /srv/eyesofreport/scripts:/srv/eyesofreport/scripts -v /sys/fs/cgroup:/sys/fs/cgroup:ro -v /var/lib/mysql/mysql.sock:/var/lib/mysql/mysql.sock:ro $1
+
+[Install]
+WantedBy=multi-user.target

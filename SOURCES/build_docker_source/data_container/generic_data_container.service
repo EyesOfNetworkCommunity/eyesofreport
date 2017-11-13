@@ -1,0 +1,10 @@
+[Unit]
+Description=container_description
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker create --name container_name container_name
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Power-on ETL Webservice
+PartOf=mariadb.service
+
+[Service]
+Type=forking
+WorkingDirectory=/srv/eyesofreport/etl/data-integration/
+ExecStart=/srv/eyesofreport/etl/data-integration/start_carte.sh
+ExecStop=kill -9 $(ps aux | grep KETTLE | awk {'print $2'} | head -1)
+
+[Install]
+WantedBy=multi-user.target
