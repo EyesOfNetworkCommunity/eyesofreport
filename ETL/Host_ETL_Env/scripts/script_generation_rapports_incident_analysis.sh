@@ -1,21 +1,4 @@
 #!/bin/bash
-#########################################
-#
-# Copyright (C) 2016 EyesOfNetwork Team
-# DEV NAME : Benoit Village
-# VERSION 2.01
-# 
-# LICENCE :
-# This program is free software; you can redistribute it and/or
-# modify it under the terms of the GNU General Public License
-# as published by the Free Software Foundation; either version 2
-# of the License, or (at your option) any later version.
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-#########################################
 
 #if [ -z "$1" ]; then
 # echo "Usage script_generation_rapport.sh year month"
@@ -31,27 +14,27 @@
 MYSQL_PWD=root66
 #param_year=$1
 #param_month=$2
-previous_year=$(date --date="$(date +%Y-%m-15) -1 month" +'%Y')
-previous_month=$(date --date="$(date +%Y-%m-15) -1 month" +'%m')
+previous_year=$(date --date="$(date +%Y-%m-15)" +'%Y')
+previous_month=$(date --date="$(date +%Y-%m-15)" +'%m')
 date_month_folder=${previous_year}${previous_month}
 #date_month_folder=$(date -d "${param_year}-${param_month}-01" '+%Y%m')
 date_month=${previous_year}-${previous_month}-01
 #date_month=$(date -d "${param_year}-${param_month}-01" '+%Y-%m-%d')
-month_folder=/var/archive/eor_rapports_mensuels/${date_month_folder}
+month_folder=/mnt/reports/Incident_Analysis/${date_month_folder}
 
-rm -rf /var/archive/eor_rapports_mensuels/${date_month_folder}
+rm -rf /mnt/reports/Incident_Analysis/${date_month_folder}
 
 mkdir -p $month_folder
 
 current_datetime=$(date +"%Y-%m-%d %r")
-echo $current_datetime "Création du dossier /var/archive/eor_rapports_mensuels/"$date_month " OK" >> $month_folder/creation_rapports.log
+echo $current_datetime "Creation du dossier /var/archive/eor_rapports_mensuels/"$date_month " OK" >> $month_folder/creation_rapports.log
 
 application_list=$(MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "SELECT distinct dap_name from d_application where dap_priority=1" eor_dwh)
 
 MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "SELECT distinct dap_name from d_application where dap_priority=1" eor_dwh | tail -n +2 > $month_folder/liste_application.txt
 
 #Get contract id for contract "Full"
-contract_context_id=$(MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "SELECT dcc_id from d_contract_context where dcc_name = 'Full'" eor_dwh | tail -n +2)
+contract_context_id=$(MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "SELECT dcc_id from d_contract_context where dcc_name = 'Platinium_Application'" eor_dwh | tail -n +2)
 
 while read application
 do 
@@ -92,8 +75,9 @@ do
 			current_month=$(date -d "$date" '+%m')
 			current_year=$(date -d "$date" '+%Y')
 			report_name=${date_month_folder}${current_day}_${application}_analyse_incident.pdf
-			echo $(date +"%Y-%m-%d %r") "Génération rapport $application ($contract_context_name_custom) pour le ${current_year}-${current_month}-${current_day}" >> $month_folder/creation_rapports.log
-			wget -q -O $report_name "http://localhost:8080/birt/run?__report=EOR_Application_incident_analysis_FR.rptdesign&__format=PDF&Year=${current_year}&__isdisplay__Year=${current_year}&Month=${current_month}&__isdisplay__Month=${current_month}&Day=${current_day}&__isdisplay__Day=${current_day}&Niveau=${application_level}&__isdisplay__Niveau=${application_level}&Application=${application_id}&__isdisplay__Application=${application}&Contract_contxt=${contract_context_id_custom}&__isdisplay__Contract_contxt=${contract_context_name_custom}" >> /dev/null
+      rm -f $report_name
+			echo $(date +"%Y-%m-%d %r") "Generation rapport $application ($contract_context_name_custom) pour le ${current_year}-${current_month}-${current_day}" >> $month_folder/creation_rapports.log
+			wget -q -O $report_name "http://localhost:8080/birt/run?__report=EOR_Application_incident_analysis_EN.rptdesign&__format=PDF&Year=${current_year}&__isdisplay__Year=${current_year}&Month=${current_month}&__isdisplay__Month=${current_month}&Day=${current_day}&__isdisplay__Day=${current_day}&Niveau=${application_level}&__isdisplay__Niveau=${application_level}&Application=${application_id}&__isdisplay__Application=${application}&Contract_contxt=${contract_context_id_custom}&__isdisplay__Contract_contxt=${contract_context_name_custom}" >> /dev/null
 		done < $month_application_folder/liste_date.txt
 	fi
 done < $month_folder/liste_application.txt
