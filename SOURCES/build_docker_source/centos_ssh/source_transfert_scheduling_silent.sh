@@ -85,6 +85,16 @@ fi
 	else echo -e "Eyes of Report Source : Nagios log transfert scheduling :	\e[33m[SKIPPED] \e[39m"
 	fi
 	
+	######################## CONFIGURATION LOG NAGIOS TRANSFERT MANUAL ############################	
+	if [ $configure_nagios_source -eq 1 ]; then
+		
+		transfert_nagios_command="/usr/bin/rsync -avr --rsh=\"/usr/bin/ssh -p \$2 \" \`/usr/bin/find $nagios_log_path -type f -name nagios-\$4-03-\$3-00.log \`  eyesofreport@\$1:/home/eyesofreport/external_depot/Log_Nagios_Depot/"
+
+		echo "$transfert_nagios_command" > $source_path/transfert_nagios_log_manual.sh
+		chmod +x $source_path/transfert_nagios_log.sh
+		chown -R eyesofreport:wheel $source_path
+	fi
+	
 	######################## CONFIGURATION NAGIOS BP TRANSFERT ############################
 
 	if [ $configure_nagios_bp_source -eq 1 ]; then
