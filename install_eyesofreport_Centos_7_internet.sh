@@ -129,6 +129,7 @@ fi
 # fi
 
 mkdir -p /var/lib/docker
+mkdir /srv/eyesofreport
 
 echo  "Eyes Of Report packages installation..."
 
@@ -212,7 +213,7 @@ service mariadb restart
 #
 if [ $(rpm -qa | grep -c expect) -eq 0  ]; then
     echo "Can't find expect. Trying install it..."
-    yum install -y --disablerepo="*" --enablerepo="localrepo"  expect >> /dev/null
+    yum install -y expect >> /dev/null
 fi
 
 SECURE_MYSQL=$(expect -c "
