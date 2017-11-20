@@ -132,9 +132,9 @@ mkdir -p /var/lib/docker
 
 echo  "Eyes Of Report packages installation..."
 
-yum install -y perl net-tools nano docker unzip zip rsync bind-utils-9.9.4-18.el7_1.5.x86_64 patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
+yum install -y perl net-tools nano docker unzip zip rsync bind-utils patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
 yum install -y httpd-tools httpd libxslt php-common php-mysql php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
-yum localinstall $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm 2&>> $BASEDIR/log_packet_install.log
+yum localinstall $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm
 
 mysql_port=3306
 snmpd_port=161

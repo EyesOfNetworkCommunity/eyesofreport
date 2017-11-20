@@ -42,7 +42,7 @@ fi
 
 echo "Merge external softwares in Eyes Of Report installation..."
 cp $BASEDIR/EXTERNAL_SOFTS/wildfly-9.0.1.Final.zip $BASEDIR/REPORTING
-cp $BASEDIR/EXTERNAL_SOFTS/jdk-7u80-linux-x64.tar.gz $BASEDIR/CORE
+cp $BASEDIR/EXTERNAL_SOFTS/jdk-7u79-linux-x64.tar.gz $BASEDIR/CORE
 cp $BASEDIR/EXTERNAL_SOFTS/data-integration.zip $BASEDIR/ETL
 
 
@@ -131,8 +131,8 @@ mkdir -p /var/lib/docker
 
 echo  "Eyes Of Report packages installation..."
 
-yum install -y --disablerepo="*" --enablerepo="localrepo" perl net-tools nano docker unzip zip rsync bind-utils-9.9.4-18.el7_1.5.x86_64 patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
-yum install -y --disablerepo="*" --enablerepo="localrepo" httpd-tools httpd mod_auth_eon-5.0-1.eon.x86_64.rpm libxslt php-common php-mysql php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
+yum install -y --disablerepo="*" --enablerepo="localrepo" perl net-tools nano docker unzip zip rsync bind-utils patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
+yum install -y --disablerepo="*" --enablerepo="localrepo" httpd-tools httpd mod_auth_eon libxslt php-common php-mysql php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
 
 mysql_port=3306
 snmpd_port=161
@@ -170,8 +170,8 @@ mkdir -p ./configuration
 cp $BASEDIR/CONF/eyesofreport.sh ./configuration
 
 echo "Extracting Java archive..."
-tar xvzf $BASEDIR/CORE/jdk-7u80-linux-x64.tar.gz > /dev/null
-ln -s /srv/eyesofreport/jdk1.7.0_80 /srv/eyesofreport/java
+tar xvzf $BASEDIR/CORE/jdk-7u79-linux-x64.tar.gz > /dev/null
+ln -s /srv/eyesofreport/jdk1.7.0_79 /srv/eyesofreport/java
 echo "export JAVA_HOME=/srv/eyesofreport/java" > /etc/profile.d/java.sh 
 echo "export PATH=\$PATH:/srv/eyesofreport/java/bin" >> /etc/profile.d/java.sh 
 chmod +x /etc/profile.d/java.sh 
