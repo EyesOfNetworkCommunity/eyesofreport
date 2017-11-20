@@ -196,7 +196,8 @@ OUT=$?
 if [ $OUT -eq 0 ];then
    echo -e "Nagios container $container_name creation 	\e[92m[OK] \e[39m"
    service ${site_source}_nagios_container start
-   docker exec -d $container_name /srv/eyesofreport/scripts/insert_nagios_to_thrukDB.sh
+   docker exec -d $container_name /srv/eyesofnetwork/thruk/script/thruk -a logcacheupdate --local
+#  docker exec -d $container_name /srv/eyesofreport/scripts/insert_nagios_to_thrukDB.sh
 else
    echo -e "Nagios container $container_name creation 	\e[31m[FAILED] \e[39m"
    echo "See logs $source_nagios_path/centos_nagios/log_centos_nagios_${source_trigram} "
