@@ -66,8 +66,8 @@ cp -r $installation_path/${eor_web_folder} $web_path
 
 #tar xvf httpd.tar > /dev/null
 yes | cp ./httpd/conf.d_Redhat/* /etc/httpd/conf.d/ > /dev/null
-yes | cp /etc/httpd/httpd.conf /etc/httpd/httpd.conf.old
-yes | cp ./httpd/conf_Redhat/httpd.conf /etc/httpd/conf.d/ > /dev/null
+yes | cp /etc/httpd/conf/httpd.conf /etc/httpd/conf/httpd.conf.old
+yes | cp ./httpd/conf_Redhat/httpd.conf /etc/httpd/conf/ > /dev/null
 
 cd $web_path
 
