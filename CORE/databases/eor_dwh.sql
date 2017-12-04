@@ -1157,7 +1157,8 @@ CREATE TABLE `f_dtm_hs_unavailability_hour` (
   `huh_downtime_duration` int(11) DEFAULT NULL,
   `huh_chg_id` int(11) DEFAULT NULL,
   `huh_isHoststatusOutage` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`huh_id`)
+  PRIMARY KEY (`huh_id`),
+  KEY `idx_host_service` (`huh_host`,`huh_service`) USING BTREE
 ) ENGINE=MyISAM AUTO_INCREMENT=461298 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -1190,7 +1191,9 @@ CREATE TABLE `f_dtm_hs_unavailability_minute` (
   `fdu_lastHSOutageBit` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`fdu_id`),
   KEY `idx_fdu_date` (`fdu_date`) USING BTREE,
-  KEY `idx_fdu_host` (`fdu_host`) USING BTREE
+  KEY `idx_fdu_host` (`fdu_host`) USING BTREE,
+  KEY `idx_host_service` (`fdu_host`,`fdu_service`) USING BTREE,
+  KEY `idx_epoch_minute` (`fdu_epoch_minute`) USING BTREE
 ) ENGINE=MyISAM AUTO_INCREMENT=3964211 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 

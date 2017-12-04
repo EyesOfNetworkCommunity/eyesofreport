@@ -10,4 +10,4 @@ ExecStartPre=-/usr/bin/docker rm container_name
 ExecStart=/usr/bin/docker run -d --name $1 --volumes-from ssh_data -v /srv/eyesofreport/scripts:/srv/eyesofreport/scripts -v /srv/eyesofreport/source/$2/Archives:/srv/eyesofreport/external_depot/Archives/:z -v /var/lib/mysql/mysql.sock:/var/lib/mysql/mysql.sock:ro $1
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=mariadb.service

@@ -165,8 +165,8 @@ fi
 TimeToHandle=$EPOCHSTART
 MAX_Message_id_DOWN="`echo "SELECT max(output_id) + 1 from ${BACKEND}_plugin_output;" | mysql -u${USER} -p${PASSWD} thruk | grep -v "max"`"
 MAX_Message_id_UP="`expr $MAX_Message_id_DOWN + 1`"
-#echo "insert into ${BACKEND}_plugin_output VALUES ($MAX_Message_id_DOWN,'CRITICAL;HARD;2;$CURRENT_EPOCH');" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
-#echo "insert into ${BACKEND}_plugin_output VALUES ($MAX_Message_id_UP,'UP;HARD;1;$CURRENT_EPOCH');" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
+echo "insert into ${BACKEND}_plugin_output VALUES ($MAX_Message_id_DOWN,'CRITICAL;HARD;2;$CURRENT_EPOCH');" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
+echo "insert into ${BACKEND}_plugin_output VALUES ($MAX_Message_id_UP,'UP;HARD;1;$CURRENT_EPOCH');" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
 #echo "insert into ${BACKEND}_plugin_output VALUES ($MAX_Message_id_DOWN,'CRITICAL;HARD;2;$CURRENT_EPOCH');" 
 #echo "insert into ${BACKEND}_plugin_output VALUES ($MAX_Message_id_UP,'UP;HARD;1;$CURRENT_EPOCH');" 
 Mysql_Return="`echo $?`"

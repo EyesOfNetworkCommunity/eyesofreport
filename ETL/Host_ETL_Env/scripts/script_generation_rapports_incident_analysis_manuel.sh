@@ -20,21 +20,21 @@ param_month=$2
 date_month_folder=$(date -d "${param_year}-${param_month}-01" '+%Y%m')
 #date_month=${previous_year}-${previous_month}-01
 date_month=$(date -d "${param_year}-${param_month}-01" '+%Y-%m-%d')
-month_folder=/mnt/reports/Incident_Analysis/${date_month_folder}
+month_folder=/var/archive/eyesofreport/Incident_Analysis/${date_month_folder}
 
-rm -rf /mnt/reports/Incident_Analysis/${date_month_folder}
+rm -rf /var/archive/eyesofreport/Incident_Analysis/${date_month_folder}
 
 mkdir -p $month_folder
 
 current_datetime=$(date +"%Y-%m-%d %r")
-echo $current_datetime "Creation du dossier /var/archive/eor_rapports_mensuels/"$date_month " OK" >> $month_folder/creation_rapports.log
+echo $current_datetime "Creation du dossier /var/archive/eyesofreport/Incident_Analysis"$date_month " OK" >> $month_folder/creation_rapports.log
 
 application_list=$(MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "SELECT distinct dap_name from d_application where dap_priority=1" eor_dwh)
 
 MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "SELECT distinct dap_name from d_application where dap_priority=1" eor_dwh | tail -n +2 > $month_folder/liste_application.txt
 
-#Get contract id for contract "Full"
-contract_context_id=$(MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "SELECT dcc_id from d_contract_context where dcc_name = 'Platinium_Application'" eor_dwh | tail -n +2)
+#Get contract id for contract "EFS_24_7_Haute_Dispo"
+contract_context_id=$(MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "SELECT dcc_id from d_contract_context where dcc_name = 'EFS_24_7_Haute_Dispo'" eor_dwh | tail -n +2)
 
 while read application
 do 
@@ -67,7 +67,7 @@ do
 	fi
 	
 	if [ $continue -eq 1 ]; then
-		MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "select distinct aud_date from (SELECT aud_date,aud_contract_context_id,  sum(aud_unavailability_down) from f_dtm_appli_unavailability_day where aud_appli=$application_id and date_format(aud_date,'%Y-%m-01')='$date_month' and aud_contract_context_id=$contract_context_id_custom group by aud_date, aud_contract_context_id having sum(aud_unavailability_down) > 0 order by aud_date)a;" eor_dwh | tail -n +2 > $month_application_folder/liste_date.txt
+		MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "select distinct aud_date from (SELECT aud_date,aud_contract_context_id,  sum(aud_unavailability) from f_dtm_appli_unavailability_day where aud_appli=$application_id and date_format(aud_date,'%Y-%m-01')='$date_month' and aud_contract_context_id=$contract_context_id_custom group by aud_date, aud_contract_context_id having sum(aud_unavailability) > 0 order by aud_date)a;" eor_dwh | tail -n +2 > $month_application_folder/liste_date.txt
 		#echo "SELECT distinct aud_date from f_dtm_appli_unavailability_day where aud_appli=$application_id and date_format(aud_date,'%Y-%m-01')=$date_month"
 		while read date
 		do
@@ -78,9 +78,18 @@ do
       rm -f $report_name
       
 			echo $(date +"%Y-%m-%d %r") "Generation rapport $application ($contract_context_name_custom) pour le ${current_year}-${current_month}-${current_day}" >> $month_folder/creation_rapports.log
-			wget -q -O $report_name "http://localhost:8080/birt/run?__report=EOR_Application_incident_analysis_EN.rptdesign&__format=PDF&Year=${current_year}&__isdisplay__Year=${current_year}&Month=${current_month}&__isdisplay__Month=${current_month}&Day=${current_day}&__isdisplay__Day=${current_day}&Niveau=${application_level}&__isdisplay__Niveau=${application_level}&Application=${application_id}&__isdisplay__Application=${application}&Contract_contxt=${contract_context_id_custom}&__isdisplay__Contract_contxt=${contract_context_name_custom}" >> /dev/null
+			wget -q -O $report_name "http://localhost:8080/birt/run?__report=EOR_Application_incident_analysis_FR.rptdesign&__format=PDF&Year=${current_year}&__isdisplay__Year=${current_year}&Month=${current_month}&__isdisplay__Month=${current_month}&Day=${current_day}&__isdisplay__Day=${current_day}&Niveau=${application_level}&__isdisplay__Niveau=${application_level}&Application=${application_id}&__isdisplay__Application=${application}&Contract_contxt=${contract_context_id_custom}&__isdisplay__Contract_contxt=${contract_context_name_custom}" >> /dev/null
 		done < $month_application_folder/liste_date.txt
 	fi
+ 
+rm -rf $month_application_folder/liste_date.txt
+ 
 done < $month_folder/liste_application.txt
 
 cd $month_folder
+
+rm -rf $month_folder/liste_application.txt
+rm -rf $month_folder/creation_rapports.log
+
+
+

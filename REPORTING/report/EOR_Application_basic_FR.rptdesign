@@ -92,7 +92,7 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                     <property name="dataType">string</property>
                     <property name="distinct">true</property>
                     <simple-property-list name="defaultValue">
-                        <value type="constant">2016</value>
+                        <value type="constant">2015</value>
                     </simple-property-list>
                     <list-property name="selectionList"/>
                     <property name="paramType">simple</property>
@@ -115,7 +115,7 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                     <property name="dataType">string</property>
                     <property name="distinct">true</property>
                     <simple-property-list name="defaultValue">
-                        <value type="constant">03</value>
+                        <value type="constant">01</value>
                     </simple-property-list>
                     <list-property name="selectionList"/>
                     <property name="paramType">simple</property>
@@ -144,7 +144,7 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                     <property name="sortDirection">asc</property>
                     <property name="dataType">integer</property>
                     <simple-property-list name="defaultValue">
-                        <value type="constant">1</value>
+                        <value type="constant">5</value>
                     </simple-property-list>
                     <property name="paramType">simple</property>
                     <property name="controlType">list-box</property>
@@ -162,7 +162,7 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                     <property name="sortDirection">asc</property>
                     <property name="dataType">integer</property>
                     <simple-property-list name="defaultValue">
-                        <value type="constant">57</value>
+                        <value type="constant">1</value>
                     </simple-property-list>
                     <property name="paramType">simple</property>
                     <property name="controlType">list-box</property>
@@ -180,7 +180,7 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                     <property name="sortDirection">asc</property>
                     <property name="dataType">integer</property>
                     <simple-property-list name="defaultValue">
-                        <value type="constant">4</value>
+                        <value type="constant">1</value>
                     </simple-property-list>
                     <property name="controlType">list-box</property>
                     <property name="fixedOrder">false</property>
@@ -208,7 +208,7 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                 </ex-property>
             </list-property>
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://192.168.26.131:3306/eor_dwh</property>
+            <property name="odaURL">jdbc:mysql://10.128.84.232:13306/eor_dwh</property>
             <property name="odaUser">eyesofreport</property>
             <property name="odaIsolationMode">serializable</property>
             <encrypted-property name="odaPassword" encryptionID="base64">U2FpbnRUaG9tYXMsMjAxNA==</encrypted-property>

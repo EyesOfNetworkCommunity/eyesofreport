@@ -20,14 +20,14 @@ date_month_folder=${previous_year}${previous_month}
 #date_month_folder=$(date -d "${param_year}-${param_month}-01" '+%Y%m')
 date_month=${previous_year}-${previous_month}-01
 #date_month=$(date -d "${param_year}-${param_month}-01" '+%Y-%m-%d')
-month_folder=/mnt/reports/Contract_Monthly/${date_month_folder}
+month_folder=/var/archive/eyesofreport/Contract_Monthly/${date_month_folder}
 
 
 
 mkdir -p $month_folder
 
 current_datetime=$(date +"%Y-%m-%d %r")
-echo $current_datetime "Creation du dossier /mnt/reports/Contract_Monthly/"$date_month " OK" >> $month_folder/creation_rapports.log
+echo $current_datetime "Creation du dossier /var/archive/eyesofreport/Contract_Monthly/"$date_month " OK" >> $month_folder/creation_rapports.log
 
 #application_list=$(MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "SELECT distinct dap_name from d_application" eor_dwh)
 
@@ -60,9 +60,13 @@ do
 			echo $(date +"%Y-%m-%d %r") "Generation rapport $contrat pour le $previous_year-$previous_month" >> $month_folder/creation_rapports.log
       
       
-			wget -q -O $report_name "http://localhost:8080/birt/run?__report=EOR_Contract_Application_EN.rptdesign&__format=PPTX&Year=$previous_year&__isdisplay__Year=$previous_year&Month=$previous_month&__isdisplay__Month=$previous_month&contract_context=$contrat" >> /dev/null
+			wget -q -O $report_name "http://localhost:8080/birt/run?__report=EOR_Contract_Application_FR.rptdesign&__format=PPTX&Year=$previous_year&__isdisplay__Year=$previous_year&Month=$previous_month&__isdisplay__Month=$previous_month&contract_context=$contrat" >> /dev/null
       
 	fi
 done < $month_folder/liste_contrats.txt
 
 cd $month_folder
+
+rm -f $month_folder/creation_rapports.log
+rm -f $month_folder/liste_contrats.txt
+

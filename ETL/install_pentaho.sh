@@ -39,6 +39,7 @@ if [ -d "$pentaho_path" ]; then
 	done
 else mkdir -p $pentaho_path
 	 mkdir -p $pentaho_path/$injection_folder
+	 mkdir -p $pentaho_path/pdi_log
 fi
 
 cd $installation_path
