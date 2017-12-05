@@ -164,8 +164,8 @@ exit 3
 if [ ${1} = "-h" ]; then usage; fi'
 
 		transfert_nagios_command_gen="
-if [ ! ${4} ];then Month='*' ;else Month=${4} ; fi
-if [ ! ${5} ];then Day='*' ;else Day=${5} ; fi
+if [ ! \${4} ];then Month='*' ;else Month=\${4} ; fi
+if [ ! \${5} ];then Day='*' ;else Day=\${5} ; fi
 "
 		transfert_nagios_command_action="/usr/bin/rsync -avr --rsh=\"/usr/bin/ssh -p \$2 \" \`/usr/bin/find $nagios_log_path -type f -name nagios-\${Month}-\${Day}-\$3-00.log \`  eyesofreport@\$1:/home/eyesofreport/external_depot/Log_Nagios_Depot/"
 
