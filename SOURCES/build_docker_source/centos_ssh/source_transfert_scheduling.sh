@@ -169,7 +169,7 @@ if [ ! ${5} ];then Day='*' ;else Day=${5} ; fi
 "
 		transfert_nagios_command_action="/usr/bin/rsync -avr --rsh=\"/usr/bin/ssh -p \$2 \" \`/usr/bin/find $nagios_log_path -type f -name nagios-\${Month}-\${Day}-\$3-00.log \`  eyesofreport@\$1:/home/eyesofreport/external_depot/Log_Nagios_Depot/"
 
-		transfert_nagios_command="${transfert_nagios_command_help}\n${transfert_nagios_command_gen}\n${transfert_nagios_command_action}"
+		transfert_nagios_command="${transfert_nagios_command_help} ${transfert_nagios_command_gen} ${transfert_nagios_command_action}"
 
 		echo "$transfert_nagios_command" > $source_path/transfert_nagios_log_manual.sh
 		chmod +x $source_path/transfert_nagios_log_manual.sh
