@@ -14,8 +14,8 @@ fi
 MYSQL_PWD=root66
 previous_year=$1
 previous_month=$2
-#previous_year=$(date --date="$(date +%Y-%m-15) -1 month" +'%Y')
-#previous_month=$(date --date="$(date +%Y-%m-15) -1 month" +'%m')
+#previous_year=$(date --date="$(date +%Y-%m-15)" +'%Y')
+#previous_month=$(date --date="$(date +%Y-%m-15)" +'%m')
 date_month_folder=${previous_year}${previous_month}
 #date_month_folder=$(date -d "${param_year}-${param_month}-01" '+%Y%m')
 date_month=${previous_year}-${previous_month}-01
