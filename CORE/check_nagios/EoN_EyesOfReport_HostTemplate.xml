@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<EoN_Export type="HostTemplate">
+  <HostTemplate id="143" object="true">
+    <Name>EyesOfReport</Name>
+    <Description>EyesOfReport</Description>
+    <HostTemplate id="33" object="true">
+      <Name>GENERIC_HOST</Name>
+      <Description>Template Generic</Description>
+      <CheckCommand>61</CheckCommand>
+      <MaximumCheckAttempts>2</MaximumCheckAttempts>
+      <CheckInterval>4</CheckInterval>
+      <PassiveChecksEnabled>1</PassiveChecksEnabled>
+      <CheckPeriod>11</CheckPeriod>
+      <ActiveChecksEnabled>1</ActiveChecksEnabled>
+      <ProcessPerfData>1</ProcessPerfData>
+      <NotificationInterval>10</NotificationInterval>
+      <NotificationsEnabled>1</NotificationsEnabled>
+      <NotificationOnDown>1</NotificationOnDown>
+      <NotificationOnUnreachable>1</NotificationOnUnreachable>
+      <NotificationOnRecovery>1</NotificationOnRecovery>
+      <NotificationOnFlapping>1</NotificationOnFlapping>
+      <NotificationOnScheduledDowntime>1</NotificationOnScheduledDowntime>
+      <StalkingOnDown>1</StalkingOnDown>
+      <StalkingOnUnreachable>1</StalkingOnUnreachable>
+      <FailurePredictionEnabled>1</FailurePredictionEnabled>
+      <ActionUrl>/pnp4nagios/index.php/graph?host=$HOSTNAME$&amp;srv=_HOST_</ActionUrl>
+      <IconImage>computer.png</IconImage>
+      <VrmlImage>computer.png</VrmlImage>
+      <StatusmapImage>computer.png</StatusmapImage>
+      <Timeperiod id="11" object="true">
+        <Name>24x7</Name>
+        <Alias>24 Hours A Day, 7 Days A Week</Alias>
+        <TimeperiodEntrys id="157" object="false">
+          <TimeperiodId>11</TimeperiodId>
+          <Entry>sunday</Entry>
+          <Value>00:00-24:00</Value>
+        </TimeperiodEntrys>
+        <TimeperiodEntrys id="156" object="false">
+          <TimeperiodId>11</TimeperiodId>
+          <Entry>saturday</Entry>
+          <Value>00:00-24:00</Value>
+        </TimeperiodEntrys>
+        <TimeperiodEntrys id="155" object="false">
+          <TimeperiodId>11</TimeperiodId>
+          <Entry>friday</Entry>
+          <Value>00:00-24:00</Value>
+        </TimeperiodEntrys>
+        <TimeperiodEntrys id="154" object="false">
+          <TimeperiodId>11</TimeperiodId>
+          <Entry>thursday</Entry>
+          <Value>00:00-24:00</Value>
+        </TimeperiodEntrys>
+        <TimeperiodEntrys id="153" object="false">
+          <TimeperiodId>11</TimeperiodId>
+          <Entry>wednesday</Entry>
+          <Value>00:00-24:00</Value>
+        </TimeperiodEntrys>
+        <TimeperiodEntrys id="152" object="false">
+          <TimeperiodId>11</TimeperiodId>
+          <Entry>tuesday</Entry>
+          <Value>00:00-24:00</Value>
+        </TimeperiodEntrys>
+        <TimeperiodEntrys id="151" object="false">
+          <TimeperiodId>11</TimeperiodId>
+          <Entry>monday</Entry>
+          <Value>00:00-24:00</Value>
+        </TimeperiodEntrys>
+      </Timeperiod>
+      <Command id="61" object="true">
+        <Name>check-host-alive</Name>
+        <Line>$USER1$/check_ping -H $HOSTADDRESS$ -w 3000.0,80% -c 5000.0,100% -p 1</Line>
+        <Description>check the availability of a host by ping</Description>
+      </Command>
+      <ContactGroup id="8" object="true">
+        <Name>Equipe_System</Name>
+        <Alias>Equipe Systèmes</Alias>
+      </ContactGroup>
+      <HostContactgroups id="23" object="false">
+        <HostTemplate>33</HostTemplate>
+        <Contactgroup>8</Contactgroup>
+      </HostContactgroups>
+    </HostTemplate>
+    <HostTemplateInheritancesRelatedBySourceTemplate id="4264" object="false">
+      <SourceTemplate>143</SourceTemplate>
+      <TargetTemplate>33</TargetTemplate>
+    </HostTemplateInheritancesRelatedBySourceTemplate>
+    <Service id="2186" object="true">
+      <Description>check_eor_thruk_load</Description>
+      <DisplayName>check_eor_thruk_load</DisplayName>
+      <HostTemplate>143</HostTemplate>
+      <CheckCommand>301</CheckCommand>
+      <Command id="301" object="true">
+        <Name>check_eor_thruk_load</Name>
+        <Line>$USER1$/check_eor_thruk_load.sh -H $HOSTADDRESS$ -B $ARG1$ -N $ARG2$</Line>
+        <Description>Verifie que les logs nagios de eon ont bien ete stocke en base</Description>
+      </Command>
+      <ServiceCheckCommandParameters id="3007" object="false">
+        <Service>2186</Service>
+        <Parameter>3700b</Parameter>
+      </ServiceCheckCommandParameters>
+      <ServiceCheckCommandParameters id="3008" object="false">
+        <Service>2186</Service>
+        <Parameter>10000</Parameter>
+      </ServiceCheckCommandParameters>
+      <ServiceTemplate id="5" object="true">
+        <Name>GENERIC_SERVICE</Name>
+        <Description>Template Generic</Description>
+        <MaximumCheckAttempts>4</MaximumCheckAttempts>
+        <NormalCheckInterval>4</NormalCheckInterval>
+        <ActiveChecksEnabled>1</ActiveChecksEnabled>
+        <PassiveChecksEnabled>1</PassiveChecksEnabled>
+        <ParallelizeCheck>1</ParallelizeCheck>
+        <ProcessPerfData>1</ProcessPerfData>
+        <NotificationInterval>10</NotificationInterval>
+        <NotificationOnWarning>1</NotificationOnWarning>
+        <NotificationOnUnknown>1</NotificationOnUnknown>
+        <NotificationOnCritical>1</NotificationOnCritical>
+        <NotificationOnRecovery>1</NotificationOnRecovery>
+        <NotificationOnFlapping>1</NotificationOnFlapping>
+        <NotificationOnScheduledDowntime>1</NotificationOnScheduledDowntime>
+        <NotificationsEnabled>1</NotificationsEnabled>
+        <ContactGroup id="8" object="true">
+          <Name>Equipe_System</Name>
+          <Alias>Equipe Systèmes</Alias>
+        </ContactGroup>
+        <ServiceContactGroupMembers id="6" object="false">
+          <Template>5</Template>
+          <ContactGroup>8</ContactGroup>
+        </ServiceContactGroupMembers>
+      </ServiceTemplate>
+    </Service>
+    <Service id="2187" object="true">
+      <Description>check_eor_ods_load</Description>
+      <DisplayName>check_eor_ods_load</DisplayName>
+      <HostTemplate>143</HostTemplate>
+      <CheckCommand>300</CheckCommand>
+      <Command id="300" object="true">
+        <Name>check_eor_ods_load</Name>
+        <Line>$USER1$/check_eor_ods_load.sh -H $HOSTADDRESS$ -S $ARG1$</Line>
+        <Description>Verifie que le calcul de disponibilite s'est bien effectue</Description>
+      </Command>
+      <ServiceCheckCommandParameters id="3009" object="false">
+        <Service>2187</Service>
+        <Parameter>col_eon</Parameter>
+      </ServiceCheckCommandParameters>
+      <ServiceTemplate id="5" object="true">
+        <Name>GENERIC_SERVICE</Name>
+        <Description>Template Generic</Description>
+        <MaximumCheckAttempts>4</MaximumCheckAttempts>
+        <NormalCheckInterval>4</NormalCheckInterval>
+        <ActiveChecksEnabled>1</ActiveChecksEnabled>
+        <PassiveChecksEnabled>1</PassiveChecksEnabled>
+        <ParallelizeCheck>1</ParallelizeCheck>
+        <ProcessPerfData>1</ProcessPerfData>
+        <NotificationInterval>10</NotificationInterval>
+        <NotificationOnWarning>1</NotificationOnWarning>
+        <NotificationOnUnknown>1</NotificationOnUnknown>
+        <NotificationOnCritical>1</NotificationOnCritical>
+        <NotificationOnRecovery>1</NotificationOnRecovery>
+        <NotificationOnFlapping>1</NotificationOnFlapping>
+        <NotificationOnScheduledDowntime>1</NotificationOnScheduledDowntime>
+        <NotificationsEnabled>1</NotificationsEnabled>
+        <ContactGroup id="8" object="true">
+          <Name>Equipe_System</Name>
+          <Alias>Equipe Systèmes</Alias>
+        </ContactGroup>
+        <ServiceContactGroupMembers id="6" object="false">
+          <Template>5</Template>
+          <ContactGroup>8</ContactGroup>
+        </ServiceContactGroupMembers>
+      </ServiceTemplate>
+    </Service>
+    <Service id="2188" object="true">
+      <Description>process_httpd</Description>
+      <HostTemplate>143</HostTemplate>
+      <CheckCommand>94</CheckCommand>
+      <Command id="94" object="true">
+        <Name>process</Name>
+        <Line>perl $USER1$/check_snmp_process.pl -H $HOSTADDRESS$ -C $USER2$ -r -n $ARG1$</Line>
+        <Description>check the load of a given process - arg1 : process name</Description>
+      </Command>
+      <ServiceCheckCommandParameters id="3010" object="false">
+        <Service>2188</Service>
+        <Parameter>httpd</Parameter>
+      </ServiceCheckCommandParameters>
+      <ServiceTemplate id="5" object="true">
+        <Name>GENERIC_SERVICE</Name>
+        <Description>Template Generic</Description>
+        <MaximumCheckAttempts>4</MaximumCheckAttempts>
+        <NormalCheckInterval>4</NormalCheckInterval>
+        <ActiveChecksEnabled>1</ActiveChecksEnabled>
+        <PassiveChecksEnabled>1</PassiveChecksEnabled>
+        <ParallelizeCheck>1</ParallelizeCheck>
+        <ProcessPerfData>1</ProcessPerfData>
+        <NotificationInterval>10</NotificationInterval>
+        <NotificationOnWarning>1</NotificationOnWarning>
+        <NotificationOnUnknown>1</NotificationOnUnknown>
+        <NotificationOnCritical>1</NotificationOnCritical>
+        <NotificationOnRecovery>1</NotificationOnRecovery>
+        <NotificationOnFlapping>1</NotificationOnFlapping>
+        <NotificationOnScheduledDowntime>1</NotificationOnScheduledDowntime>
+        <NotificationsEnabled>1</NotificationsEnabled>
+        <ContactGroup id="8" object="true">
+          <Name>Equipe_System</Name>
+          <Alias>Equipe Systèmes</Alias>
+        </ContactGroup>
+        <ServiceContactGroupMembers id="6" object="false">
+          <Template>5</Template>
+          <ContactGroup>8</ContactGroup>
+        </ServiceContactGroupMembers>
+      </ServiceTemplate>
+    </Service>
+    <Service id="2189" object="true">
+      <Description>process_java</Description>
+      <HostTemplate>143</HostTemplate>
+      <CheckCommand>94</CheckCommand>
+      <Command id="94" object="true">
+        <Name>process</Name>
+        <Line>perl $USER1$/check_snmp_process.pl -H $HOSTADDRESS$ -C $USER2$ -r -n $ARG1$</Line>
+        <Description>check the load of a given process - arg1 : process name</Description>
+      </Command>
+      <ServiceCheckCommandParameters id="3011" object="false">
+        <Service>2189</Service>
+        <Parameter>java</Parameter>
+      </ServiceCheckCommandParameters>
+      <ServiceTemplate id="5" object="true">
+        <Name>GENERIC_SERVICE</Name>
+        <Description>Template Generic</Description>
+        <MaximumCheckAttempts>4</MaximumCheckAttempts>
+        <NormalCheckInterval>4</NormalCheckInterval>
+        <ActiveChecksEnabled>1</ActiveChecksEnabled>
+        <PassiveChecksEnabled>1</PassiveChecksEnabled>
+        <ParallelizeCheck>1</ParallelizeCheck>
+        <ProcessPerfData>1</ProcessPerfData>
+        <NotificationInterval>10</NotificationInterval>
+        <NotificationOnWarning>1</NotificationOnWarning>
+        <NotificationOnUnknown>1</NotificationOnUnknown>
+        <NotificationOnCritical>1</NotificationOnCritical>
+        <NotificationOnRecovery>1</NotificationOnRecovery>
+        <NotificationOnFlapping>1</NotificationOnFlapping>
+        <NotificationOnScheduledDowntime>1</NotificationOnScheduledDowntime>
+        <NotificationsEnabled>1</NotificationsEnabled>
+        <ContactGroup id="8" object="true">
+          <Name>Equipe_System</Name>
+          <Alias>Equipe Systèmes</Alias>
+        </ContactGroup>
+        <ServiceContactGroupMembers id="6" object="false">
+          <Template>5</Template>
+          <ContactGroup>8</ContactGroup>
+        </ServiceContactGroupMembers>
+      </ServiceTemplate>
+    </Service>
+    <Service id="2190" object="true">
+      <Description>process_mysqld</Description>
+      <HostTemplate>143</HostTemplate>
+      <CheckCommand>94</CheckCommand>
+      <Command id="94" object="true">
+        <Name>process</Name>
+        <Line>perl $USER1$/check_snmp_process.pl -H $HOSTADDRESS$ -C $USER2$ -r -n $ARG1$</Line>
+        <Description>check the load of a given process - arg1 : process name</Description>
+      </Command>
+      <ServiceCheckCommandParameters id="3012" object="false">
+        <Service>2190</Service>
+        <Parameter>mysqld</Parameter>
+      </ServiceCheckCommandParameters>
+      <ServiceTemplate id="5" object="true">
+        <Name>GENERIC_SERVICE</Name>
+        <Description>Template Generic</Description>
+        <MaximumCheckAttempts>4</MaximumCheckAttempts>
+        <NormalCheckInterval>4</NormalCheckInterval>
+        <ActiveChecksEnabled>1</ActiveChecksEnabled>
+        <PassiveChecksEnabled>1</PassiveChecksEnabled>
+        <ParallelizeCheck>1</ParallelizeCheck>
+        <ProcessPerfData>1</ProcessPerfData>
+        <NotificationInterval>10</NotificationInterval>
+        <NotificationOnWarning>1</NotificationOnWarning>
+        <NotificationOnUnknown>1</NotificationOnUnknown>
+        <NotificationOnCritical>1</NotificationOnCritical>
+        <NotificationOnRecovery>1</NotificationOnRecovery>
+        <NotificationOnFlapping>1</NotificationOnFlapping>
+        <NotificationOnScheduledDowntime>1</NotificationOnScheduledDowntime>
+        <NotificationsEnabled>1</NotificationsEnabled>
+        <ContactGroup id="8" object="true">
+          <Name>Equipe_System</Name>
+          <Alias>Equipe Systèmes</Alias>
+        </ContactGroup>
+        <ServiceContactGroupMembers id="6" object="false">
+          <Template>5</Template>
+          <ContactGroup>8</ContactGroup>
+        </ServiceContactGroupMembers>
+      </ServiceTemplate>
+    </Service>
+  </HostTemplate>
+</EoN_Export>
