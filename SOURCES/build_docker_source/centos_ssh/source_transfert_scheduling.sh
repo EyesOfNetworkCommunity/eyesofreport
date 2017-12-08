@@ -152,7 +152,24 @@ echo "Eyes Of Report source transfert configuration :"
 	######################## CONFIGURATION LOG NAGIOS TRANSFERT MANUAL ############################	
 	if [ $configure_nagios_source -eq 1 ]; then
 		
-		transfert_nagios_command="/usr/bin/rsync -avr --rsh=\"/usr/bin/ssh -p \$2 \" \`/usr/bin/find $nagios_log_path -type f -name nagios-\$4-*-\$3-00.log \`  eyesofreport@\$1:/home/eyesofreport/external_depot/Log_Nagios_Depot/"
+		transfert_nagios_command_help='#!/bin/bash
+usage () {
+echo "Usage : transfert_nagios_log_manual.sh
+	Script build to could launch manual synchronization between data source and EyesOfReport platform.
+	Script case (optionnal variables are between []) : 
+		./transfert_nagios_command.sh <EOR_IP> <EOR_ssh_Port> <Year> [Month] [Day]"
+exit 3
+}
+
+if [ ${1} = "-h" ]; then usage; fi'
+
+		transfert_nagios_command_gen="
+if [ ! \${4} ];then Month='*' ;else Month=\${4} ; fi
+if [ ! \${5} ];then Day='*' ;else Day=\${5} ; fi
+"
+		transfert_nagios_command_action="/usr/bin/rsync -avr --rsh=\"/usr/bin/ssh -p \$2 \" \`/usr/bin/find $nagios_log_path -type f -name nagios-\${Month}-\${Day}-\$3-00.log \`  eyesofreport@\$1:/home/eyesofreport/external_depot/Log_Nagios_Depot/"
+
+		transfert_nagios_command="${transfert_nagios_command_help} ${transfert_nagios_command_gen} ${transfert_nagios_command_action}"
 
 		echo "$transfert_nagios_command" > $source_path/transfert_nagios_log_manual.sh
 		chmod +x $source_path/transfert_nagios_log_manual.sh
