@@ -34,7 +34,7 @@ CREATE TABLE `bp` (
   `min_value` varchar(5) DEFAULT NULL,
   `is_define` tinyint(1) DEFAULT '0',
   `lilac_flag` varchar(4) DEFAULT 'BP'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,7 +53,7 @@ CREATE TABLE `bp_services` (
   `service` varchar(255) NOT NULL,
   `chg_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`host_service_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34752 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34752 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

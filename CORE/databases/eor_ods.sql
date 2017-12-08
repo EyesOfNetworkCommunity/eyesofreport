@@ -23,8 +23,8 @@ DROP TABLE IF EXISTS `bp`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bp` (
-  `name` varchar(255) NOT NULL,
-  `source` varchar(145) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `source` varchar(10) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
   `category` varchar(255) DEFAULT NULL,
   `priority` varchar(5) DEFAULT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE `bp` (
   `lilac_flag` varchar(45) DEFAULT NULL,
   `is_reported` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`name`,`source`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,7 +52,7 @@ CREATE TABLE `bp_contract` (
   `contract_id` int(11) NOT NULL,
   `chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`bp_name`,`bp_name_source`,`contract_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -64,13 +64,13 @@ DROP TABLE IF EXISTS `bp_links`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bp_links` (
   `id` mediumint(9) NOT NULL AUTO_INCREMENT,
-  `bp_name` varchar(255) NOT NULL,
-  `bp_link` varchar(255) NOT NULL,
+  `bp_name` varchar(100) NOT NULL,
+  `bp_link` varchar(100) NOT NULL,
   `bp_name_source` varchar(45) NOT NULL,
   `bp_link_source` varchar(45) NOT NULL,
   `chg_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`,`bp_name`,`bp_link`,`bp_name_source`,`bp_link_source`)
-) ENGINE=MyISAM AUTO_INCREMENT=824 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=824 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +90,7 @@ CREATE TABLE `bp_links_analysis` (
   `bp_link_parent_source` varchar(45) DEFAULT NULL,
   `chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=102 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,15 +103,15 @@ DROP TABLE IF EXISTS `bp_services`;
 CREATE TABLE `bp_services` (
   `host_service_id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `host_service_source` varchar(145) NOT NULL,
-  `bp_name` varchar(255) NOT NULL,
-  `bp_source` varchar(255) NOT NULL,
-  `host` varchar(255) NOT NULL,
-  `service` varchar(255) NOT NULL,
-  `chg_id` varchar(45) DEFAULT NULL,
+  `bp_name` varchar(70) NOT NULL,
+  `bp_source` varchar(10) NOT NULL,
+  `host` varchar(100) NOT NULL,
+  `service` varchar(100) NOT NULL,
+  `chg_id` int DEFAULT NULL,
   `is_reported` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`host_service_id`,`host_service_source`,`bp_name`,`bp_source`),
   KEY `idx_bp_service_host` (`host`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=80623 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=80623 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,7 +127,7 @@ CREATE TABLE `chargements` (
   `chg_date` date DEFAULT NULL,
   `chg_source` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`chg_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=198 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -148,7 +148,7 @@ CREATE TABLE `contract` (
   `VALIDITY_DATE` date DEFAULT NULL,
   `CHG_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID_CONTRACT`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -168,7 +168,7 @@ CREATE TABLE `contract_context` (
   `NAME` varchar(50) DEFAULT NULL,
   `ALIAS` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID_CONTRACT_CONTEXT`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,7 +184,7 @@ CREATE TABLE `contract_context_application` (
   `APPLICATION_SOURCE` varchar(15) NOT NULL,
   `chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID_CONTRACT_CONTEXT`,`APPLICATION_NAME`,`APPLICATION_SOURCE`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +200,7 @@ CREATE TABLE `contract_context_application_ttr` (
   `APPLICATION_SOURCE` varchar(15) NOT NULL,
   `chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID_CONTRACT_CONTEXT_TTR`,`APPLICATION_NAME`,`APPLICATION_SOURCE`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -220,7 +220,7 @@ CREATE TABLE `contract_context_ttr` (
   `NAME` varchar(50) DEFAULT NULL,
   `ALIAS` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID_CONTRACT_CONTEXT_TTR`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,7 +237,7 @@ CREATE TABLE `host` (
   `source_id` varchar(45) NOT NULL,
   PRIMARY KEY (`host_id`,`source_id`),
   KEY `idx_host_source_id` (`source_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,7 +255,7 @@ CREATE TABLE `kpi` (
   `UNIT_PRESENTATION` varchar(50) DEFAULT NULL,
   `CHG_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID_KPI`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -278,7 +278,7 @@ CREATE TABLE `logs` (
   `down_flag` tinyint(4) DEFAULT NULL,
   KEY `idx_logs_source` (`source_id`) USING BTREE,
   KEY `idx_logs_message` (`message`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +293,7 @@ CREATE TABLE `logs_solarwind` (
   `time` varchar(100) NOT NULL DEFAULT '',
   `availability_rate` int(11) DEFAULT NULL,
   `source` varchar(255) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -310,7 +310,7 @@ CREATE TABLE `messages` (
   `source_id` varchar(45) NOT NULL,
   PRIMARY KEY (`message_id`,`source_id`),
   KEY `idx_message_source_id` (`source_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -328,7 +328,7 @@ CREATE TABLE `services` (
   `source_id` varchar(45) NOT NULL,
   PRIMARY KEY (`services_id`,`host_id`,`source_id`),
   KEY `idx_service_source_id` (`source_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -366,7 +366,7 @@ CREATE TABLE `step_group` (
   `CHG_ID` int(11) DEFAULT NULL,
   `TYPE` varchar(15) DEFAULT NULL,
   PRIMARY KEY (`ID_STEP_GROUP`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -385,7 +385,7 @@ CREATE TABLE `time_period` (
   `tp_h_open` varchar(255) NOT NULL DEFAULT '00:00',
   `tp_h_close` varchar(255) NOT NULL DEFAULT '23:59',
   PRIMARY KEY (`tp_name`,`tp_entry`,`tp_h_open`,`tp_h_close`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

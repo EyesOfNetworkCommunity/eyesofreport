@@ -32,7 +32,7 @@ CREATE TABLE `bp` (
   `min_value` varchar(5) DEFAULT NULL,
   `is_define` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,7 +58,7 @@ CREATE TABLE `bp_category` (
   `category` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idbp_category`),
   UNIQUE KEY `idbp_category_UNIQUE` (`idbp_category`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,7 +83,7 @@ CREATE TABLE `bp_links` (
   `bp_link` varchar(255) NOT NULL,
   `bp_source` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,7 +110,7 @@ CREATE TABLE `bp_links_analysis` (
   `bp_link_parent_name` varchar(60) DEFAULT NULL,
   `bp_link_parent_source` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`bp_master_name`,`bp_master_source`,`bp_link_name`,`bp_link_source`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +135,7 @@ CREATE TABLE `bp_services` (
   `host` varchar(255) NOT NULL,
   `service` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -175,7 +175,7 @@ CREATE TABLE `bp_sources` (
   `flag_ged` tinyint(4) DEFAULT NULL,
   `flag_thruk` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`idbp_sources`)
-) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -200,7 +200,7 @@ CREATE TABLE `company` (
   `NAME` varchar(50) DEFAULT NULL,
   `ALIAS` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID_COMPANY`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -232,7 +232,7 @@ CREATE TABLE `contract` (
   PRIMARY KEY (`ID_CONTRACT`),
   KEY `ID_COMPANY` (`ID_COMPANY`),
   CONSTRAINT `contract_ibfk_1` FOREIGN KEY (`ID_COMPANY`) REFERENCES `company` (`ID_COMPANY`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -268,7 +268,7 @@ CREATE TABLE `contract_context` (
   CONSTRAINT `contract_context_ibfk_2` FOREIGN KEY (`ID_TIME_PERIOD`) REFERENCES `time_period` (`ID_TIME_PERIOD`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `contract_context_ibfk_3` FOREIGN KEY (`ID_KPI`) REFERENCES `kpi` (`ID_KPI`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `contract_context_ibfk_4` FOREIGN KEY (`ID_STEP_GROUP`) REFERENCES `step_group` (`ID_STEP_GROUP`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -293,7 +293,7 @@ CREATE TABLE `contract_context_application` (
   `APPLICATION_SOURCE` varchar(15) NOT NULL,
   PRIMARY KEY (`ID_CONTRACT_CONTEXT`,`APPLICATION_NAME`,`APPLICATION_SOURCE`),
   CONSTRAINT `contract_context_application_ibfk_1` FOREIGN KEY (`ID_CONTRACT_CONTEXT`) REFERENCES `contract_context` (`ID_CONTRACT_CONTEXT`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -320,7 +320,7 @@ CREATE TABLE `kpi` (
   `ID_UNIT_PRESENTATION` int(11) DEFAULT NULL,
   `CODE` varchar(3) DEFAULT NULL,
   PRIMARY KEY (`ID_KPI`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -347,7 +347,7 @@ CREATE TABLE `last_entry` (
   `NAME` varchar(50) DEFAULT NULL,
   `DATE_ENTRY` datetime DEFAULT NULL,
   PRIMARY KEY (`ID_LAST_ENTRY`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -397,7 +397,7 @@ CREATE TABLE `step_group` (
   PRIMARY KEY (`ID_STEP_GROUP`),
   KEY `ID_KPI` (`ID_KPI`),
   CONSTRAINT `step_group_ibfk_1` FOREIGN KEY (`ID_KPI`) REFERENCES `kpi` (`ID_KPI`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -422,7 +422,7 @@ CREATE TABLE `time_period` (
   `NAME` varchar(50) DEFAULT NULL,
   `ALIAS` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID_TIME_PERIOD`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -451,7 +451,7 @@ CREATE TABLE `timeperiod_entry` (
   PRIMARY KEY (`ID_TIMEPERIOD_ENTRY`),
   KEY `ID_TIME_PERIOD` (`ID_TIME_PERIOD`),
   CONSTRAINT `timeperiod_entry_ibfk_1` FOREIGN KEY (`ID_TIME_PERIOD`) REFERENCES `time_period` (`ID_TIME_PERIOD`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -476,7 +476,7 @@ CREATE TABLE `unit` (
   `NAME` varchar(50) DEFAULT NULL,
   `SHORT_NAME` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`ID_UNIT`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

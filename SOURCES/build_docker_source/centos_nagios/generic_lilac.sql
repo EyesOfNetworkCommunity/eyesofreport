@@ -38,7 +38,7 @@ CREATE TABLE `autodiscovery_device` (
   KEY `autodiscovery_device_FI_1` (`job_id`),
   KEY `autodiscovery_device_FI_2` (`host_template`),
   KEY `autodiscovery_device_FI_3` (`proposed_parent`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='AutoDiscovery Found Device';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='AutoDiscovery Found Device';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +68,7 @@ CREATE TABLE `autodiscovery_device_service` (
   `extrainfo` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `autodiscovery_device_service_FI_1` (`device_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='AutoDiscovery Found Service';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='AutoDiscovery Found Service';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +96,7 @@ CREATE TABLE `autodiscovery_device_template_match` (
   PRIMARY KEY (`id`),
   KEY `autodiscovery_device_template_match_FI_1` (`device_id`),
   KEY `autodiscovery_device_template_match_FI_2` (`host_template`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='AutoDiscovery Device Matched Template';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='AutoDiscovery Device Matched Template';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,7 +128,7 @@ CREATE TABLE `autodiscovery_job` (
   `stats` text NOT NULL,
   `cmd` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='AutoDiscovery Job Information';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='AutoDiscovery Job Information';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +155,7 @@ CREATE TABLE `autodiscovery_log_entry` (
   `type` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `autodiscovery_log_entry_FI_1` (`job`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Export Job Entry';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Export Job Entry';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -183,7 +183,7 @@ CREATE TABLE `columns_priv` (
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `Column_priv` set('Select','Insert','Update','References') CHARACTER SET utf8 NOT NULL DEFAULT '',
   PRIMARY KEY (`Host`,`Db`,`User`,`Table_name`,`Column_name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Column privileges';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COLLATE=utf8_bin COMMENT='Column privileges';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -225,7 +225,7 @@ CREATE TABLE `db` (
   `Execute_priv` enum('N','Y') CHARACTER SET utf8 NOT NULL DEFAULT 'N',
   PRIMARY KEY (`Host`,`Db`,`User`),
   KEY `User` (`User`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Database privileges';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COLLATE=utf8_bin COMMENT='Database privileges';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -257,7 +257,7 @@ CREATE TABLE `export_job` (
   `stats` text NOT NULL,
   `cmd` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Export Job Information';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Export Job Information';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -284,7 +284,7 @@ CREATE TABLE `export_log_entry` (
   `type` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `export_log_entry_FI_1` (`job`)
-) ENGINE=MyISAM AUTO_INCREMENT=205838 DEFAULT CHARSET=latin1 COMMENT='Export Job Entry';
+) ENGINE=MyISAM AUTO_INCREMENT=205838 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Export Job Entry';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -309,7 +309,7 @@ CREATE TABLE `func` (
   `dl` char(128) COLLATE utf8_bin NOT NULL DEFAULT '',
   `type` enum('function','aggregate') CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='User defined functions';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COLLATE=utf8_bin COMMENT='User defined functions';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -335,7 +335,7 @@ CREATE TABLE `help_category` (
   `url` char(128) NOT NULL,
   PRIMARY KEY (`help_category_id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='help categories';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='help categories';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -359,7 +359,7 @@ CREATE TABLE `help_keyword` (
   `name` char(64) NOT NULL,
   PRIMARY KEY (`help_keyword_id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='help keywords';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='help keywords';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -382,7 +382,7 @@ CREATE TABLE `help_relation` (
   `help_topic_id` int(10) unsigned NOT NULL,
   `help_keyword_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`help_keyword_id`,`help_topic_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='keyword-topic relation';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='keyword-topic relation';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -410,7 +410,7 @@ CREATE TABLE `help_topic` (
   `url` char(128) NOT NULL,
   PRIMARY KEY (`help_topic_id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='help topics';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='help topics';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -450,7 +450,7 @@ CREATE TABLE `host` (
   `Alter_routine_priv` enum('N','Y') CHARACTER SET utf8 NOT NULL DEFAULT 'N',
   `Execute_priv` enum('N','Y') CHARACTER SET utf8 NOT NULL DEFAULT 'N',
   PRIMARY KEY (`Host`,`Db`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Host privileges;  Merged with database privileges';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COLLATE=utf8_bin COMMENT='Host privileges;  Merged with database privileges';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -482,7 +482,7 @@ CREATE TABLE `import_job` (
   `stats` text NOT NULL,
   `cmd` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Import Job Information';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Import Job Information';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -509,7 +509,7 @@ CREATE TABLE `import_log_entry` (
   `type` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `import_log_entry_FI_1` (`job`)
-) ENGINE=MyISAM AUTO_INCREMENT=317 DEFAULT CHARSET=latin1 COMMENT='Import Job Entry';
+) ENGINE=MyISAM AUTO_INCREMENT=317 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Import Job Entry';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -534,7 +534,7 @@ CREATE TABLE `label` (
   `name` varchar(255) DEFAULT NULL,
   `label` text,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=275 DEFAULT CHARSET=latin1 COMMENT='Language based labels';
+) ENGINE=MyISAM AUTO_INCREMENT=275 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Language based labels';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -557,7 +557,7 @@ CREATE TABLE `lilac_configuration` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `version` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='Lilac Configuration';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Lilac Configuration';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -580,7 +580,7 @@ CREATE TABLE `nagios_broker_module` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `line` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='Event Broker Modules';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Event Broker Modules';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -630,7 +630,7 @@ CREATE TABLE `nagios_cgi_configuration` (
   `enable_splunk_integration` tinyint(4) DEFAULT NULL,
   `splunk_url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COMMENT='CGI Configuration';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='CGI Configuration';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -655,7 +655,7 @@ CREATE TABLE `nagios_command` (
   `line` text NOT NULL,
   `description` tinytext,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=169 DEFAULT CHARSET=latin1 COMMENT='Nagios Command';
+) ENGINE=MyISAM AUTO_INCREMENT=169 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Command';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -700,7 +700,7 @@ CREATE TABLE `nagios_contact` (
   PRIMARY KEY (`id`),
   KEY `nagios_contact_FI_1` (`host_notification_period`),
   KEY `nagios_contact_FI_2` (`service_notification_period`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COMMENT='Nagios Contact';
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Contact';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -725,7 +725,7 @@ CREATE TABLE `nagios_contact_address` (
   `address` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `nagios_contact_address_FI_1` (`contact`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Nagios Contact Address';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Contact Address';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -749,7 +749,7 @@ CREATE TABLE `nagios_contact_group` (
   `name` varchar(255) NOT NULL,
   `alias` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1 COMMENT='Nagios Contact Group';
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Contact Group';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -775,7 +775,7 @@ CREATE TABLE `nagios_contact_group_member` (
   PRIMARY KEY (`id`),
   KEY `nagios_contact_group_member_FI_1` (`contact`),
   KEY `nagios_contact_group_member_FI_2` (`contactgroup`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=latin1 COMMENT='Member of a Nagios Contact Group';
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Member of a Nagios Contact Group';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -802,7 +802,7 @@ CREATE TABLE `nagios_contact_notification_command` (
   PRIMARY KEY (`id`),
   KEY `nagios_contact_notification_command_FI_1` (`contact_id`),
   KEY `nagios_contact_notification_command_FI_2` (`command`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=latin1 COMMENT='Notification Command for a Nagios Contact';
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Notification Command for a Nagios Contact';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -854,7 +854,7 @@ CREATE TABLE `nagios_dependency` (
   KEY `nagios_dependency_FI_4` (`service`),
   KEY `nagios_dependency_FI_5` (`hostgroup`),
   KEY `nagios_dependency_FI_6` (`dependency_period`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Nagios Dependency';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Dependency';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -884,7 +884,7 @@ CREATE TABLE `nagios_dependency_target` (
   KEY `nagios_dependency_target_FI_2` (`target_host`),
   KEY `nagios_dependency_target_FI_3` (`target_service`),
   KEY `nagios_dependency_target_FI_4` (`target_hostgroup`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Targets for a Dependency';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Targets for a Dependency';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -929,7 +929,7 @@ CREATE TABLE `nagios_escalation` (
   KEY `nagios_escalation_FI_4` (`service`),
   KEY `nagios_escalation_FI_5` (`hostgroup`),
   KEY `nagios_escalation_FI_6` (`escalation_period`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Nagios Escalation';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Escalation';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -955,7 +955,7 @@ CREATE TABLE `nagios_escalation_contact` (
   PRIMARY KEY (`id`),
   KEY `nagios_escalation_contact_FI_1` (`escalation`),
   KEY `nagios_escalation_contact_FI_2` (`contact`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Contact Group for Escalation';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Contact Group for Escalation';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -981,7 +981,7 @@ CREATE TABLE `nagios_escalation_contactgroup` (
   PRIMARY KEY (`id`),
   KEY `nagios_escalation_contactgroup_FI_1` (`escalation`),
   KEY `nagios_escalation_contactgroup_FI_2` (`contactgroup`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Contact Group for Escalation';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Contact Group for Escalation';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1056,7 +1056,7 @@ CREATE TABLE `nagios_host` (
   KEY `nagios_host_FI_2` (`event_handler`),
   KEY `nagios_host_FI_3` (`check_period`),
   KEY `nagios_host_FI_4` (`notification_period`)
-) ENGINE=MyISAM AUTO_INCREMENT=167 DEFAULT CHARSET=latin1 COMMENT='Nagios Host';
+) ENGINE=MyISAM AUTO_INCREMENT=167 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Host';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1083,7 +1083,7 @@ CREATE TABLE `nagios_host_check_command_parameter` (
   PRIMARY KEY (`id`),
   KEY `nagios_host_check_command_parameter_FI_1` (`host`),
   KEY `nagios_host_check_command_parameter_FI_2` (`host_template`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Parameter for Host Check Command';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Parameter for Host Check Command';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1111,7 +1111,7 @@ CREATE TABLE `nagios_host_contact_member` (
   KEY `nagios_host_contact_member_FI_1` (`host`),
   KEY `nagios_host_contact_member_FI_2` (`template`),
   KEY `nagios_host_contact_member_FI_3` (`contact`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Contacts which belong to host templates or hosts';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Contacts which belong to host templates or hosts';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1139,7 +1139,7 @@ CREATE TABLE `nagios_host_contactgroup` (
   KEY `nagios_host_contactgroup_FI_1` (`host`),
   KEY `nagios_host_contactgroup_FI_2` (`host_template`),
   KEY `nagios_host_contactgroup_FI_3` (`contactgroup`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1 COMMENT='Contact Group for Host';
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Contact Group for Host';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1167,7 +1167,7 @@ CREATE TABLE `nagios_host_parent` (
   KEY `nagios_host_parent_FI_1` (`child_host`),
   KEY `nagios_host_parent_FI_2` (`parent_host`),
   KEY `nagios_host_parent_FI_3` (`child_host_template`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Nagios Additional Host Parent Relationship';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Additional Host Parent Relationship';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1245,7 +1245,7 @@ CREATE TABLE `nagios_host_template` (
   KEY `nagios_host_template_FI_2` (`event_handler`),
   KEY `nagios_host_template_FI_3` (`check_period`),
   KEY `nagios_host_template_FI_4` (`notification_period`)
-) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=latin1 COMMENT='Nagios Host Template';
+) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Host Template';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1275,7 +1275,7 @@ CREATE TABLE `nagios_host_template_autodiscovery_service` (
   `extra_information` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `nagios_host_template_autodiscovery_service_FI_1` (`host_template`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1304,7 +1304,7 @@ CREATE TABLE `nagios_host_template_inheritance` (
   KEY `nagios_host_template_inheritance_FI_1` (`source_host`),
   KEY `nagios_host_template_inheritance_FI_2` (`source_template`),
   KEY `nagios_host_template_inheritance_FI_3` (`target_template`)
-) ENGINE=MyISAM AUTO_INCREMENT=263 DEFAULT CHARSET=latin1 COMMENT='Nagios Host Template Inheritance';
+) ENGINE=MyISAM AUTO_INCREMENT=263 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Host Template Inheritance';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1331,7 +1331,7 @@ CREATE TABLE `nagios_hostgroup` (
   `notes_url` varchar(255) DEFAULT NULL,
   `action_url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=latin1 COMMENT='Nagios Hostgroup';
+) ENGINE=MyISAM AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Hostgroup';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1359,7 +1359,7 @@ CREATE TABLE `nagios_hostgroup_membership` (
   KEY `nagios_hostgroup_membership_FI_1` (`host`),
   KEY `nagios_hostgroup_membership_FI_2` (`host_template`),
   KEY `nagios_hostgroup_membership_FI_3` (`hostgroup`)
-) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=latin1 COMMENT='Hostgroup Membership for Host';
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Hostgroup Membership for Host';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1514,7 +1514,7 @@ CREATE TABLE `nagios_main_configuration` (
   KEY `nagios_main_configuration_FI_6` (`service_perfdata_file_processing_command`),
   KEY `nagios_main_configuration_FI_7` (`global_service_event_handler`),
   KEY `nagios_main_configuration_FI_8` (`global_host_event_handler`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=latin1 COMMENT='Nagios Main Configuration';
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Main Configuration';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1568,7 +1568,7 @@ CREATE TABLE `nagios_resource` (
   `user31` varchar(255) DEFAULT NULL,
   `user32` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1 COMMENT='Nagios Resource';
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Resource';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1647,7 +1647,7 @@ CREATE TABLE `nagios_service` (
   KEY `nagios_service_FI_5` (`event_handler`),
   KEY `nagios_service_FI_6` (`check_period`),
   KEY `nagios_service_FI_7` (`notification_period`)
-) ENGINE=MyISAM AUTO_INCREMENT=208 DEFAULT CHARSET=latin1 COMMENT='Nagios Service';
+) ENGINE=MyISAM AUTO_INCREMENT=208 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Service';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1674,7 +1674,7 @@ CREATE TABLE `nagios_service_check_command_parameter` (
   PRIMARY KEY (`id`),
   KEY `nagios_service_check_command_parameter_FI_1` (`service`),
   KEY `nagios_service_check_command_parameter_FI_2` (`template`)
-) ENGINE=MyISAM AUTO_INCREMENT=323 DEFAULT CHARSET=latin1 COMMENT='Parameter for check command for service or service template';
+) ENGINE=MyISAM AUTO_INCREMENT=323 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Parameter for check command for service or service template';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1702,7 +1702,7 @@ CREATE TABLE `nagios_service_contact_group_member` (
   KEY `nagios_service_contact_group_member_FI_1` (`service`),
   KEY `nagios_service_contact_group_member_FI_2` (`template`),
   KEY `nagios_service_contact_group_member_FI_3` (`contact_group`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COMMENT='Nagios  Service Group';
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios  Service Group';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1730,7 +1730,7 @@ CREATE TABLE `nagios_service_contact_member` (
   KEY `nagios_service_contact_member_FI_1` (`service`),
   KEY `nagios_service_contact_member_FI_2` (`template`),
   KEY `nagios_service_contact_member_FI_3` (`contact`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Contacts which belong to service templates or services';
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Contacts which belong to service templates or services';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1757,7 +1757,7 @@ CREATE TABLE `nagios_service_group` (
   `notes_url` varchar(255) DEFAULT NULL,
   `action_url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COMMENT='Nagios  Service Group';
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios  Service Group';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1785,7 +1785,7 @@ CREATE TABLE `nagios_service_group_member` (
   KEY `nagios_service_group_member_FI_1` (`service`),
   KEY `nagios_service_group_member_FI_2` (`template`),
   KEY `nagios_service_group_member_FI_3` (`service_group`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1858,7 +1858,7 @@ CREATE TABLE `nagios_service_template` (
   KEY `nagios_service_template_FI_2` (`event_handler`),
   KEY `nagios_service_template_FI_3` (`check_period`),
   KEY `nagios_service_template_FI_4` (`notification_period`)
-) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=latin1 COMMENT='Nagios Service Template';
+) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Service Template';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1887,7 +1887,7 @@ CREATE TABLE `nagios_service_template_inheritance` (
   KEY `nagios_service_template_inheritance_FI_1` (`source_service`),
   KEY `nagios_service_template_inheritance_FI_2` (`source_template`),
   KEY `nagios_service_template_inheritance_FI_3` (`target_template`)
-) ENGINE=MyISAM AUTO_INCREMENT=233 DEFAULT CHARSET=latin1 COMMENT='Nagios service Template Inheritance';
+) ENGINE=MyISAM AUTO_INCREMENT=233 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios service Template Inheritance';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1911,7 +1911,7 @@ CREATE TABLE `nagios_timeperiod` (
   `name` varchar(255) NOT NULL,
   `alias` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1 COMMENT='Nagios Timeperiods';
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Nagios Timeperiods';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1937,7 +1937,7 @@ CREATE TABLE `nagios_timeperiod_entry` (
   `value` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `nagios_timeperiod_entry_FI_1` (`timeperiod_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=91 DEFAULT CHARSET=latin1 COMMENT='Time Period Entries';
+) ENGINE=MyISAM AUTO_INCREMENT=91 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Time Period Entries';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1963,7 +1963,7 @@ CREATE TABLE `nagios_timeperiod_exclude` (
   PRIMARY KEY (`id`),
   KEY `nagios_timeperiod_exclude_FI_1` (`timeperiod_id`),
   KEY `nagios_timeperiod_exclude_FI_2` (`excluded_timeperiod`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='Time Period Excludes';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Time Period Excludes';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2000,7 +2000,7 @@ CREATE TABLE `proc` (
   `sql_mode` set('REAL_AS_FLOAT','PIPES_AS_CONCAT','ANSI_QUOTES','IGNORE_SPACE','NOT_USED','ONLY_FULL_GROUP_BY','NO_UNSIGNED_SUBTRACTION','NO_DIR_IN_CREATE','POSTGRESQL','ORACLE','MSSQL','DB2','MAXDB','NO_KEY_OPTIONS','NO_TABLE_OPTIONS','NO_FIELD_OPTIONS','MYSQL323','MYSQL40','ANSI','NO_AUTO_VALUE_ON_ZERO','NO_BACKSLASH_ESCAPES','STRICT_TRANS_TABLES','STRICT_ALL_TABLES','NO_ZERO_IN_DATE','NO_ZERO_DATE','INVALID_DATES','ERROR_FOR_DIVISION_BY_ZERO','TRADITIONAL','NO_AUTO_CREATE_USER','HIGH_NOT_PRECEDENCE') NOT NULL DEFAULT '',
   `comment` char(64) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
   PRIMARY KEY (`db`,`name`,`type`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Stored Procedures';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Stored Procedures';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2030,7 +2030,7 @@ CREATE TABLE `procs_priv` (
   `Timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`Host`,`Db`,`User`,`Routine_name`,`Routine_type`),
   KEY `Grantor` (`Grantor`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Procedure privileges';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COLLATE=utf8_bin COMMENT='Procedure privileges';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2060,7 +2060,7 @@ CREATE TABLE `tables_priv` (
   `Column_priv` set('Select','Insert','Update','References') CHARACTER SET utf8 NOT NULL DEFAULT '',
   PRIMARY KEY (`Host`,`Db`,`User`,`Table_name`),
   KEY `Grantor` (`Grantor`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Table privileges';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COLLATE=utf8_bin COMMENT='Table privileges';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2083,7 +2083,7 @@ CREATE TABLE `time_zone` (
   `Time_zone_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `Use_leap_seconds` enum('Y','N') NOT NULL DEFAULT 'N',
   PRIMARY KEY (`Time_zone_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Time zones';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Time zones';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2106,7 +2106,7 @@ CREATE TABLE `time_zone_leap_second` (
   `Transition_time` bigint(20) NOT NULL,
   `Correction` int(11) NOT NULL,
   PRIMARY KEY (`Transition_time`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Leap seconds information for time zones';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Leap seconds information for time zones';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2129,7 +2129,7 @@ CREATE TABLE `time_zone_name` (
   `Name` char(64) NOT NULL,
   `Time_zone_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`Name`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Time zone names';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Time zone names';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2153,7 +2153,7 @@ CREATE TABLE `time_zone_transition` (
   `Transition_time` bigint(20) NOT NULL,
   `Transition_type_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`Time_zone_id`,`Transition_time`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Time zone transitions';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Time zone transitions';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2179,7 +2179,7 @@ CREATE TABLE `time_zone_transition_type` (
   `Is_DST` tinyint(3) unsigned NOT NULL DEFAULT '0',
   `Abbreviation` char(8) NOT NULL DEFAULT '',
   PRIMARY KEY (`Time_zone_id`,`Transition_type_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COMMENT='Time zone transition types';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='Time zone transition types';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2201,7 +2201,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `Host` char(60) COLLATE utf8_bin NOT NULL DEFAULT '',
   `User` char(16) COLLATE utf8_bin NOT NULL DEFAULT '',
-  `Password` char(41) CHARACTER SET latin1 COLLATE latin1_bin NOT NULL DEFAULT '',
+  `Password` char(41) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '',
   `Select_priv` enum('N','Y') CHARACTER SET utf8 NOT NULL DEFAULT 'N',
   `Insert_priv` enum('N','Y') CHARACTER SET utf8 NOT NULL DEFAULT 'N',
   `Update_priv` enum('N','Y') CHARACTER SET utf8 NOT NULL DEFAULT 'N',
@@ -2237,7 +2237,7 @@ CREATE TABLE `user` (
   `max_connections` int(11) unsigned NOT NULL DEFAULT '0',
   `max_user_connections` int(11) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`Host`,`User`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='Users and global privileges';
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COLLATE=utf8_bin COMMENT='Users and global privileges';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

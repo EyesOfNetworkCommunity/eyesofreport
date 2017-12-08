@@ -32,7 +32,7 @@ CREATE TABLE `bp` (
   `min_value` varchar(5) DEFAULT NULL,
   `is_define` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`name`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,7 +56,7 @@ CREATE TABLE `bp_links` (
   `bp_name` varchar(255) NOT NULL,
   `bp_link` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -81,7 +81,7 @@ CREATE TABLE `bp_services` (
   `host` varchar(255) NOT NULL,
   `service` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

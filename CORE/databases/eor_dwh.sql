@@ -15,6 +15,19 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
+DROP TABLE IF EXISTS `d_appli_contract_month_comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `d_appli_contract_month_comment` (
+  `dca_contract_context_id` int(11) NOT NULL,
+  `dca_appli_id` int(11) NOT NULL,
+  `dca_year` int(11) NOT NULL,
+  `dca_month` varchar(2) NOT NULL,
+  `dca_comment` mediumtext,
+  PRIMARY KEY (`dca_contract_context_id`,`dca_appli_id`,`dca_year`,`dca_month`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
 --
 -- Table structure for table `d_application`
 --
@@ -33,7 +46,7 @@ CREATE TABLE `d_application` (
   `DAP_TYPE` varchar(45) NOT NULL,
   `DAP_MIN` int(11) DEFAULT NULL,
   PRIMARY KEY (`DAP_ID`,`DAP_NAME`,`DAP_SOURCE`)
-) ENGINE=InnoDB AUTO_INCREMENT=350 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=350 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +60,7 @@ CREATE TABLE `d_application_complete_link` (
   `acl_master` int(11) NOT NULL,
   `acl_link` int(11) NOT NULL,
   PRIMARY KEY (`acl_master`,`acl_link`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -61,7 +74,7 @@ CREATE TABLE `d_application_contract_link` (
   `ack_appli_id` int(11) NOT NULL,
   `ack_dcc_id` int(11) NOT NULL,
   PRIMARY KEY (`ack_appli_id`,`ack_dcc_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +87,7 @@ DROP TABLE IF EXISTS `d_application_contract_link_ttr`;
 CREATE TABLE `d_application_contract_link_ttr` (
   `ack_appli_id` int(11) NOT NULL,
   `ack_dcc_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -90,7 +103,7 @@ CREATE TABLE `d_application_link` (
   `dal_app_master_id` int(11) DEFAULT NULL,
   `dal_app_link_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`dal_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=389 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=389 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,7 +122,7 @@ CREATE TABLE `d_application_link_analysis` (
   `dla_cat_analysis` int(11) DEFAULT NULL,
   `dls_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`dla_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=92 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=92 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +137,7 @@ CREATE TABLE `d_category` (
   `CAT_LABEL` varchar(255) DEFAULT NULL,
   `CAT_CCHG_ID` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`CAT_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -139,7 +152,7 @@ CREATE TABLE `d_category_analysis` (
   `CAA_LABEL` varchar(255) DEFAULT NULL,
   `CAA_CCHG_ID` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`CAA_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +168,7 @@ CREATE TABLE `d_chargement` (
   `chg_etl_name` varchar(145) DEFAULT NULL,
   `chg_date` date DEFAULT NULL,
   PRIMARY KEY (`chg_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=541 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=541 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -176,7 +189,7 @@ CREATE TABLE `d_contract` (
   `dco_validity_date` date DEFAULT NULL,
   `dco_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`dco_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +209,7 @@ CREATE TABLE `d_contract_context` (
   `dcc_alias` varchar(50) DEFAULT NULL,
   `dcc_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`dcc_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +228,7 @@ CREATE TABLE `d_contract_context_application` (
   `dca_chg_id` int(11) DEFAULT NULL,
   `dca_dsg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`dca_dcc_id`,`dca_appli_id`,`dca_dco_id`,`dca_tpr_id`,`dca_kpi_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +246,7 @@ CREATE TABLE `d_contract_context_application_ttr` (
   `dca_kpi_id` int(11) NOT NULL,
   `dca_chg_id` int(11) DEFAULT NULL,
   `dca_dsg_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,7 +266,7 @@ CREATE TABLE `d_contract_context_ttr` (
   `dcc_alias` varchar(50) DEFAULT NULL,
   `dcc_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`dcc_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -288,7 +301,7 @@ CREATE TABLE `d_hierarchy_column` (
   `dhc_lvl19_id` mediumint(9) DEFAULT NULL,
   `dhc_lvl20_id` mediumint(9) DEFAULT NULL,
   PRIMARY KEY (`dhc_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1319 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=1319 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -304,7 +317,7 @@ CREATE TABLE `d_hierarchy_leaf` (
   `host_id` int(11) NOT NULL,
   `service_id` int(11) NOT NULL,
   PRIMARY KEY (`app_master`,`app_leaf`,`host_id`,`service_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -321,7 +334,7 @@ CREATE TABLE `d_host` (
   `DHO_CHG_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`DHO_ID`),
   KEY `idx_dho_source` (`DHO_SOURCE`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=325 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=325 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -338,7 +351,7 @@ CREATE TABLE `d_host_service` (
   `dhs_source` varchar(45) DEFAULT NULL,
   `dhs_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`dhs_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=9724 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=9724 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -355,7 +368,7 @@ CREATE TABLE `d_host_service_application` (
   `hsa_appli` mediumint(9) NOT NULL,
   `hsa_chg_id` int(11) NOT NULL,
   PRIMARY KEY (`hsa_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=827 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=827 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -373,7 +386,7 @@ CREATE TABLE `d_kpi` (
   `kpi_unit_presentation` varchar(50) DEFAULT NULL,
   `kpi_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`kpi_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -388,7 +401,7 @@ CREATE TABLE `d_message_type` (
   `met_type_label` varchar(145) NOT NULL,
   `met_state_type_label` varchar(45) NOT NULL,
   PRIMARY KEY (`met_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -405,7 +418,7 @@ CREATE TABLE `d_service` (
   `DSE_SOURCE` varchar(145) DEFAULT NULL,
   PRIMARY KEY (`DSE_ID`),
   KEY `idx_dse_source` (`DSE_SOURCE`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=265 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=265 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -420,7 +433,7 @@ CREATE TABLE `d_state_type` (
   `DTY_NAME` varchar(150) DEFAULT NULL,
   `DTY_CHG_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`DTY_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='si service est null alors on est state host, sinon on est st';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci` COMMENT='si service est null alors on est state host, sinon on est st';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -457,7 +470,7 @@ CREATE TABLE `d_step_group` (
   `dsg_step_10_max` decimal(10,3) DEFAULT NULL,
   `dsg_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`dsg_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -473,7 +486,7 @@ CREATE TABLE `d_time_date` (
   `month` varchar(2) DEFAULT NULL,
   `day` varchar(2) DEFAULT NULL,
   PRIMARY KEY (`date`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -513,7 +526,7 @@ CREATE TABLE `d_time_dimension` (
   KEY `td_dbdate_idx` (`db_datetime`) USING BTREE,
   KEY `idx_d_time_dimension_year` (`year`) USING BTREE,
   KEY `idx_d_time_dimension_month_num` (`month`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -536,7 +549,7 @@ CREATE TABLE `d_time_month` (
   `DTW_SEMESTER_NB` int(11) DEFAULT NULL,
   `DTW_YEAR` int(11) DEFAULT NULL,
   PRIMARY KEY (`DTM_DATETIME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -552,7 +565,7 @@ CREATE TABLE `d_time_period` (
   `TPR_ALIAS` varchar(255) DEFAULT NULL,
   `TPR_CHG_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`TPR_ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -570,7 +583,7 @@ CREATE TABLE `d_time_period_day` (
   `tpd_tpr_id` mediumint(9) NOT NULL,
   `nb_secondes` int(11) NOT NULL,
   PRIMARY KEY (`tpd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1412 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1412 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -587,7 +600,7 @@ CREATE TABLE `d_time_period_minute` (
   `DTP_CHG_ID` int(11) DEFAULT NULL,
   PRIMARY KEY (`DTP_ID`),
   KEY `idx_dtp_eopch_minute` (`DTP_EPOCH_MINUTE`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=13686 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13686 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -604,7 +617,7 @@ CREATE TABLE `d_time_period_month` (
   `tpm_tpr_id` mediumint(9) NOT NULL,
   `nb_secondes` int(11) NOT NULL,
   PRIMARY KEY (`tpm_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -624,7 +637,7 @@ CREATE TABLE `d_time_week` (
   `DTW_WEEK_NB` int(11) DEFAULT NULL,
   `DTW_YEAR_NB` int(11) DEFAULT NULL,
   PRIMARY KEY (`DTW_DATETIME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -643,7 +656,7 @@ CREATE TABLE `e_log_functional_error` (
   `DLR_ID_ROW` varchar(255) DEFAULT NULL,
   `DLR_FIELD_VALUE` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`DLR_DATE`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -658,7 +671,7 @@ CREATE TABLE `e_log_technical_error` (
   `DLF_DATE` date NOT NULL,
   `DLF_ETL_NAME` varchar(255) NOT NULL,
   PRIMARY KEY (`DLF_DATE`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -685,7 +698,7 @@ CREATE TABLE `f_dtm_appli_contract_ttr_minute` (
   `acmttr_downtimeDuration` tinyint(3) unsigned DEFAULT NULL,
   `acmttr_downtimeEffectiveDuration` tinyint(3) unsigned DEFAULT NULL,
   `acmttr_chg_id` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -711,7 +724,7 @@ CREATE TABLE `f_dtm_appli_link_ana_contract_unavail_day` (
   `aad_unavailability_down` mediumint(8) unsigned DEFAULT NULL,
   `aad_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`aad_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1887 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1887 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -738,7 +751,7 @@ CREATE TABLE `f_dtm_appli_link_ana_contract_unavail_hour` (
   `aah_unavailability_down` mediumint(8) unsigned DEFAULT NULL,
   `aah_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`aah_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5050 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5050 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -765,7 +778,7 @@ CREATE TABLE `f_dtm_appli_link_ana_contract_unavail_min` (
   `aam_unavailability_down` tinyint(3) unsigned DEFAULT NULL,
   `aam_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`aam_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=194817 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=194817 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -792,7 +805,7 @@ CREATE TABLE `f_dtm_appli_link_ana_contract_unavail_month` (
   `aam_unavailability_down` int(10) unsigned DEFAULT NULL,
   `aam_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`aam_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=497 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=497 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -818,7 +831,7 @@ CREATE TABLE `f_dtm_appli_link_contract_unavail_day` (
   `ald_unavailability_down` mediumint(8) unsigned DEFAULT NULL,
   `ald_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`ald_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2578 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2578 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -845,7 +858,7 @@ CREATE TABLE `f_dtm_appli_link_contract_unavail_hour` (
   `alh_unavailability_down` mediumint(8) unsigned DEFAULT NULL,
   `alh_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`alh_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6846 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6846 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -872,7 +885,7 @@ CREATE TABLE `f_dtm_appli_link_contract_unavail_min` (
   `alm_unavailability_down` tinyint(3) unsigned DEFAULT NULL,
   `alm_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`alm_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=263184 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=263184 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -899,7 +912,7 @@ CREATE TABLE `f_dtm_appli_link_contract_unavail_month` (
   `alm_unavailability_down` mediumint(8) unsigned DEFAULT NULL,
   `alm_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`alm_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=649 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=649 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -925,7 +938,7 @@ CREATE TABLE `f_dtm_appli_unavailability_day` (
   `aud_downtime_duration` int(11) DEFAULT NULL,
   `aud_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`aud_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2375 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=2375 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -955,7 +968,7 @@ CREATE TABLE `f_dtm_appli_unavailability_hour` (
   KEY `idx_appli_hour` (`auh_appli`) USING BTREE,
   KEY `idx_appli_epoch_hour` (`auh_epoch_hour`) USING BTREE,
   KEY `idx_appli_contract_context_hour` (`auh_contract_context_id`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=6442 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=6442 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -982,7 +995,7 @@ CREATE TABLE `f_dtm_appli_unavailability_month` (
   `aum_downtime_duration` int(11) DEFAULT NULL,
   `aum_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`aum_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=634 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=634 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1009,7 +1022,7 @@ CREATE TABLE `f_dtm_appli_unavailability_month_hour` (
   `aumh_unavailability_down` mediumint(9) DEFAULT NULL,
   `aumh_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`aumh_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4161 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4161 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1037,7 +1050,7 @@ CREATE TABLE `f_dtm_application_contract_unavailability_minute` (
   `acm_downtimeEffectiveDuration` tinyint(3) unsigned DEFAULT NULL,
   `acm_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`acm_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=242903 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=242903 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1063,7 +1076,7 @@ CREATE TABLE `f_dtm_application_unavailability_minute` (
   `fdb_isOutage` tinyint(3) DEFAULT NULL,
   `fdb_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`fdb_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=142336 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=142336 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1090,7 +1103,7 @@ CREATE TABLE `f_dtm_hs_hoststatus_unavailability_minute` (
   `hhm_isOutage` tinyint(3) DEFAULT NULL,
   `hhm_isHoststatusOutage` tinyint(3) DEFAULT NULL,
   PRIMARY KEY (`hhm_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1111,7 +1124,7 @@ CREATE TABLE `f_dtm_hs_ttr_interval` (
   PRIMARY KEY (`hsittr_id`),
   KEY `idx_hs_ttr_hostservice` (`hsittr_host`,`hsittr_service`) USING BTREE,
   KEY `idx_hs_ttr_host` (`hsittr_host`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=2714 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2714 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1134,7 +1147,7 @@ CREATE TABLE `f_dtm_hs_unavailability_day` (
   `hud_downtime_duration` int(11) DEFAULT NULL,
   `hud_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`hud_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=34549 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=34549 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1159,7 +1172,7 @@ CREATE TABLE `f_dtm_hs_unavailability_hour` (
   `huh_isHoststatusOutage` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`huh_id`),
   KEY `idx_host_service` (`huh_host`,`huh_service`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=461298 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=461298 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1194,7 +1207,7 @@ CREATE TABLE `f_dtm_hs_unavailability_minute` (
   KEY `idx_fdu_host` (`fdu_host`) USING BTREE,
   KEY `idx_host_service` (`fdu_host`,`fdu_service`) USING BTREE,
   KEY `idx_epoch_minute` (`fdu_epoch_minute`) USING BTREE
-) ENGINE=MyISAM AUTO_INCREMENT=3964211 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=3964211 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1218,7 +1231,7 @@ CREATE TABLE `f_dtm_hs_unavailability_month` (
   `hum_downtime_duration` int(11) DEFAULT NULL,
   `hum_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`hum_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1941 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=1941 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1242,7 +1255,7 @@ CREATE TABLE `f_dtm_hs_unavailability_month_hour` (
   `humh_unavailability_down` decimal(10,0) DEFAULT NULL,
   `humh_chg_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`humh_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=28576 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28576 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1266,7 +1279,7 @@ CREATE TABLE `f_dwh_logs_nagios` (
   `FLN_STATE_UNIF` tinyint(4) DEFAULT NULL,
   `FLN_MESSAGE_TYPE` int(11) DEFAULT NULL,
   PRIMARY KEY (`FLN_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=307741 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=307741 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1289,7 +1302,7 @@ CREATE TABLE `f_dwh_logs_nagios_downtime` (
   `FDO_MESSAGE_TYPE` varchar(45) DEFAULT NULL,
   `FDO_CODE_INTERVAL` int(11) DEFAULT NULL,
   KEY `fdo_date_index` (`FDO_DATE`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1308,7 +1321,7 @@ CREATE TABLE `f_tmp_incident_not_finished` (
   `hsittr_source` varchar(15) DEFAULT NULL,
   `hsittr_chg_id` int(11) DEFAULT NULL,
   `dhs_id` int(11) NOT NULL DEFAULT '0'
-) ENGINE=MEMORY DEFAULT CHARSET=latin1;
+) ENGINE=MEMORY DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1333,7 +1346,7 @@ CREATE TABLE `f_tmp_log_day` (
   `FLN_MESSAGE_TYPE` int(11) DEFAULT NULL,
   KEY `fln_host_index` (`FLN_HOST`) USING BTREE,
   KEY `fln_service_index` (`FLN_SERVICE`) USING BTREE
-) ENGINE=MEMORY DEFAULT CHARSET=latin1;
+) ENGINE=MEMORY DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1362,7 +1375,7 @@ CREATE TABLE `f_tmp_log_down_hs_day` (
   `FDO_DATE_MINUTE` bigint(17) DEFAULT NULL,
   `FDO_SECONDE` varchar(2) DEFAULT NULL,
   KEY `idx_tmp_fln_date` (`FDO_DATE`,`FDO_HOUR`,`FDO_HMINUTE`) USING BTREE
-) ENGINE=MEMORY DEFAULT CHARSET=latin1;
+) ENGINE=MEMORY DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1392,7 +1405,7 @@ CREATE TABLE `f_tmp_log_downtime_day` (
   `FDO_SECONDE` varchar(2) DEFAULT NULL,
   KEY `fdo_host_index` (`FDO_HOST_ID`) USING BTREE,
   KEY `fdo_service_index` (`FDO_SERVICE_ID`) USING BTREE
-) ENGINE=MEMORY DEFAULT CHARSET=latin1;
+) ENGINE=MEMORY DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1414,7 +1427,7 @@ CREATE TABLE `f_tmp_unavailability_day` (
   `fdu_lastHSDowntimeBit` tinyint(4) DEFAULT NULL,
   `fdu_lastHSOutageBit` tinyint(4) DEFAULT NULL,
   `FDU_SERVICE_NAME` varchar(150) CHARACTER SET utf8 DEFAULT NULL
-) ENGINE=MEMORY DEFAULT CHARSET=latin1;
+) ENGINE=MEMORY DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

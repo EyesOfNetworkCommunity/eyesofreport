@@ -58,7 +58,7 @@ CREATE TABLE `nagios` (
   KEY `state` (`state`) USING BTREE,
   KEY `o_sec` (`o_sec`) USING BTREE,
   KEY `o_usec` (`o_usec`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,7 +113,7 @@ CREATE TABLE `nagios_queue_active` (
   KEY `state` (`state`) USING BTREE,
   KEY `o_sec` (`o_sec`) USING BTREE,
   KEY `o_usec` (`o_usec`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -161,7 +161,7 @@ CREATE TABLE `nagios_queue_history` (
   KEY `state` (`state`) USING BTREE,
   KEY `o_sec` (`o_sec`) USING BTREE,
   KEY `o_usec` (`o_usec`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -207,7 +207,7 @@ CREATE TABLE `nagios_queue_sync` (
   KEY `state` (`state`) USING BTREE,
   KEY `o_sec` (`o_sec`) USING BTREE,
   KEY `o_usec` (`o_usec`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -233,7 +233,7 @@ CREATE TABLE `pkt_type` (
   `pkt_type_vers` int(11) NOT NULL DEFAULT '10504',
   PRIMARY KEY (`pkt_type_id`),
   UNIQUE KEY `pkt_type_name` (`pkt_type_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -288,7 +288,7 @@ CREATE TABLE `snmptrap` (
   KEY `state` (`state`) USING BTREE,
   KEY `o_sec` (`o_sec`) USING BTREE,
   KEY `o_usec` (`o_usec`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -343,7 +343,7 @@ CREATE TABLE `snmptrap_queue_active` (
   KEY `state` (`state`) USING BTREE,
   KEY `o_sec` (`o_sec`) USING BTREE,
   KEY `o_usec` (`o_usec`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -398,7 +398,7 @@ CREATE TABLE `snmptrap_queue_history` (
   KEY `state` (`state`) USING BTREE,
   KEY `o_sec` (`o_sec`) USING BTREE,
   KEY `o_usec` (`o_usec`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -453,7 +453,7 @@ CREATE TABLE `snmptrap_queue_sync` (
   KEY `state` (`state`) USING BTREE,
   KEY `o_sec` (`o_sec`) USING BTREE,
   KEY `o_usec` (`o_usec`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
