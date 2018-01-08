@@ -35,7 +35,7 @@ CREATE TABLE `job_channel` (
   `OBJECT_REVISION` varchar(255) DEFAULT NULL,
   `PARENT_CHANNEL_ID` varchar(255) DEFAULT NULL,
   `ROOT_CHANNEL_ID` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,7 +74,7 @@ CREATE TABLE `job_logs` (
   `LOG_FIELD` mediumtext,
   KEY `IDX_JOB_LOGS_1` (`ID_JOB`),
   KEY `IDX_JOB_LOGS_2` (`ERRORS`,`STATUS`,`JOBNAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,7 +110,7 @@ CREATE TABLE `job_logs_task` (
   `NR_RESULT_ROWS` bigint(20) DEFAULT NULL,
   `NR_RESULT_FILES` bigint(20) DEFAULT NULL,
   KEY `IDX_JOB_LOGS_TASK_1` (`ID_BATCH`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,7 +146,7 @@ CREATE TABLE `t_source` (
   `flag_lilac` tinyint(4) DEFAULT '1',
   `flag_ged` tinyint(4) DEFAULT '1',
   PRIMARY KEY (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -185,7 +185,7 @@ CREATE TABLE `trans` (
   `LOG_FIELD` mediumtext,
   KEY `IDX_TRANS_1` (`ID_BATCH`),
   KEY `IDX_TRANS_2` (`ERRORS`,`STATUS`,`TRANSNAME`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -218,7 +218,7 @@ CREATE TABLE `trans_step` (
   `LINES_OUTPUT` bigint(20) DEFAULT NULL,
   `LINES_REJECTED` bigint(20) DEFAULT NULL,
   `ERRORS` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -253,7 +253,7 @@ CREATE TABLE `trans_step_perf` (
   `ERRORS` bigint(20) DEFAULT NULL,
   `INPUT_BUFFER_ROWS` bigint(20) DEFAULT NULL,
   `OUTPUT_BUFFER_ROWS` bigint(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
