@@ -1,8 +1,8 @@
--- MySQL dump 10.14  Distrib 5.5.44-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.14  Distrib 5.5.56-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: eorweb
 -- ------------------------------------------------------
--- Server version	5.5.44-MariaDB-log
+-- Server version	5.5.56-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -52,7 +52,8 @@ CREATE TABLE `auth_settings` (
   `ldap_user` varchar(255) DEFAULT NULL,
   `ldap_password` varchar(255) DEFAULT NULL,
   `ldap_rdn` varchar(255) DEFAULT NULL,
-  `ldap_filter` varchar(255) DEFAULT NULL,
+  `ldap_user_filter` varchar(255) DEFAULT NULL,
+  `ldap_group_filter` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`auth_type`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -63,8 +64,31 @@ CREATE TABLE `auth_settings` (
 
 LOCK TABLES `auth_settings` WRITE;
 /*!40000 ALTER TABLE `auth_settings` DISABLE KEYS */;
-INSERT INTO `auth_settings` VALUES (1,'ldapma',389,'OU=People,,DC=axians,DC=com','cn=svc-eon,ou=Admin,ou=People,dc=axians,dc=com','Wm9iaV9sYV9tb3VjaGU=','samaccountname','(& (objectClass=user) (objectClass=person))');
+INSERT INTO `auth_settings` VALUES (1,'ldapma',389,'OU=People,,DC=axians,DC=com','cn=svc-eon,ou=Admin,ou=People,dc=axians,dc=com','Wm9iaV9sYV9tb3VjaGU=','samaccountname','(& (objectClass=user) (objectClass=person))',NULL);
 /*!40000 ALTER TABLE `auth_settings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `configs`
+--
+
+DROP TABLE IF EXISTS `configs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `configs` (
+  `name` varchar(255) NOT NULL,
+  `value` text NOT NULL,
+  PRIMARY KEY (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `configs`
+--
+
+LOCK TABLES `configs` WRITE;
+/*!40000 ALTER TABLE `configs` DISABLE KEYS */;
+/*!40000 ALTER TABLE `configs` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -91,7 +115,7 @@ CREATE TABLE `groupright` (
 
 LOCK TABLES `groupright` WRITE;
 /*!40000 ALTER TABLE `groupright` DISABLE KEYS */;
-INSERT INTO `groupright` VALUES (1,'0','1','1','1','1'),(9,'0','0','1','0','1'),(10,'0','0','1','1','1'),(11,'0','0','1','0','1');
+INSERT INTO `groupright` VALUES (1,'1','1','1','1','1'),(9,'1','0','1','0','1'),(10,'1','0','1','1','1');
 /*!40000 ALTER TABLE `groupright` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -106,6 +130,8 @@ CREATE TABLE `groups` (
   `group_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `group_name` varchar(255) NOT NULL,
   `group_descr` text,
+  `group_type` tinyint(1) DEFAULT NULL,
+  `group_dn` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`group_id`,`group_name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -116,7 +142,7 @@ CREATE TABLE `groups` (
 
 LOCK TABLES `groups` WRITE;
 /*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-INSERT INTO `groups` VALUES (1,'admins','Administrator group'),(9,'Users','Users'),(10,'Managers','Contract Managers'),(11,'test','testing group');
+INSERT INTO `groups` VALUES (1,'admins','Administrator group',NULL,NULL),(9,'Users','Users',0,''),(10,'Managers','Contract Managers',0,'');
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,6 +218,30 @@ INSERT INTO `join_report_format` VALUES (1,1,1),(3,1,5),(4,9,1),(6,9,4),(7,3,2),
 UNLOCK TABLES;
 
 --
+-- Table structure for table `ldap_groups_extended`
+--
+
+DROP TABLE IF EXISTS `ldap_groups_extended`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `ldap_groups_extended` (
+  `dn` varchar(255) NOT NULL,
+  `group_name` varchar(255) DEFAULT NULL,
+  `checked` smallint(6) NOT NULL,
+  PRIMARY KEY (`dn`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ldap_groups_extended`
+--
+
+LOCK TABLES `ldap_groups_extended` WRITE;
+/*!40000 ALTER TABLE `ldap_groups_extended` DISABLE KEYS */;
+/*!40000 ALTER TABLE `ldap_groups_extended` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `ldap_users`
 --
 
@@ -254,7 +304,7 @@ CREATE TABLE `logs` (
   `description` varchar(255) NOT NULL,
   `source` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=184805 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=184813 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -263,7 +313,6 @@ CREATE TABLE `logs` (
 
 LOCK TABLES `logs` WRITE;
 /*!40000 ALTER TABLE `logs` DISABLE KEYS */;
-INSERT INTO `logs` VALUES (184798,'1455287108','admin','logout','User logged out','217.109.123.80'),(184799,'1455287115','admin','login','User logged in','217.109.123.80'),(184800,'1458135285','admin','login','User logged in','192.168.26.1'),(184801,'1458364661','admin','login','User logged in','192.168.26.1'),(184802,'1459234307','admin','logout','User logged out','192.168.26.1'),(184803,'1459234311','admin','login','User logged in','192.168.26.1'),(184804,'1473251805','admin','login','User logged in','10.205.129.187');
 /*!40000 ALTER TABLE `logs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -359,7 +408,6 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES (937541971,1),(1328096520,1),(958854550,1),(1182260729,1),(210080805,1);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -379,6 +427,7 @@ CREATE TABLE `users` (
   `user_type` tinyint(1) NOT NULL,
   `user_location` varchar(255) DEFAULT NULL,
   `user_limitation` tinyint(1) NOT NULL,
+  `user_language` char(2) DEFAULT '0',
   PRIMARY KEY (`user_id`,`user_name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=143 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -389,7 +438,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,1,'admin','21232f297a57a5a743894a0e4a801fc3','default user',0,'',0),(142,10,'manager','1d0258c2440a8d19e716292b231e3190','manager',0,'',0);
+INSERT INTO `users` VALUES (1,1,'admin','21232f297a57a5a743894a0e4a801fc3','default user',0,'',0,'0'),(142,10,'manager','1d0258c2440a8d19e716292b231e3190','manager',0,'',0,'0');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -402,4 +451,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-09-07 15:19:50
+-- Dump completed on 2018-02-13 11:19:43
