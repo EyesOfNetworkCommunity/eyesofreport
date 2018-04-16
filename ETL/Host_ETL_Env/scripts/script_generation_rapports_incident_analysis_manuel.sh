@@ -31,7 +31,7 @@ MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "SELECT distinct dap_name from d_applicatio
 
 #Get contract id for contract "EFS_24_7_Haute_Dispo"
 contract_context_id=$(MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "SELECT dcc_id from d_contract_context limit 1" eor_dwh | tail -n +2)
-contract_context_name=$(MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "select dcc_name from d_contract_contextwhere dcc_id='${contract_context_id}'" eor_dwh | tail -n +2)
+contract_context_name=$(MYSQL_PWD=$MYSQL_PWD mysql -uroot -e "select dcc_name from d_contract_context where dcc_id='${contract_context_id}'" eor_dwh | tail -n +2)
 
 nb_applications=$(cat ${month_folder}/liste_application.txt | wc -l)
 for i in $(seq 1 ${nb_applications})
