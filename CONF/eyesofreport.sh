@@ -63,4 +63,4 @@ EOR_WEB_DATABASE_USER=eyesofreport
 EOR_WEB_DATABASE_PWD='SaintThomas,2014'
 
 #eor web version
-eor_web_version=1.0
+eor_web_version=2.0

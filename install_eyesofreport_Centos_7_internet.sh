@@ -134,8 +134,11 @@ mkdir /srv/eyesofreport
 echo  "Eyes Of Report packages installation..."
 
 yum install -y perl net-tools nano docker unzip zip rsync bind-utils patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
-yum install -y httpd-tools httpd libxslt php-common php-mysql php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
+yum install -y httpd-tools httpd libxslt php-common php-mysqlnd php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
 yum localinstall -y $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm
+
+TZONE=`ls -l /etc/localtime |awk -F "zoneinfo/" '{print $2}'` 
+sed -i "s,^;date.timezone.*,date.timezone = \"${TZONE}\",g" /etc/php.ini 
 
 mysql_port=3306
 snmpd_port=161
@@ -153,7 +156,6 @@ systemctl enable mariadb
 
 mkdir -p /run/httpd
 
-
 echo -e "Eyes Of Report packages installation \e[92m[OK] \e[39m"
 
 ######### VERSION ##########
@@ -163,7 +165,7 @@ cat /etc/redhat-release > /etc/issue
 echo 'Kernel \r on an \m' >> /etc/issue
 echo '' >> /etc/issue
 echo 'EyesOfReport access  : http://'`ip add show |grep "inet " |grep -v "127.0.0.1" |head -n 1 |awk '{print $2}' |awk -F "/" '{print $1}'`'/' >> /etc/issue
-echo 'EyesOfReport website : http://www.eyesofnetwork.com/' >> /etc/issue
+echo 'EyesOfReport website : https://github.com/EyesOfNetworkCommunity/eyesofreport' >> /etc/issue
 echo '' >> /etc/issue
 ######### VERSION ##########
 

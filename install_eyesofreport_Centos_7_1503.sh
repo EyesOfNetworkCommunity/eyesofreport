@@ -64,7 +64,7 @@ if [ $(rpm -qa | grep -c deltarpm-3.6-3) -eq 0 ]; then
 fi
 
 if [ $(rpm -qa | grep -c libxml2-2.9.1-5.el7_1.2.x86_64) -eq 0 ]; then
-	rpm -ivh --replacefiles $BASEDIR/CORE/createrepo/libxml2-2.9.1-5.el7_1.2.x86_64.rpm 2> /dev/null
+	rpm -ivh --replacefiles $BASEDIR/CORE/createrepo/libxml2-2.9.1-5.el7_1.2.x86_64.rpm #2> /dev/null
 fi
 
 if [ $(rpm -qa | grep -c libxml2-python-2.9.1-5) -eq 0 ]; then
@@ -108,8 +108,8 @@ fi
 if [ $(rpm -qa | grep -c php-pdo) -gt 0 ]; then
 	yum remove -y php-pdo 2&>1 /dev/null
 fi
-if [ $(rpm -qa | grep -c php-mysql) -gt 0 ]; then
-	yum remove -y php-mysql 2&>1 /dev/null
+if [ $(rpm -qa | grep -c php-mysqlnd) -gt 0 ]; then
+	yum remove -y php-mysqlnd 2&>1 /dev/null
 fi
 if [ $(rpm -qa | grep -c php-cli) -gt 0 ]; then
 	yum remove -y php-cli 2&>1 /dev/null
@@ -132,7 +132,7 @@ mkdir -p /var/lib/docker
 echo  "Eyes Of Report packages installation..."
 
 yum install -y --disablerepo="*" --enablerepo="localrepo" perl net-tools nano docker unzip zip rsync bind-utils patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
-yum install -y --disablerepo="*" --enablerepo="localrepo" httpd-tools httpd mod_auth_eon libxslt php-common php-mysql php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
+yum install -y --disablerepo="*" --enablerepo="localrepo" httpd-tools httpd mod_auth_eon libxslt php-common php-mysqlnd php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
 
 mysql_port=3306
 snmpd_port=161

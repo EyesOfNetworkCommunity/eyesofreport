@@ -101,7 +101,7 @@ source $BASEDIR/../CONF/eyesofreport.sh
 yes | rm $wildfly_path/wildfly-9.0.1.Final.zip
 
 cd $reporting_path
-cp $installation_path/report/* ./
+cp -r $installation_path/report/* ./
 
 #clean installation folder
 #rm $installation_path/wildfly-9.0.1.Final.zip

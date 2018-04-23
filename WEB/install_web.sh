@@ -3,9 +3,9 @@
 #
 # Copyright (C) 2016 EyesOfNetwork Team
 # DEV NAME : Benoit Village Jan 2016
-# 
+#
 # VERSION 2.01
-# 
+#
 # LICENCE :
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -32,7 +32,7 @@ echo -e "Reload firewalld \e[92m[OK] \e[39m"
 
 installation_path=$BASEDIR
 web_path=/srv/eyesofnetwork/
-log_file=web_path/installation_log
+log_file=$web_path/installation_log
 MYSQL_ROOT=root66
 
 source $BASEDIR/../CONF/eyesofreport.sh
@@ -76,9 +76,9 @@ ln -s ${eor_web_folder} eorweb
 
 
 
-sed -i "s/EOR_WEB_DATABASE_IP/$EOR_WEB_DATABASE_IP/g" ./eorweb/include/config.php 
-sed -i "s/EOR_WEB_DATABASE_USER/$EOR_WEB_DATABASE_USER/g" ./eorweb/include/config.php 
-sed -i "s/EOR_WEB_DATABASE_PWD/$EOR_WEB_DATABASE_PWD/g" ./eorweb/include/config.php 
+sed -i "s/EOR_WEB_DATABASE_IP/$EOR_WEB_DATABASE_IP/g" ./eorweb/include/config.php
+sed -i "s/EOR_WEB_DATABASE_USER/$EOR_WEB_DATABASE_USER/g" ./eorweb/include/config.php
+sed -i "s/EOR_WEB_DATABASE_PWD/$EOR_WEB_DATABASE_PWD/g" ./eorweb/include/config.php
 
 cd $installation_path
 
@@ -100,15 +100,15 @@ if [ "$test_db" == "eorweb" ]; then
 	done
 fi
 
-if [ "$drop_database" == "y" ]; then 
-	echo "CREATE DATABASE eorweb;" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_WEB_DATABASE_IP 
-	MYSQL_PWD=$MYSQL_ROOT mysql -uroot -h$EOR_WEB_DATABASE_IP eorweb < $installation_path/eorweb.sql
-#	echo "GRANT ALL PRIVILEGES on eorweb.* to 'eyesofreport'@'%'" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_WEB_DATABASE_IP 
+if [ "$drop_database" == "y" ]; then
+	echo "CREATE DATABASE eorweb;" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_WEB_DATABASE_IP
+	MYSQL_PWD=$MYSQL_ROOT mysql -uroot -h$EOR_WEB_DATABASE_IP eorweb < $installation_path/$eor_web_folder/appliance/eorweb.sql
+#	echo "GRANT ALL PRIVILEGES on eorweb.* to 'eyesofreport'@'%'" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_WEB_DATABASE_IP
 	echo "GRANT ALL PRIVILEGES on eorweb.* to 'eyesofreport'@'localhost'" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_WEB_DATABASE_IP
 	echo -e "database eorweb created	\e[92m[OK] \e[39m"
 fi
-	
-#rm $installation_path/eorweb.sql		
+
+#rm $installation_path/eorweb.sql
 
 chmod -R +x $web_path
 
@@ -121,9 +121,10 @@ sed -ie 's/upload_max_filesize = 2M/upload_max_filesize = 50M/g' /etc/php.ini
 cd /srv/eyesofnetwork
 usermod -a -G eyesofnetwork apache
 chown -R root:eyesofnetwork ./*
-find . -type d -exec chmod o-rwx {} \;
-find . -type d -exec chmod o+x {} \;
-find . -type f -exec chmod o-rwx {} \;
+find . -type d -exec chmod 755 {} \;
+find . -type f -exec chmod 644 {} \;
+chown root:eyesofnetwork /srv/eyesofreport/etl/injection
+chmod g+w /srv/eyesofreport/etl/injection
 
 #yes | mv  $BASEDIR/httpd.service /etc/systemd/system/
 systemctl daemon-reload

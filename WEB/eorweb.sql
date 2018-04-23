@@ -115,7 +115,7 @@ CREATE TABLE `groupright` (
 
 LOCK TABLES `groupright` WRITE;
 /*!40000 ALTER TABLE `groupright` DISABLE KEYS */;
-INSERT INTO `groupright` VALUES (1,'1','1','1','1','1'),(9,'1','0','1','0','1'),(10,'1','1','1','0','1');
+INSERT INTO `groupright` VALUES (1,'1','1','1','1','1'),(9,'1','1','1','0','1'),(10,'1','1','1','0','1');
 /*!40000 ALTER TABLE `groupright` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -136,13 +136,15 @@ CREATE TABLE `groups` (
 ) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+ALTER TABLE groups ADD COLUMN validator BOOLEAN DEFAULT FALSE;
+
 --
 -- Dumping data for table `groups`
 --
 
 LOCK TABLES `groups` WRITE;
 /*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-INSERT INTO `groups` VALUES (1,'admins','Administrator group',NULL,NULL),(9,'Users','Users',0,''),(10,'Managers','Contract Managers',0,'');
+INSERT INTO `groups` VALUES (1,'admins','Administrator group',NULL,NULL),(9,'Users','Users',0,'',1),(10,'Managers','Contract Managers',0,'',0);
 /*!40000 ALTER TABLE `groups` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -428,7 +430,7 @@ CREATE TABLE `users` (
   `user_location` varchar(255) DEFAULT NULL,
   `user_limitation` tinyint(1) NOT NULL,
   `user_language` char(2) DEFAULT '0',
-  `user_email` varchar(255) DEFAULT NULL
+  `user_email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`,`user_name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=143 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -453,3 +455,39 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2018-02-13 11:23:02
+
+
+DROP TABLE IF EXISTS `remediation`;
+CREATE TABLE `remediation` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(25) NOT NULL,
+  `user_id` INT(11) NOT NULL,
+  `date_demand` DATETIME NOT NULL,
+  `date_validation` DATETIME NULL DEFAULT NULL,
+  `state` VARCHAR(25) NOT NULL DEFAULT 'inactive',
+  PRIMARY KEY (`id`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=42
+;
+
+DROP TABLE IF EXISTS `remediation_action`;
+CREATE TABLE `remediation_action` (
+  `id` INT(11) NOT NULL AUTO_INCREMENT,
+  `remediationID` INT(11) NOT NULL,
+  `description` VARCHAR(25) NOT NULL,
+  `type` VARCHAR(25) NOT NULL,
+  `DateDebut` DATETIME NOT NULL,
+  `DateFin` DATETIME NOT NULL,
+  `source` VARCHAR(50) NOT NULL,
+  `host` VARCHAR(50) NOT NULL,
+  `service` VARCHAR(50) NOT NULL,
+  `Action` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `description` (`description`)
+)
+COLLATE='latin1_swedish_ci'
+ENGINE=InnoDB
+AUTO_INCREMENT=38
+;
