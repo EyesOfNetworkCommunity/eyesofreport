@@ -67,70 +67,72 @@ mkdir -p /srv/eyesofreport/depot-1.0
 ln -s /srv/eyesofreport/depot-1.0 /srv/eyesofreport/depot
 
 # No internet create full local repo
-if [ -z $1 && $1 == "--local" ]; then
+if [ -z {$1+" "} ]; then
+	if [ $1 == "--local" ]; then
 
-	YUM_EOR_OPTIONS="--disablerepo=*"
+		YUM_EOR_OPTIONS="--disablerepo=*"
 
-	# Install createrepo
-	if [ $(rpm -qa | grep -c deltarpm-3.6-3) -eq 0 ]; then
-		rpm -ivh $BASEDIR/CORE/createrepo/deltarpm-3.6-3.el7.x86_64.rpm
-	fi
+		# Install createrepo
+		if [ $(rpm -qa | grep -c deltarpm-3.6-3) -eq 0 ]; then
+			rpm -ivh $BASEDIR/CORE/createrepo/deltarpm-3.6-3.el7.x86_64.rpm
+		fi
 
-	if [ $(rpm -qa | grep -c libxml2-2.9.1-5.el7_1.2.x86_64) -eq 0 ]; then
-		rpm -ivh --replacefiles $BASEDIR/CORE/createrepo/libxml2-2.9.1-5.el7_1.2.x86_64.rpm #2> /dev/null
-	fi
+		if [ $(rpm -qa | grep -c libxml2-2.9.1-5.el7_1.2.x86_64) -eq 0 ]; then
+			rpm -ivh --replacefiles $BASEDIR/CORE/createrepo/libxml2-2.9.1-5.el7_1.2.x86_64.rpm #2> /dev/null
+		fi
 
-	if [ $(rpm -qa | grep -c libxml2-python-2.9.1-5) -eq 0 ]; then
-		rpm -ivh $BASEDIR/CORE/createrepo/libxml2-python-2.9.1-5.el7_1.2.x86_64.rpm
-	fi
+		if [ $(rpm -qa | grep -c libxml2-python-2.9.1-5) -eq 0 ]; then
+			rpm -ivh $BASEDIR/CORE/createrepo/libxml2-python-2.9.1-5.el7_1.2.x86_64.rpm
+		fi
 
-	if [ $(rpm -qa | grep -c python-deltarpm-3.6-3) -eq 0 ]; then
-		rpm -ivh $BASEDIR/CORE/createrepo/python-deltarpm-3.6-3.el7.x86_64.rpm
-	fi
+		if [ $(rpm -qa | grep -c python-deltarpm-3.6-3) -eq 0 ]; then
+			rpm -ivh $BASEDIR/CORE/createrepo/python-deltarpm-3.6-3.el7.x86_64.rpm
+		fi
 
-	if [ $(rpm -qa | grep -c createrepo-0.9.9-23) -eq 0 ]; then
-		rpm -ivh $BASEDIR/CORE/createrepo/createrepo-0.9.9-23.el7.noarch.rpm
-	fi
+		if [ $(rpm -qa | grep -c createrepo-0.9.9-23) -eq 0 ]; then
+			rpm -ivh $BASEDIR/CORE/createrepo/createrepo-0.9.9-23.el7.noarch.rpm
+		fi
 
-	# Delete all rpm http and php installed on the machine
-	if [ $(rpm -qa | grep -c httpd-tools) -gt 0 ]; then
-		yum remove -y httpd 2&>1 /dev/null
-	fi
-	if [ $(rpm -qa | grep -c httpd) -gt 0 ]; then
-		yum remove -y httpd-tools 2&>1 /dev/null
-	fi
-	if [ $(rpm -qa | grep -c php-common) -gt 0 ]; then
-		yum remove -y php-common 2&>1 /dev/null
-	fi
-	if [ $(rpm -qa | grep -c php-pdo) -gt 0 ]; then
-		yum remove -y php-pdo 2&>1 /dev/null
-	fi
-	if [ $(rpm -qa | grep -c php-mysqlnd) -gt 0 ]; then
-		yum remove -y php-mysqlnd 2&>1 /dev/null
-	fi
-	if [ $(rpm -qa | grep -c php-cli) -gt 0 ]; then
-		yum remove -y php-cli 2&>1 /dev/null
-	fi
-	if [ $(rpm -qa | grep -c php-xmlrpc) -gt 0 ]; then
-		yum remove -y php-xmlrpc 2&>1 /dev/null
-	fi
-	if [ $(rpm -qa | grep -c php-xml) -gt 0 ]; then
-		yum remove -y php-xml 2&>1 /dev/null
-	fi
-	if [ $(rpm -qa | grep -c php-ldap) -gt 0 ]; then
-		yum remove -y php-ldap 2&>1 /dev/null
-	fi
-	if [ $(rpm -qa | grep -c php) -gt 0 ]; then
-		yum remove -y php 2&>1 /dev/null
-	fi
+		# Delete all rpm http and php installed on the machine
+		if [ $(rpm -qa | grep -c httpd-tools) -gt 0 ]; then
+			yum remove -y httpd 2&>1 /dev/null
+		fi
+		if [ $(rpm -qa | grep -c httpd) -gt 0 ]; then
+			yum remove -y httpd-tools 2&>1 /dev/null
+		fi
+		if [ $(rpm -qa | grep -c php-common) -gt 0 ]; then
+			yum remove -y php-common 2&>1 /dev/null
+		fi
+		if [ $(rpm -qa | grep -c php-pdo) -gt 0 ]; then
+			yum remove -y php-pdo 2&>1 /dev/null
+		fi
+		if [ $(rpm -qa | grep -c php-mysqlnd) -gt 0 ]; then
+			yum remove -y php-mysqlnd 2&>1 /dev/null
+		fi
+		if [ $(rpm -qa | grep -c php-cli) -gt 0 ]; then
+			yum remove -y php-cli 2&>1 /dev/null
+		fi
+		if [ $(rpm -qa | grep -c php-xmlrpc) -gt 0 ]; then
+			yum remove -y php-xmlrpc 2&>1 /dev/null
+		fi
+		if [ $(rpm -qa | grep -c php-xml) -gt 0 ]; then
+			yum remove -y php-xml 2&>1 /dev/null
+		fi
+		if [ $(rpm -qa | grep -c php-ldap) -gt 0 ]; then
+			yum remove -y php-ldap 2&>1 /dev/null
+		fi
+		if [ $(rpm -qa | grep -c php) -gt 0 ]; then
+			yum remove -y php 2&>1 /dev/null
+		fi
 
-	cp $BASEDIR/CORE/rpm/* /srv/eyesofreport/depot
+		cp $BASEDIR/CORE/rpm/* /srv/eyesofreport/depot
 
-else 
-	
-	YUM_EOR_OPTIONS=""
-	cp $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm /srv/eyesofreport/depot
+	else 
+		
+		YUM_EOR_OPTIONS=""
+		cp $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm /srv/eyesofreport/depot
 
+	fi
 fi
 
 echo "[localrepo]" > /etc/yum.repos.d/localrepo.repo
