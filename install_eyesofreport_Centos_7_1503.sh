@@ -155,12 +155,10 @@ systemctl enable mariadb
 
 mkdir -p /run/httpd
 
-
 echo -e "Eyes Of Report packages installation \e[92m[OK] \e[39m"
 
 ######### VERSION ##########
-echo -e "EyesOfReport Linux Release 2.1 (\033[33;5;22mIn memoriam: Jean Louis\033[0;0;0m,\033[32;5;22m ICJS Anne Sophie\033[0;0;0m)"  > /etc/redhat-release
-
+echo -e "EyesOfReport Linux Release 2.2 (Vinci)"  > /etc/redhat-release
 cat /etc/redhat-release > /etc/issue
 echo 'Kernel \r on an \m' >> /etc/issue
 echo '' >> /etc/issue

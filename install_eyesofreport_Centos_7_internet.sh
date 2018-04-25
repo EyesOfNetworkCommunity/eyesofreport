@@ -56,16 +56,98 @@ if [ -d /srv/eyesofreport ]; then
 	done
 fi
 
+# Create directories
+echo  "Eyes Of Report base folders..."
 mkdir -p /var/lib/docker
 mkdir /srv/eyesofreport
 
+# Create eyessofreport yum repository
+echo  "Eyes Of Report local repo..."
+mkdir -p /srv/eyesofreport/depot-1.0
+ln -s /srv/eyesofreport/depot-1.0 /srv/eyesofreport/depot
+
+# No internet create full local repo
+if [ $1 == "--local" ]; then
+
+	YUM_EOR_OPTIONS="--disablerepo=*"
+
+	# Install createrepo
+	if [ $(rpm -qa | grep -c deltarpm-3.6-3) -eq 0 ]; then
+		rpm -ivh $BASEDIR/CORE/createrepo/deltarpm-3.6-3.el7.x86_64.rpm
+	fi
+
+	if [ $(rpm -qa | grep -c libxml2-2.9.1-5.el7_1.2.x86_64) -eq 0 ]; then
+		rpm -ivh --replacefiles $BASEDIR/CORE/createrepo/libxml2-2.9.1-5.el7_1.2.x86_64.rpm #2> /dev/null
+	fi
+
+	if [ $(rpm -qa | grep -c libxml2-python-2.9.1-5) -eq 0 ]; then
+		rpm -ivh $BASEDIR/CORE/createrepo/libxml2-python-2.9.1-5.el7_1.2.x86_64.rpm
+	fi
+
+	if [ $(rpm -qa | grep -c python-deltarpm-3.6-3) -eq 0 ]; then
+		rpm -ivh $BASEDIR/CORE/createrepo/python-deltarpm-3.6-3.el7.x86_64.rpm
+	fi
+
+	if [ $(rpm -qa | grep -c createrepo-0.9.9-23) -eq 0 ]; then
+		rpm -ivh $BASEDIR/CORE/createrepo/createrepo-0.9.9-23.el7.noarch.rpm
+	fi
+
+	# Delete all rpm http and php installed on the machine
+	if [ $(rpm -qa | grep -c httpd-tools) -gt 0 ]; then
+		yum remove -y httpd 2&>1 /dev/null
+	fi
+	if [ $(rpm -qa | grep -c httpd) -gt 0 ]; then
+		yum remove -y httpd-tools 2&>1 /dev/null
+	fi
+	if [ $(rpm -qa | grep -c php-common) -gt 0 ]; then
+		yum remove -y php-common 2&>1 /dev/null
+	fi
+	if [ $(rpm -qa | grep -c php-pdo) -gt 0 ]; then
+		yum remove -y php-pdo 2&>1 /dev/null
+	fi
+	if [ $(rpm -qa | grep -c php-mysqlnd) -gt 0 ]; then
+		yum remove -y php-mysqlnd 2&>1 /dev/null
+	fi
+	if [ $(rpm -qa | grep -c php-cli) -gt 0 ]; then
+		yum remove -y php-cli 2&>1 /dev/null
+	fi
+	if [ $(rpm -qa | grep -c php-xmlrpc) -gt 0 ]; then
+		yum remove -y php-xmlrpc 2&>1 /dev/null
+	fi
+	if [ $(rpm -qa | grep -c php-xml) -gt 0 ]; then
+		yum remove -y php-xml 2&>1 /dev/null
+	fi
+	if [ $(rpm -qa | grep -c php-ldap) -gt 0 ]; then
+		yum remove -y php-ldap 2&>1 /dev/null
+	fi
+	if [ $(rpm -qa | grep -c php) -gt 0 ]; then
+		yum remove -y php 2&>1 /dev/null
+	fi
+
+	cp $BASEDIR/CORE/rpm/* /srv/eyesofreport/depot
+
+else 
+	
+	YUM_EOR_OPTIONS=""
+	cp $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm /srv/eyesofreport/depot
+
+fi
+
+echo "[localrepo]" > /etc/yum.repos.d/localrepo.repo
+echo "name=Eyesofreport repository" >> /etc/yum.repos.d/localrepo.repo
+echo "baseurl=file:///srv/eyesofreport/depot" >> /etc/yum.repos.d/localrepo.repo
+echo "gpgcheck=0" >> /etc/yum.repos.d/localrepo.repo
+echo "enabled=1" >> /etc/yum.repos.d/localrepo.repo
+createrepo -v /srv/eyesofreport/depot/ > /dev/null
+echo -e "Eyes Of Report repository creation \e[92m[OK] \e[39m"
+
 echo  "Eyes Of Report packages installation..."
-yum install -y perl net-tools nano docker unzip zip rsync bind-utils patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
-yum install -y httpd-tools httpd libxslt php-common php-mysqlnd php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
-yum localinstall -y $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm
+yum install -y ${YUM_EOR_OPTIONS} perl net-tools nano docker unzip zip rsync bind-utils patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
+yum install -y ${YUM_EOR_OPTIONS} httpd-tools httpd mod_auth_eon libxslt php-common php-mysqlnd php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
 
 TZONE=`ls -l /etc/localtime |awk -F "zoneinfo/" '{print $2}'`
 sed -i "s,^;date.timezone.*,date.timezone = \"${TZONE}\",g" /etc/php.ini
+sed -i 's/^Defaults    requiretty/#Defaults    requiretty/g' /etc/sudoers
 echo -e "\n# eorweb\napache ALL=NOPASSWD:/bin/systemctl * docker,/bin/systemctl * pentaho,/bin/systemctl * ,/bin/systemctl * snmpd,/bin/systemctl * wildfly" >> /etc/sudoers
 
 mysql_port=3306
@@ -86,13 +168,12 @@ mkdir -p /run/httpd
 echo -e "Eyes Of Report packages installation \e[92m[OK] \e[39m"
 
 ######### VERSION ##########
-echo -e "EyesOfReport Linux Release 2.1 (\033[33;5;22mIn memoriam: Jean Louis\033[0;0;0m,\033[32;5;22m ICJS Anne Sophie\033[0;0;0m)"  > /etc/redhat-release
-
+echo -e "EyesOfReport Linux Release 2.2 (Vinci)"  > /etc/redhat-release
 cat /etc/redhat-release > /etc/issue
 echo 'Kernel \r on an \m' >> /etc/issue
 echo '' >> /etc/issue
 echo 'EyesOfReport access  : http://'`ip add show |grep "inet " |grep -v "127.0.0.1" |head -n 1 |awk '{print $2}' |awk -F "/" '{print $1}'`'/' >> /etc/issue
-echo 'EyesOfReport website : https://github.com/EyesOfNetworkCommunity/eyesofreport' >> /etc/issue
+echo 'EyesOfReport website : http://www.eyesofnetwork.com/' >> /etc/issue
 echo '' >> /etc/issue
 ######### VERSION ##########
 
@@ -142,7 +223,7 @@ service mariadb restart
 #
 if [ $(rpm -qa | grep -c expect) -eq 0  ]; then
     echo "Can't find expect. Trying install it..."
-    yum install -y expect >> /dev/null
+    yum install -y ${YUM_EOR_OPTIONS} expect >> /dev/null
 fi
 
 SECURE_MYSQL=$(expect -c "
