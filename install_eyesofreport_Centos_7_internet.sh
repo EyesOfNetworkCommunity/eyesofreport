@@ -67,7 +67,7 @@ mkdir -p /srv/eyesofreport/depot-1.0
 ln -s /srv/eyesofreport/depot-1.0 /srv/eyesofreport/depot
 
 # No internet create full local repo
-if [ -z $1 == "--local" ]; then
+if [ -z $1 && $1 == "--local" ]; then
 
 	YUM_EOR_OPTIONS="--disablerepo=*"
 
