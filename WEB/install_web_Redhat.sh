@@ -101,8 +101,8 @@ if [ "$test_db" == "eorweb" ]; then
 fi
 
 if [ "$drop_database" == "y" ]; then 
-	echo "CREATE DATABASE eorweb;" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_WEB_DATABASE_IP 
-	MYSQL_PWD=$MYSQL_ROOT mysql -uroot -h$EOR_WEB_DATABASE_IP eorweb < $installation_path/eorweb.sql
+	echo "CREATE DATABASE eorweb;" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_WEB_DATABASE_IP
+	MYSQL_PWD=$MYSQL_ROOT mysql -uroot -h$EOR_WEB_DATABASE_IP eorweb < $installation_path/$eor_web_folder/appliance/eorweb.sql
 #	echo "GRANT ALL PRIVILEGES on eorweb.* to 'eyesofreport'@'%'" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_WEB_DATABASE_IP 
 	echo "GRANT ALL PRIVILEGES on eorweb.* to 'eyesofreport'@'localhost'" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_WEB_DATABASE_IP
 	echo -e "database eorweb created	\e[92m[OK] \e[39m"
@@ -121,9 +121,10 @@ sed -ie 's/upload_max_filesize = 2M/upload_max_filesize = 50M/g' /etc/php.ini
 cd /srv/eyesofnetwork
 usermod -a -G eyesofnetwork apache
 chown -R root:eyesofnetwork ./*
-find . -type d -exec chmod o-rwx {} \;
-find . -type d -exec chmod o+x {} \;
-find . -type f -exec chmod o-rwx {} \;
+find . -type d -exec chmod 755 {} \;
+find . -type f -exec chmod 644 {} \;
+chown root:eyesofnetwork /srv/eyesofreport/etl/injection
+chmod g+w /srv/eyesofreport/etl/injection
 
 #yes | mv  $BASEDIR/httpd.service /etc/systemd/system/
 systemctl daemon-reload

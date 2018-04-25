@@ -3,9 +3,9 @@
 #
 # Copyright (C) 2016 EyesOfNetwork Team
 # DEV NAME : Benoit Village Jan 2016
-# 
+#
 # VERSION 2.01
-# 
+#
 # LICENCE :
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -134,6 +134,11 @@ echo  "Eyes Of Report packages installation..."
 yum install -y --disablerepo="*" --enablerepo="localrepo" perl net-tools nano docker unzip zip rsync bind-utils patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
 yum install -y --disablerepo="*" --enablerepo="localrepo" httpd-tools httpd mod_auth_eon libxslt php-common php-mysqlnd php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
 
+TZONE=`ls -l /etc/localtime |awk -F "zoneinfo/" '{print $2}'`
+sed -i "s,^;date.timezone.*,date.timezone = \"${TZONE}\",g" /etc/php.ini
+sed -i 's/^Defaults    requiretty/#Defaults    requiretty/g' /etc/sudoers
+echo -e "\n# eorweb\napache ALL=NOPASSWD:/bin/systemctl * docker,/bin/systemctl * pentaho,/bin/systemctl * ,/bin/systemctl * snmpd,/bin/systemctl * wildfly" >> /etc/sudoers
+
 mysql_port=3306
 snmpd_port=161
 firewall-cmd --zone=public --add-port=$mysql_port/tcp --permanent > /dev/null
@@ -172,9 +177,9 @@ cp $BASEDIR/CONF/eyesofreport.sh ./configuration
 echo "Extracting Java archive..."
 tar xvzf $BASEDIR/CORE/jdk-7u79-linux-x64.tar.gz > /dev/null
 ln -s /srv/eyesofreport/jdk1.7.0_79 /srv/eyesofreport/java
-echo "export JAVA_HOME=/srv/eyesofreport/java" > /etc/profile.d/java.sh 
-echo "export PATH=\$PATH:/srv/eyesofreport/java/bin" >> /etc/profile.d/java.sh 
-chmod +x /etc/profile.d/java.sh 
+echo "export JAVA_HOME=/srv/eyesofreport/java" > /etc/profile.d/java.sh
+echo "export PATH=\$PATH:/srv/eyesofreport/java/bin" >> /etc/profile.d/java.sh
+chmod +x /etc/profile.d/java.sh
 
 export JAVA_HOME=/srv/eyesofreport/java
 export PATH=$PATH:/srv/eyesofreport/java/bin
@@ -191,12 +196,12 @@ service mariadb start
 if [ $(mysql -e "SELECT 1 as test" | grep -c 1 2> /dev/null ) -eq 1 ]; then
 	CURRENT_MYSQL_PASSWORD=''
 	mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -uroot mysql
-else 	
+else
 	echo "Don't take into account previous mysql error, it's a test"
 	if [ $(MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot mysql -e "SELECT 1 as test" | grep -c 1) -eq 1 ]; then
 		CURRENT_MYSQL_PASSWORD=$NEW_MYSQL_PASSWORD
 		mysql_tzinfo_to_sql /usr/share/zoneinfo | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot mysql > /dev/null
-	else 
+	else
 		echo "You currently have mysql installation with root password. Please launch mysql_secure_installation and replace current root password by \"root,66\" only for the eyes of report installation duration. You could change root password after Eyes Of Report installation"
 		exit 1
 	fi
@@ -337,7 +342,7 @@ OUT=$?
 if [ ! $OUT -eq 0 ]; then
 	echo -e "Import container centos_systemd 	\e[31m[FAILED] \e[39m"
 	exit 1
-else 
+else
 	echo -e "Import container centos_systemd	\e[92m[OK] \e[39m"
 
 fi
@@ -353,7 +358,7 @@ OUT=$?
 if [ ! $OUT -eq 0 ]; then
 	echo -e " 	\e[31m[FAILED] \e[39m"
 	exit 1
-else 
+else
 	echo -e "ETL part installation	\e[92m[SUCCESS] \e[39m"
 
 fi
@@ -391,5 +396,3 @@ while true; do
 			*) echo "Please type y or n";;
 		esac
 done
-
-

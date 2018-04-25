@@ -3,9 +3,9 @@
 #
 # Copyright (C) 2016 EyesOfNetwork Team
 # DEV NAME : Benoit Village Jan 2016
-# 
+#
 # VERSION 2.01
-# 
+#
 # LICENCE :
 # This program is free software; you can redistribute it and/or
 # modify it under the terms of the GNU General Public License
@@ -45,8 +45,6 @@ cp $BASEDIR/EXTERNAL_SOFTS/wildfly-9.0.1.Final.zip $BASEDIR/REPORTING
 cp $BASEDIR/EXTERNAL_SOFTS/jdk-7u79-linux-x64.tar.gz $BASEDIR/CORE
 cp $BASEDIR/EXTERNAL_SOFTS/data-integration.zip $BASEDIR/ETL
 
-
-
 if [ -d /srv/eyesofreport ]; then
 	while true; do
 		read -p " Previous EyesOfReport installation exists on this machine. Do you want to remove it (y/n)? " yn
@@ -58,87 +56,17 @@ if [ -d /srv/eyesofreport ]; then
 	done
 fi
 
-#create eyessofreport yum repository
-
-# if [ $(rpm -qa | grep -c deltarpm-3.6-3) -eq 0 ]; then
-	# rpm -ivh $BASEDIR/CORE/createrepo/deltarpm-3.6-3.el7.x86_64.rpm
-# fi
-
-# if [ $(rpm -qa | grep -c libxml2-2.9.1-5.el7_1.2.x86_64) -eq 0 ]; then
-	# rpm -ivh --replacefiles $BASEDIR/CORE/createrepo/libxml2-2.9.1-5.el7_1.2.x86_64.rpm 2> /dev/null
-# fi
-
-# if [ $(rpm -qa | grep -c libxml2-python-2.9.1-5) -eq 0 ]; then
-	# rpm -ivh $BASEDIR/CORE/createrepo/libxml2-python-2.9.1-5.el7_1.2.x86_64.rpm
-# fi
-
-# if [ $(rpm -qa | grep -c python-deltarpm-3.6-3) -eq 0 ]; then
-	# rpm -ivh $BASEDIR/CORE/createrepo/python-deltarpm-3.6-3.el7.x86_64.rpm
-# fi
-
-# if [ $(rpm -qa | grep -c createrepo-0.9.9-23) -eq 0 ]; then
-	# rpm -ivh $BASEDIR/CORE/createrepo/createrepo-0.9.9-23.el7.noarch.rpm
-# fi
-
-# mkdir -p /srv/eyesofreport/depot-1.0
-# ln -s /srv/eyesofreport/depot-1.0 /srv/eyesofreport/depot
-
-# cp $BASEDIR/CORE/rpm/* /srv/eyesofreport/depot
-
-# echo "[localrepo]" > /etc/yum.repos.d/localrepo.repo
-# echo "name=Eyesofreport repository" >> /etc/yum.repos.d/localrepo.repo
-# echo "baseurl=file:///srv/eyesofreport/depot" >> /etc/yum.repos.d/localrepo.repo
-# echo "gpgcheck=0" >> /etc/yum.repos.d/localrepo.repo
-# echo "enabled=1" >> /etc/yum.repos.d/localrepo.repo
-
-# createrepo -v /srv/eyesofreport/depot/ > /dev/null
-
-# echo -e "Eyes Of Report repository creation \e[92m[OK] \e[39m"
-
-#Delete all rpm http and php installed on the machine
-
-# if [ $(rpm -qa | grep -c httpd-tools) -gt 0 ]; then
-	# yum remove -y httpd 2&>1 /dev/null
-# fi
-# if [ $(rpm -qa | grep -c httpd) -gt 0 ]; then
-	# yum remove -y httpd-tools 2&>1 /dev/null
-# fi
-# if [ $(rpm -qa | grep -c php-common) -gt 0 ]; then
-	# yum remove -y php-common 2&>1 /dev/null
-# fi
-# if [ $(rpm -qa | grep -c php-pdo) -gt 0 ]; then
-	# yum remove -y php-pdo 2&>1 /dev/null
-# fi
-# if [ $(rpm -qa | grep -c php-mysql) -gt 0 ]; then
-	# yum remove -y php-mysql 2&>1 /dev/null
-# fi
-# if [ $(rpm -qa | grep -c php-cli) -gt 0 ]; then
-	# yum remove -y php-cli 2&>1 /dev/null
-# fi
-# if [ $(rpm -qa | grep -c php-xmlrpc) -gt 0 ]; then
-	# yum remove -y php-xmlrpc 2&>1 /dev/null
-# fi
-# if [ $(rpm -qa | grep -c php-xml) -gt 0 ]; then
-	# yum remove -y php-xml 2&>1 /dev/null
-# fi
-# if [ $(rpm -qa | grep -c php-ldap) -gt 0 ]; then
-	# yum remove -y php-ldap 2&>1 /dev/null
-# fi
-# if [ $(rpm -qa | grep -c php) -gt 0 ]; then
-	# yum remove -y php 2&>1 /dev/null
-# fi
-
 mkdir -p /var/lib/docker
 mkdir /srv/eyesofreport
 
 echo  "Eyes Of Report packages installation..."
-
 yum install -y perl net-tools nano docker unzip zip rsync bind-utils patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
 yum install -y httpd-tools httpd libxslt php-common php-mysqlnd php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
 yum localinstall -y $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm
 
-TZONE=`ls -l /etc/localtime |awk -F "zoneinfo/" '{print $2}'` 
-sed -i "s,^;date.timezone.*,date.timezone = \"${TZONE}\",g" /etc/php.ini 
+TZONE=`ls -l /etc/localtime |awk -F "zoneinfo/" '{print $2}'`
+sed -i "s,^;date.timezone.*,date.timezone = \"${TZONE}\",g" /etc/php.ini
+echo -e "\n# eorweb\napache ALL=NOPASSWD:/bin/systemctl * docker,/bin/systemctl * pentaho,/bin/systemctl * ,/bin/systemctl * snmpd,/bin/systemctl * wildfly" >> /etc/sudoers
 
 mysql_port=3306
 snmpd_port=161
@@ -155,7 +83,6 @@ systemctl enable snmpd
 systemctl enable mariadb
 
 mkdir -p /run/httpd
-
 echo -e "Eyes Of Report packages installation \e[92m[OK] \e[39m"
 
 ######### VERSION ##########
@@ -177,16 +104,16 @@ cp $BASEDIR/CONF/eyesofreport.sh ./configuration
 echo "Extracting Java archive..."
 tar xvzf $BASEDIR/CORE/jdk-7u79-linux-x64.tar.gz > /dev/null
 ln -s /srv/eyesofreport/jdk1.7.0_79 /srv/eyesofreport/java
-echo "export JAVA_HOME=/srv/eyesofreport/java" > /etc/profile.d/java.sh 
-echo "export PATH=\$PATH:/srv/eyesofreport/java/bin" >> /etc/profile.d/java.sh 
-chmod +x /etc/profile.d/java.sh 
+echo "export JAVA_HOME=/srv/eyesofreport/java" > /etc/profile.d/java.sh
+echo "export PATH=\$PATH:/srv/eyesofreport/java/bin" >> /etc/profile.d/java.sh
+chmod +x /etc/profile.d/java.sh
 
 export JAVA_HOME=/srv/eyesofreport/java
 export PATH=$PATH:/srv/eyesofreport/java/bin
-
 echo -e "Java 7 installation \e[92m[OK] \e[39m"
 
 ########################################### MYSQL INITIALSATION ######################################
+
 PURGE_EXPECT_WHEN_DONE=0
 CURRENT_MYSQL_PASSWORD=''
 NEW_MYSQL_PASSWORD='root66'
@@ -196,12 +123,12 @@ service mariadb start
 if [ $(mysql -e "SELECT 1 as test" | grep -c 1 2> /dev/null ) -eq 1 ]; then
 	CURRENT_MYSQL_PASSWORD=''
 	mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -uroot mysql
-else 	
+else
 	echo "Don't take into account previous mysql error, it's a test"
 	if [ $(MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot mysql -e "SELECT 1 as test" | grep -c 1) -eq 1 ]; then
 		CURRENT_MYSQL_PASSWORD=$NEW_MYSQL_PASSWORD
 		mysql_tzinfo_to_sql /usr/share/zoneinfo | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot mysql > /dev/null
-	else 
+	else
 		echo "You currently have mysql installation with root password. Please launch mysql_secure_installation and replace current root password by \"root,66\" only for the eyes of report installation duration. You could change root password after Eyes Of Report installation"
 		exit 1
 	fi
@@ -243,6 +170,7 @@ expect eof
 echo -e "Mysql configuration \e[92m[OK] \e[39m"
 
 ########################## INSTALL INITIAL DATABASES #########################
+
 #Create databases
 NEW_MYSQL_PASSWORD=root66
 
@@ -275,33 +203,13 @@ if [ $(MYSQL_PWD=root66 mysql -e "select user from mysql.user where user = 'eyes
 	echo "CREATE USER 'eyesofreport'@'localhost' IDENTIFIED BY 'SaintThomas,2014'" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
 fi
 
-#if [ $(MYSQL_PWD=root66 mysql -e "select user from mysql.user where user = 'eyesofreport' and host = '%'" | grep -c eyesofreport) -eq 0 ]; then
-#	echo "CREATE USER 'eyesofreport'@'%' IDENTIFIED BY 'SaintThomas,2014'" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#fi
-
-#if [ $(MYSQL_PWD=root66 mysql -e "select user from mysql.user where user = 'root' and host = '%'" | grep -c root) -eq 0 ]; then
-#	echo "CREATE USER 'root'@'%' IDENTIFIED BY 'SaintThomas,2014'" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#fi
-
 #Grant privileges to eyesofreport user
 echo "GRANT ALL PRIVILEGES on global_nagiosbp.* to 'eyesofreport'@'localhost';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#echo "GRANT ALL PRIVILEGES on global_nagiosbp.* to 'eyesofreport'@'%';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#echo "GRANT ALL PRIVILEGES on global_nagiosbp.* to 'root'@'%';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
 echo "GRANT ALL PRIVILEGES on thruk.* to 'eyesofreport'@'localhost';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#echo "GRANT ALL PRIVILEGES on thruk.* to 'eyesofreport'@'%';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#echo "GRANT ALL PRIVILEGES on thruk.* to 'root'@'%';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
 echo "GRANT ALL PRIVILEGES on eor_ods.* to 'eyesofreport'@'localhost';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#echo "GRANT ALL PRIVILEGES on eor_ods.* to 'eyesofreport'@'%';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#echo "GRANT ALL PRIVILEGES on eor_ods.* to 'root'@'%';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
 echo "GRANT ALL PRIVILEGES on eor_dwh.* to 'eyesofreport'@'localhost';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#echo "GRANT ALL PRIVILEGES on eor_dwh.* to 'eyesofreport'@'%';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#echo "GRANT ALL PRIVILEGES on eor_dwh.* to 'root'@'%';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
 echo "GRANT ALL PRIVILEGES on eyesofreport.* to 'eyesofreport'@'localhost';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#echo "GRANT ALL PRIVILEGES on eyesofreport.* to 'eyesofreport'@'%';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#echo "GRANT ALL PRIVILEGES on eyesofreport.* to 'root'@'%';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
 echo "GRANT ALL PRIVILEGES on bp_group_lilac.* to 'eyesofreport'@'localhost';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#echo "GRANT ALL PRIVILEGES on bp_group_lilac to 'eyesofreport'@'%';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
-#echo "GRANT ALL PRIVILEGES on bp_group_lilac.* to 'root'@'%';" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
 
 echo "FLUSH PRIVILEGES;" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot
 #Import database script
@@ -315,9 +223,7 @@ MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot bp_group_lilac < $BASEDIR/CORE/databa
 cd $BASEDIR/CORE/databases/
 unzip ./d_time_dimension.zip > /dev/null
 MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot eor_dwh < $BASEDIR/CORE/databases/d_time_dimension.sql
-#echo "TRUNCATE TABLE d_time_dimension;" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot eor_dwh
 echo "Time dimension index creation : this step should take a few time"
-#echo "CALL fill_date_dimension('2014-10-01 00:00:00','2017-01-01 00:00:00');" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot eor_dwh
 echo "CREATE INDEX idx_d_time_dimension_hour on d_time_dimension(epoch_hour) using btree" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot eor_dwh
 echo "CREATE INDEX idx_d_time_dimension_day on d_time_dimension(epoch_day) using btree" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot eor_dwh
 echo "CREATE INDEX idx_d_time_dimension_month on d_time_dimension(epoch_month) using btree" | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot eor_dwh
@@ -342,7 +248,7 @@ OUT=$?
 if [ ! $OUT -eq 0 ]; then
 	echo -e "Import container centos_systemd 	\e[31m[FAILED] \e[39m"
 	exit 1
-else 
+else
 	echo -e "Import container centos_systemd	\e[92m[OK] \e[39m"
 
 fi
@@ -358,7 +264,7 @@ OUT=$?
 if [ ! $OUT -eq 0 ]; then
 	echo -e " 	\e[31m[FAILED] \e[39m"
 	exit 1
-else 
+else
 	echo -e "ETL part installation	\e[92m[SUCCESS] \e[39m"
 
 fi

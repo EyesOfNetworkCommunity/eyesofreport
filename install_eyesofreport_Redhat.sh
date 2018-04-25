@@ -113,11 +113,16 @@ mkdir -p /var/lib/docker
 
 echo  "Eyes Of Report packages installation..."
 
-yum install -y dos2unix net-snmp  mariadb-server httpd httpd-tools php-common php-mysql php php-xml php-xmlrpc php-ldap expect
+yum install -y dos2unix net-snmp  mariadb-server httpd httpd-tools php-common php-mysqlnd php php-xml php-xmlrpc php-ldap expect
 rpm -ivh $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm
 
 # yum install -y --disablerepo="*" --enablerepo="localrepo" perl net-tools nano docker unzip zip rsync bind-utils-9.9.4-18.el7_1.5.x86_64 patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
 # yum install -y --disablerepo="*" --enablerepo="localrepo" httpd-tools httpd mod_auth_form-2.05-1.eon.x86_64 libxslt php-common php-mysql php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
+
+TZONE=`ls -l /etc/localtime |awk -F "zoneinfo/" '{print $2}'`
+sed -i "s,^;date.timezone.*,date.timezone = \"${TZONE}\",g" /etc/php.ini
+sed -i 's/^Defaults    requiretty/#Defaults    requiretty/g' /etc/sudoers
+echo -e "\n# eorweb\napache ALL=NOPASSWD:/bin/systemctl * docker,/bin/systemctl * pentaho,/bin/systemctl * ,/bin/systemctl * snmpd,/bin/systemctl * wildfly" >> /etc/sudoers
 
 #Installation Docker
 mkdir /usr/bin/install_docker
@@ -172,9 +177,9 @@ cp $BASEDIR/CONF/eyesofreport.sh ./configuration
 echo "Extracting Java archive..."
 tar xvzf $BASEDIR/CORE/jdk-7u80-linux-x64.tar.gz > /dev/null
 ln -s /srv/eyesofreport/jdk1.7.0_80 /srv/eyesofreport/java
-echo "export JAVA_HOME=/srv/eyesofreport/java" > /etc/profile.d/java.sh 
-echo "export PATH=\$PATH:/srv/eyesofreport/java/bin" >> /etc/profile.d/java.sh 
-chmod +x /etc/profile.d/java.sh 
+echo "export JAVA_HOME=/srv/eyesofreport/java" > /etc/profile.d/java.sh
+echo "export PATH=\$PATH:/srv/eyesofreport/java/bin" >> /etc/profile.d/java.sh
+chmod +x /etc/profile.d/java.sh
 
 export JAVA_HOME=/srv/eyesofreport/java
 export PATH=$PATH:/srv/eyesofreport/java/bin
@@ -191,12 +196,12 @@ service mariadb start
 if [ $(mysql -e "SELECT 1 as test" | grep -c 1 2> /dev/null ) -eq 1 ]; then
 	CURRENT_MYSQL_PASSWORD=''
 	mysql_tzinfo_to_sql /usr/share/zoneinfo | mysql -uroot mysql
-else 	
+else
 	echo "Don't take into account previous mysql error, it's a test"
 	if [ $(MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot mysql -e "SELECT 1 as test" | grep -c 1) -eq 1 ]; then
 		CURRENT_MYSQL_PASSWORD=$NEW_MYSQL_PASSWORD
 		mysql_tzinfo_to_sql /usr/share/zoneinfo | MYSQL_PWD=$NEW_MYSQL_PASSWORD mysql -uroot mysql > /dev/null
-	else 
+	else
 		echo "You currently have mysql installation with root password. Please launch mysql_secure_installation and replace current root password by \"root,66\" only for the eyes of report installation duration. You could change root password after Eyes Of Report installation"
 		exit 1
 	fi
@@ -337,7 +342,7 @@ OUT=$?
 if [ ! $OUT -eq 0 ]; then
 	echo -e "Import container centos_systemd 	\e[31m[FAILED] \e[39m"
 	exit 1
-else 
+else
 	echo -e "Import container centos_systemd	\e[92m[OK] \e[39m"
 
 fi
@@ -353,7 +358,7 @@ OUT=$?
 if [ ! $OUT -eq 0 ]; then
 	echo -e " 	\e[31m[FAILED] \e[39m"
 	exit 1
-else 
+else
 	echo -e "ETL part installation	\e[92m[SUCCESS] \e[39m"
 
 fi
@@ -391,5 +396,3 @@ while true; do
 			*) echo "Please type y or n";;
 		esac
 done
-
-
