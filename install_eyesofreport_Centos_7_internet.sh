@@ -71,6 +71,7 @@ if [ $# == 1 ]; then
 	if [ $1 == "--local" ]; then
 
 		YUM_EOR_OPTIONS="--disablerepo=* --enablerepo=localrepo"
+		DOCKER_EOR="docker"
 
 		# Install createrepo
 		if [ $(rpm -qa | grep -c deltarpm-3.6-3) -eq 0 ]; then
@@ -126,9 +127,17 @@ if [ $# == 1 ]; then
 		fi
 
 		cp $BASEDIR/CORE/rpm/* /srv/eyesofreport/depot
+		
+	elif [ $1 == "--redhat" ]; then
+		YUM_EOR_OPTIONS=""
+		DOCKER_EOR=""
+		yum install -y yum-utils createrepo
+		rpm -ivh $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm
+		
 	fi
 else 
 	YUM_EOR_OPTIONS=""
+	DOCKER_EOR="docker"
 	yum install -y yum-utils createrepo
 	cp $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm /srv/eyesofreport/depot
 fi
@@ -141,12 +150,30 @@ createrepo -v /srv/eyesofreport/depot/ > /dev/null
 echo -e "Eyes Of Report repository creation \e[92m[OK] \e[39m"
 
 echo  "Eyes Of Report packages installation..."
-yum install -y ${YUM_EOR_OPTIONS} perl net-tools nano docker unzip zip rsync bind-utils patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
+yum install -y ${YUM_EOR_OPTIONS} perl net-tools nano ${DOCKER_EOR} unzip zip rsync bind-utils patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
 yum install -y ${YUM_EOR_OPTIONS} httpd httpd-tools mod_auth_eon libxslt php-common php-mysqlnd php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
 
 TZONE=`ls -l /etc/localtime | awk -F "zoneinfo/" '{print $2}'`
 sed -i 's/^Defaults    requiretty/#Defaults    requiretty/g' /etc/sudoers
 echo -e "\n# eorweb\napache ALL=NOPASSWD:/bin/systemctl * docker,/bin/systemctl * pentaho,/bin/systemctl * ,/bin/systemctl * snmpd,/bin/systemctl * wildfly" >> /etc/sudoers
+
+
+if [ $DOCKER_EOR == "" ]; then
+	#Installation Docker
+	mkdir /usr/bin/install_docker
+	cp $BASEDIR/CORE/dockers/docker-1.11.0.tar /usr/bin/install_docker
+	cd /usr/bin/install_docker
+	tar xvf ./docker-1.11.0.tar
+	mv ./docker/* /usr/bin/
+	rm -rf /usr/bin/install_docker
+
+	cp $BASEDIR/CORE/dockers/docker.service /etc/systemd/system
+	systemctl daemon-reload
+	systemctl enable docker
+
+	yes | cp $BASEDIR/CORE/config /etc/systemd/system/multi-user.target.wants/mariadb.service
+	systemctl daemon-reload
+fi
 
 mysql_port=3306
 snmpd_port=161

@@ -71,12 +71,12 @@ yes | cp ./httpd/conf/httpd.conf /etc/httpd/conf/ > /dev/null
 
 cd $web_path
 
+#tar xvf ${eor_web_folder}.tar > /dev/null
+ln -s ${eor_web_folder} eorweb
+
 sed -i "s/EOR_WEB_DATABASE_IP/$EOR_WEB_DATABASE_IP/g" ./eorweb/include/config.php
 sed -i "s/EOR_WEB_DATABASE_USER/$EOR_WEB_DATABASE_USER/g" ./eorweb/include/config.php
 sed -i "s/EOR_WEB_DATABASE_PWD/$EOR_WEB_DATABASE_PWD/g" ./eorweb/include/config.php
-
-#tar xvf ${eor_web_folder}.tar > /dev/null
-ln -s ${eor_web_folder} eorweb
 
 cd $installation_path
 
