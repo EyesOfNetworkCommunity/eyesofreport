@@ -71,14 +71,12 @@ yes | cp ./httpd/conf/httpd.conf /etc/httpd/conf/ > /dev/null
 
 cd $web_path
 
-#tar xvf ${eor_web_folder}.tar > /dev/null
-ln -s ${eor_web_folder} eorweb
-
-
-
 sed -i "s/EOR_WEB_DATABASE_IP/$EOR_WEB_DATABASE_IP/g" ./eorweb/include/config.php
 sed -i "s/EOR_WEB_DATABASE_USER/$EOR_WEB_DATABASE_USER/g" ./eorweb/include/config.php
 sed -i "s/EOR_WEB_DATABASE_PWD/$EOR_WEB_DATABASE_PWD/g" ./eorweb/include/config.php
+
+#tar xvf ${eor_web_folder}.tar > /dev/null
+ln -s ${eor_web_folder} eorweb
 
 cd $installation_path
 
@@ -115,6 +113,7 @@ chmod -R +x $web_path
 sed -ie 's/DocumentRoot "\/var\/www\/html"/DocumentRoot "\/srv\/eyesofnetwork\/eorweb"/g' /etc/httpd/conf/httpd.conf
 sed -ie 's/Timeout 60/Timeout 5000/g' /etc/httpd/conf/httpd.conf
 sed -ie 's/upload_max_filesize = 2M/upload_max_filesize = 50M/g' /etc/php.ini
+sed -i "s,^;date.timezone.*,date.timezone = \"${TZONE}\",g" /etc/php.ini
 
 
 #Eyes Of Network system group

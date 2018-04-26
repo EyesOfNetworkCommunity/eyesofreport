@@ -70,7 +70,7 @@ ln -s /srv/eyesofreport/depot-1.0 /srv/eyesofreport/depot
 if [ $# == 1 ]; then
 	if [ $1 == "--local" ]; then
 
-		YUM_EOR_OPTIONS="--disablerepo=*"
+		YUM_EOR_OPTIONS="--disablerepo=* --enablerepo=localrepo"
 
 		# Install createrepo
 		if [ $(rpm -qa | grep -c deltarpm-3.6-3) -eq 0 ]; then
@@ -126,10 +126,10 @@ if [ $# == 1 ]; then
 		fi
 
 		cp $BASEDIR/CORE/rpm/* /srv/eyesofreport/depot
-
 	fi
-else
+else 
 	YUM_EOR_OPTIONS=""
+	yum install -y yum-utils createrepo
 	cp $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm /srv/eyesofreport/depot
 fi
 
@@ -137,16 +137,14 @@ echo "[localrepo]" > /etc/yum.repos.d/localrepo.repo
 echo "name=Eyesofreport repository" >> /etc/yum.repos.d/localrepo.repo
 echo "baseurl=file:///srv/eyesofreport/depot" >> /etc/yum.repos.d/localrepo.repo
 echo "gpgcheck=0" >> /etc/yum.repos.d/localrepo.repo
-echo "enabled=1" >> /etc/yum.repos.d/localrepo.repo
 createrepo -v /srv/eyesofreport/depot/ > /dev/null
 echo -e "Eyes Of Report repository creation \e[92m[OK] \e[39m"
 
 echo  "Eyes Of Report packages installation..."
 yum install -y ${YUM_EOR_OPTIONS} perl net-tools nano docker unzip zip rsync bind-utils patch dos2unix firewalld wget net-snmp net-snmp-utils mariadb-server 2&> $BASEDIR/log_packet_install.log
-yum install -y ${YUM_EOR_OPTIONS} httpd-tools httpd mod_auth_eon libxslt php-common php-mysqlnd php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
+yum install -y ${YUM_EOR_OPTIONS} httpd httpd-tools mod_auth_eon libxslt php-common php-mysqlnd php php-xml php-xmlrpc php-ldap 2&>> $BASEDIR/log_packet_install.log
 
-TZONE=`ls -l /etc/localtime |awk -F "zoneinfo/" '{print $2}'`
-sed -i "s,^;date.timezone.*,date.timezone = \"${TZONE}\",g" /etc/php.ini
+TZONE=`ls -l /etc/localtime | awk -F "zoneinfo/" '{print $2}'`
 sed -i 's/^Defaults    requiretty/#Defaults    requiretty/g' /etc/sudoers
 echo -e "\n# eorweb\napache ALL=NOPASSWD:/bin/systemctl * docker,/bin/systemctl * pentaho,/bin/systemctl * ,/bin/systemctl * snmpd,/bin/systemctl * wildfly" >> /etc/sudoers
 
