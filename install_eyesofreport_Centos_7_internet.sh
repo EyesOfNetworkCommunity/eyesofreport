@@ -67,7 +67,7 @@ mkdir -p /srv/eyesofreport/depot-1.0
 ln -s /srv/eyesofreport/depot-1.0 /srv/eyesofreport/depot
 
 # No internet create full local repo
-if [ -z {$1+" "} ]; then
+if [ $# == 1 ]; then
 	if [ $1 == "--local" ]; then
 
 		YUM_EOR_OPTIONS="--disablerepo=*"
@@ -78,7 +78,7 @@ if [ -z {$1+" "} ]; then
 		fi
 
 		if [ $(rpm -qa | grep -c libxml2-2.9.1-5.el7_1.2.x86_64) -eq 0 ]; then
-			rpm -ivh --replacefiles $BASEDIR/CORE/createrepo/libxml2-2.9.1-5.el7_1.2.x86_64.rpm #2> /dev/null
+			rpm -ivh --replacefiles $BASEDIR/CORE/createrepo/libxml2-2.9.1-5.el7_1.2.x86_64.rpm
 		fi
 
 		if [ $(rpm -qa | grep -c libxml2-python-2.9.1-5) -eq 0 ]; then
@@ -127,12 +127,10 @@ if [ -z {$1+" "} ]; then
 
 		cp $BASEDIR/CORE/rpm/* /srv/eyesofreport/depot
 
-	else 
-		
-		YUM_EOR_OPTIONS=""
-		cp $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm /srv/eyesofreport/depot
-
 	fi
+else
+	YUM_EOR_OPTIONS=""
+	cp $BASEDIR/CORE/rpm/mod_auth_eon-5.0-1.eon.x86_64.rpm /srv/eyesofreport/depot
 fi
 
 echo "[localrepo]" > /etc/yum.repos.d/localrepo.repo
