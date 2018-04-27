@@ -20,7 +20,7 @@
 
 BASEDIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
-chmod -R +x $BASEDIR/
+find $BASEDIR -name '*.sh' -exec chmod +x {} \;
 
 if [ ! -f "$BASEDIR/EXTERNAL_SOFTS/wildfly-9.0.1.Final.zip" ]; then
 	echo "File EXTERNAL_SOFTS/wildfly-9.0.1.Final.zip not found. Please follow EXTERNAL_SOFTS/README.txt before Eyes Of Report Installation";
