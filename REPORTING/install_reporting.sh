@@ -147,7 +147,7 @@ if [ "$drop_database" == "y" ]; then
 fi
 
 chmod -R +x /srv/eyesofreport/appserver/
-rm $installation_path/dashbuilder.sql
+#rm $installation_path/dashbuilder.sql
 
 yes | cp $wildfly_path/wildfly/bin/wildfly.service /etc/systemd/system/
 systemctl daemon-reload

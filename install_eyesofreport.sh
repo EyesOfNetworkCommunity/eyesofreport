@@ -1,10 +1,10 @@
 #!/bin/bash
 #########################################
 #
-# Copyright (C) 2016 EyesOfNetwork Team
-# DEV NAME : Benoit Village Jan 2016
+# Copyright (C) 2018 EyesOfNetwork Team
+# DEV NAME : Jean-Philippe Levy Apr 2018
 #
-# VERSION 2.01
+# VERSION 2.2
 #
 # LICENCE :
 # This program is free software; you can redistribute it and/or
