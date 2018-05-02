@@ -101,7 +101,6 @@ fi
 if [ "$drop_database" == "y" ]; then
 	echo "CREATE DATABASE eorweb;" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_WEB_DATABASE_IP
 	MYSQL_PWD=$MYSQL_ROOT mysql -uroot -h$EOR_WEB_DATABASE_IP eorweb < $installation_path/$eor_web_folder/appliance/eorweb.sql
-#	echo "GRANT ALL PRIVILEGES on eorweb.* to 'eyesofreport'@'%'" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_WEB_DATABASE_IP
 	echo "GRANT ALL PRIVILEGES on eorweb.* to 'eyesofreport'@'localhost'" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_WEB_DATABASE_IP
 	echo -e "database eorweb created	\e[92m[OK] \e[39m"
 fi

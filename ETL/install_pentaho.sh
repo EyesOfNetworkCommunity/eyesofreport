@@ -207,7 +207,6 @@ if [ "$drop_database" == "y" ]; then
 #generate database user + mdp
 	echo "CREATE DATABASE eor_repository;" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_REPOSITORY_IP 
 	MYSQL_PWD=$MYSQL_ROOT mysql -uroot -h$EOR_REPOSITORY_IP eor_repository < $installation_path/eor_repository.sql
-	echo "GRANT ALL PRIVILEGES on eor_repository.* to 'eyesofreport'@'%'" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_REPOSITORY_IP 
 	echo "GRANT ALL PRIVILEGES on eor_repository.* to 'eyesofreport'@'localhost'" | MYSQL_PWD=$MYSQL_ROOT mysql -uroot  -h$EOR_REPOSITORY_IP
 	echo -e "database eor_repository created	\e[92m[OK] \e[39m"
 fi		
