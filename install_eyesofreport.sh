@@ -188,6 +188,11 @@ if [ $DOCKER_EOR == "" ]; then
 
 	yes | cp $BASEDIR/CORE/config /etc/systemd/system/multi-user.target.wants/mariadb.service
 	systemctl daemon-reload
+else
+	sed -ie 's/--selinux-enabled//g' /etc/sysconfig/docker
+	systemctl enable docker > /dev/null
+	service docker start > /dev/null
+	service docker restart > /dev/null
 fi
 
 # mysql configurations
@@ -357,9 +362,6 @@ echo "CREATE INDEX idx_d_time_dimension_month_num on d_time_dimension(month) usi
 echo -e "Technical databases installed \e[92m[OK] \e[39m"
 
 ########################################### Initialise basic containers #####################################
-systemctl enable docker > /dev/null
-service docker start > /dev/null
-service docker restart > /dev/null
 cd $BASEDIR/CORE/dockers
 echo -e "Import container centos_systemd..."
 unzip ./centos_1503.zip
