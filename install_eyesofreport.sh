@@ -168,7 +168,6 @@ yum install -y ${YUM_EOR_OPTIONS} httpd httpd-tools mod_auth_eon libxslt php-com
 # system configurations
 systemctl enable firewalld
 systemctl start firewalld
-TZONE=`ls -l /etc/localtime | awk -F "zoneinfo/" '{print $2}'`
 sed -i 's/^Defaults    requiretty/#Defaults    requiretty/g' /etc/sudoers
 echo -e "\n# eorweb\napache ALL=NOPASSWD:/bin/systemctl * docker,/bin/systemctl * pentaho,/bin/systemctl * ,/bin/systemctl * snmpd,/bin/systemctl * wildfly" >> /etc/sudoers
 

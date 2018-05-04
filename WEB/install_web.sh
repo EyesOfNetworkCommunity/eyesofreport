@@ -112,6 +112,7 @@ chmod -R +x $web_path
 sed -ie 's/DocumentRoot "\/var\/www\/html"/DocumentRoot "\/srv\/eyesofnetwork\/eorweb"/g' /etc/httpd/conf/httpd.conf
 sed -ie 's/Timeout 60/Timeout 5000/g' /etc/httpd/conf/httpd.conf
 sed -ie 's/upload_max_filesize = 2M/upload_max_filesize = 50M/g' /etc/php.ini
+TZONE=`ls -l /etc/localtime | awk -F "zoneinfo/" '{print $2}'`
 sed -i "s,^;date.timezone.*,date.timezone = \"${TZONE}\",g" /etc/php.ini
 
 
