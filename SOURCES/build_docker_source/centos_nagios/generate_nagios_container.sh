@@ -89,7 +89,6 @@ if [ "$thruk_database" == "thruk" ]; then
 	echo -e "database thruk already exists	\e[92m[OK] \e[39m"
 else 
 	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot -e "create database thruk;"
-	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot -e "grant all privileges on thruk.* to 'eyesofreport'@'%'; "
 	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot -e "grant all privileges on thruk.* to 'eyesofreport'@'localhost'; "
 	echo -e "database thruk created	\e[92m[OK] \e[39m"
 fi
@@ -111,7 +110,6 @@ fi
 if [ "$drop_database" == "y" ]; then 
 	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot -e "create database $nagiosbp_database;"
 	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot $nagiosbp_database < $installation_path/generic_nagiosbp.sql
-	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot -e "grant all privileges on $nagiosbp_database.* to 'eyesofreport'@'%'; "
 	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot -e "grant all privileges on $nagiosbp_database.* to 'eyesofreport'@'localhost'; "
 	echo -e "database $nagiosbp_database created	\e[92m[OK] \e[39m"
 fi
@@ -134,7 +132,6 @@ fi
 if [ "$drop_database" == "y" ]; then 
 	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot -e "create database $lilac_database;"
 	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot $lilac_database < $installation_path/generic_lilac.sql
-	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot -e "grant all privileges on $lilac_database.* to 'eyesofreport'@'%'; "
 	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot -e "grant all privileges on $lilac_database.* to 'eyesofreport'@'localhost'; "
 	echo -e "database $lilac_database created	\e[92m[OK] \e[39m"
 fi
@@ -156,7 +153,6 @@ fi
 if [ "$drop_database" == "y" ]; then 
 	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot -e "create database $ged_database;"
 	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot $ged_database < $installation_path/generic_ged.sql
-	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot -e "grant all privileges on $ged_database.* to 'eyesofreport'@'%'; "
 	MYSQL_PWD="$MYSQL_ROOT" mysql -uroot -e "grant all privileges on $ged_database.* to 'eyesofreport'@'localhost'; "
 	echo -e "database $ged_database created	\e[92m[OK] \e[39m"
 fi

@@ -101,7 +101,7 @@ source $BASEDIR/../CONF/eyesofreport.sh
 yes | rm $wildfly_path/wildfly-9.0.1.Final.zip
 
 cd $reporting_path
-cp $installation_path/report/* ./
+cp -r $installation_path/report/* ./
 
 #clean installation folder
 #rm $installation_path/wildfly-9.0.1.Final.zip
@@ -147,7 +147,7 @@ if [ "$drop_database" == "y" ]; then
 fi
 
 chmod -R +x /srv/eyesofreport/appserver/
-rm $installation_path/dashbuilder.sql
+#rm $installation_path/dashbuilder.sql
 
 yes | cp $wildfly_path/wildfly/bin/wildfly.service /etc/systemd/system/
 systemctl daemon-reload

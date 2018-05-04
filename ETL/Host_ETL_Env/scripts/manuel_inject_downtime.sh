@@ -49,7 +49,7 @@ SMINUTE="`echo $STARTD | cut -d'_' -f4 | cut -d':' -f2`"
 EMINUTE="`echo $ENDD | cut -d'_' -f4 | cut -d':' -f2`"
 EPOCHSTART="`date -d "${SYEAR}${SMONTH}${SDAY} ${SHOUR}${SMINUTE}" +%s 2> /dev/null`"
 EPOCHEND="`date -d "${EYEAR}${EMONTH}${EDAY} ${EHOUR}${EMINUTE}" +%s 2> /dev/null`"
-EPOCHSTART="$(($EPOCHSTART - 5))"
+EPOCHSTART="$(($EPOCHSTART))"
 EPOCHEND="$(($EPOCHEND+ 60))"
 
 
