@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.3.0.v201306041519 Build &lt;4.3.0.v20130613-1152></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
     <list-property name="userProperties">
         <structure>
             <property name="name">cube_appli_month.ds_appli_month.x</property>
@@ -208,7 +208,7 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                 </ex-property>
             </list-property>
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://10.128.84.232:13306/eor_dwh</property>
+            <property name="odaURL">jdbc:mysql://127.0.0.1:3306/eor_dwh</property>
             <property name="odaUser">eyesofreport</property>
             <property name="odaIsolationMode">serializable</property>
             <encrypted-property name="odaPassword" encryptionID="base64">U2FpbnRUaG9tYXMsMjAxNA==</encrypted-property>
@@ -8849,12 +8849,12 @@ else "Maintenance\n excluded\n (SLA)";</expression>
                         <property name="color">#0B65A2</property>
                         <property name="marginTop">5pt</property>
                         <property name="marginBottom">2pt</property>
-                        <expression name="valueExpr">"Taux de disponibilité mensuelle -  " + BirtDateTime.month(BirtDateTime.addMonth(df.parse(params["Year"].value + "-" + params["Month"].value + "-01"),-12),2)  + " " +  BirtDateTime.year(BirtDateTime.addMonth(df.parse(params["Year"].value + "-" + params["Month"].value + "-01"),-12)) + " à "  + BirtDateTime.month( df.parse(params["Year"].value + "-" + params["Month"].value + "-01"), 2 ) + " " + params["Year"].value</expression>
+                        <expression name="valueExpr">"Taux de disponibilité mensuel : " + BirtDateTime.month(BirtDateTime.addMonth(df.parse(params["Year"].value + "-" + params["Month"].value + "-01"),-12),2)  + " " +  BirtDateTime.year(BirtDateTime.addMonth(df.parse(params["Year"].value + "-" + params["Month"].value + "-01"),-12)) + " à "  + BirtDateTime.month( df.parse(params["Year"].value + "-" + params["Month"].value + "-01"), 2 ) + " " + params["Year"].value</expression>
                         <property name="contentType">html</property>
                     </text-data>
                     <extended-item extensionName="Chart" id="600">
                         <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:data="http://www.birt.eclipse.org/ChartModelData" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
-  <Version>2.6</Version>
+  <Version>2.6.1</Version>
   <Type>Line Chart</Type>
   <SubType>Overlay</SubType>
   <Block>
@@ -9492,7 +9492,7 @@ else "Maintenance\n excluded\n (SLA)";</expression>
             <Visible>false</Visible>
           </Label>
           <DataDefinition>
-            <Definition>row[&quot;availability_rate&quot;]</Definition>
+            <Definition>row[&quot;availability_rate_down&quot;]</Definition>
             <Grouping>
               <Enabled>true</Enabled>
               <GroupType>Text</GroupType>
@@ -9792,7 +9792,7 @@ else "Maintenance\n excluded\n (SLA)";</expression>
             <Visible>false</Visible>
           </Label>
           <DataDefinition>
-            <Definition>row[&quot;availability_rate_down&quot;]</Definition>
+            <Definition>row[&quot;availability_rate&quot;]</Definition>
             <Grouping>
               <Enabled>false</Enabled>
               <GroupType>Text</GroupType>

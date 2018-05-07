@@ -1458,7 +1458,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET character_set_results     = utf8 */;
 /*!50001 SET collation_connection      = utf8_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`eyesofreport`@`%` SQL SECURITY DEFINER */
+/*!50013 DEFINER=`eyesofreport`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `test_application_link` AS (select `dap_master`.`DAP_NAME` AS `application_name`,`dap_link`.`DAP_NAME` AS `link`,'appli' AS `type` from ((`d_application_link` join `d_application` `dap_master` on((`dap_master`.`DAP_ID` = `d_application_link`.`dal_app_master_id`))) join `d_application` `dap_link` on((`dap_link`.`DAP_ID` = `d_application_link`.`dal_app_link_id`)))) union (select `d_application`.`DAP_NAME` AS `application_name`,`d_host`.`DHO_NAME` AS `link`,'host' AS `type` from ((`d_host_service_application` join `d_host` on((`d_host`.`DHO_ID` = `d_host_service_application`.`hsa_host`))) join `d_application` on((`d_application`.`DAP_ID` = `d_host_service_application`.`hsa_appli`)))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;

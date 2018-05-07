@@ -2,6 +2,7 @@
 
 # Michael Aubertin Nov 2014
 # Benoit Village Jan 2016
+# Jean-Philippe Levy May 2018
 
 export LANG=en_US
 
@@ -212,24 +213,37 @@ if [ ! "${BACKEND}" = "Solarwind" ]; then
       fi
       echo "from `date -d @${EPOCHSTART}` to `date -d @${EPOCHEND}` .......[OK]"
    fi	
-    if [ "$TYPE" = "Service" ]; then
-   
-	 if [ "$SERVICE" = "Hoststatus" ]; then
-		 echo -n "host $HOST "
-		 echo "delete from ${BACKEND}_log where time between $EPOCHSTART and $EPOCHEND and host_id = $host_id and service_id is null and state_type is not null;" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
-		 echo "insert into ${BACKEND}_log VALUES ($EPOCHSTART,1,'HOST ALERT',2,'HARD',NULL,$host_id,null,1,$MAX_Message_id_DOWN);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
-		 echo "insert into ${BACKEND}_log VALUES ($EPOCHEND,1,'HOST ALERT',0,'HARD',NULL,$host_id,null,1,$MAX_Message_id_UP);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
-	 else
-		 echo -n "service $SERVICE on host $HOST "
-		 echo "delete from ${BACKEND}_log where time between $EPOCHSTART and $EPOCHEND and host_id = $host_id and service_id = $service_id and state_type is not null;" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
-		 echo "insert into ${BACKEND}_log VALUES ($EPOCHSTART,1,'SERVICE ALERT',2,'HARD',NULL,$host_id,$service_id,1,$MAX_Message_id_DOWN);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
-		 echo "insert into ${BACKEND}_log VALUES ($EPOCHEND,1,'SERVICE ALERT',0,'HARD',NULL,$host_id,$service_id,1,$MAX_Message_id_UP);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
-	 fi
-     echo "from `date -d @${EPOCHSTART}` to `date -d @${EPOCHEND}` .......[OK]"
-	
+	if [ "$TYPE" = "Service" ]; then
+		EPOCHLOOP="$EPOCHSTART"
+		TimeRange="`expr $EPOCHEND - $EPOCHSTART`"
+		LOOP="`expr $TimeRange / 86400`"
+		LOOP="`expr $LOOP + 1`"
+		if [ "$SERVICE" = "Hoststatus" ]; then
+			echo -n "host $HOST "
+			echo "delete from ${BACKEND}_log where time between $EPOCHSTART and $EPOCHEND and host_id = $host_id and service_id is null and state_type is not null;" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
+			echo "insert into ${BACKEND}_log VALUES ($EPOCHSTART,1,'HOST ALERT',2,'HARD',NULL,$host_id,null,1,$MAX_Message_id_DOWN);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
+			while ([ $LOOP -gt 2 ]); do
+				EPOCHLOOP="`expr $EPOCHLOOP + 86400`"
+				echo "insert into ${BACKEND}_log VALUES ($EPOCHLOOP,1,'HOST ALERT',2,'HARD',NULL,$host_id,null,1,$MAX_Message_id_DOWN);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
+				LOOP="`expr $LOOP - 1`"
+				echo -n "."
+			done
+			echo "insert into ${BACKEND}_log VALUES ($EPOCHEND,1,'HOST ALERT',0,'HARD',NULL,$host_id,null,1,$MAX_Message_id_UP);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
+		else
+			echo -n "service $SERVICE on host $HOST "
+			echo "delete from ${BACKEND}_log where time between $EPOCHSTART and $EPOCHEND and host_id = $host_id and service_id = $service_id and state_type is not null;" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
+			echo "insert into ${BACKEND}_log VALUES ($EPOCHSTART,1,'SERVICE ALERT',2,'HARD',NULL,$host_id,$service_id,1,$MAX_Message_id_DOWN);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
+			while ([ $LOOP -gt 2 ]); do
+				EPOCHLOOP="`expr $EPOCHLOOP + 86400`"
+				echo "insert into ${BACKEND}_log VALUES ($EPOCHLOOP,1,'SERVICE ALERT',2,'HARD',NULL,$host_id,$service_id,1,$MAX_Message_id_DOWN);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
+				LOOP="`expr $LOOP - 1`"
+				echo -n "."
+			done
+			echo "insert into ${BACKEND}_log VALUES ($EPOCHEND,1,'SERVICE ALERT',0,'HARD',NULL,$host_id,$service_id,1,$MAX_Message_id_UP);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
+		fi
+		echo "from `date -d @${EPOCHSTART}` to `date -d @${EPOCHEND}` .......[OK]"
 	fi
 fi
-
 
 # if [ "${BACKEND}" = "Solarwind" ]; then
 	# if [ -f ./keycopter-network-chain-availability.csv ]; then
@@ -288,8 +302,6 @@ fi
 #echo "Service:$SERVICE"
 #echo "host_id=$host_id"
 #echo "service_id=$service_id"
-
-
 
 rm -rf $TMPDIR
 exit 0

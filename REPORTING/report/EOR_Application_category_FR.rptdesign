@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.3.0.v201306041519 Build &lt;4.3.0.v20130613-1152></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.6.0.v201606072122</property>
     <list-property name="userProperties">
         <structure>
             <property name="name">cube_appli_month.ds_appli_month.x</property>
@@ -169,7 +169,7 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                     <property name="isRequired">true</property>
                     <property name="dataSetName">ds_application_sql</property>
                     <expression name="valueExpr">row["dcc_id"]</expression>
-                    <expression name="labelExpr">row["dcc_alias"]</expression>
+                    <expression name="labelExpr">row["dcc_name"]</expression>
                     <expression name="sortByColumn">dataSetRow["dcc_name"]</expression>
                     <property name="sortDirection">asc</property>
                     <property name="dataType">integer</property>
@@ -199,7 +199,7 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                 </ex-property>
             </list-property>
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://192.168.26.131:3306/eor_dwh</property>
+            <property name="odaURL">jdbc:mysql://127.0.0.1:3306/eor_dwh</property>
             <property name="odaUser">eyesofreport</property>
             <encrypted-property name="odaPassword" encryptionID="base64">U2FpbnRUaG9tYXMsMjAxNA==</encrypted-property>
             <property name="odaJndiName">java:jboss/datasources/DWH</property>
@@ -10836,7 +10836,7 @@ else "Accès utilisateurs";</expression>
                         <property name="textAlign">left</property>
                         <property name="pageBreakBefore">always</property>
                         <expression name="bookmark" type="javascript">"overall"</expression>
-                        <expression name="valueExpr">"Taux diponibilité mensuels - " + BirtDateTime.month( df.parse(params["Year"].value + "-" + params["Month"].value + "-01"), 2 ) + " " + params["Year"].value</expression>
+                        <expression name="valueExpr">"Taux de disponibilité mensuels - " + BirtDateTime.month( df.parse(params["Year"].value + "-" + params["Month"].value + "-01"), 2 ) + " " + params["Year"].value</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>
@@ -12346,7 +12346,7 @@ else "Accès utilisateurs";</expression>
                         <property name="marginTop">10pt</property>
                         <property name="marginBottom">20pt</property>
                         <expression name="bookmark" type="javascript">"Availability rates excluding-including maintenance slots"</expression>
-                        <expression name="valueExpr">"Availability rates excluding/including maintenance slots"</expression>
+                        <expression name="valueExpr">"Disponibilité détaillée"</expression>
                         <property name="contentType">html</property>
                     </text-data>
                 </cell>
@@ -12405,12 +12405,12 @@ else "Accès utilisateurs";</expression>
                                         </list-property>
                                         <property name="width">0.8125in</property>
                                         <property name="content">
-                                            <data id="1564">
+                                            <data id="1571">
                                                 <property name="fontFamily">"Calibri"</property>
                                                 <property name="color">#004080</property>
                                                 <property name="textAlign">center</property>
                                                 <property name="display">inline</property>
-                                                <property name="resultSetColumn">availability_rate1_Month/yearmonth_Category/dap_category</property>
+                                                <property name="resultSetColumn">availability_rate_down_Month/yearmonth_Category/dap_category</property>
                                             </data>
                                             <label id="1757">
                                                 <property name="fontFamily">"Calibri"</property>
@@ -12472,12 +12472,12 @@ else "Accès utilisateurs";</expression>
                                         </list-property>
                                         <property name="width">0.812in</property>
                                         <property name="content">
-                                            <data id="1571">
+                                            <data id="1564">
                                                 <property name="fontFamily">"Calibri"</property>
                                                 <property name="color">#004080</property>
                                                 <property name="textAlign">center</property>
                                                 <property name="display">inline</property>
-                                                <property name="resultSetColumn">availability_rate_down_Month/yearmonth_Category/dap_category</property>
+                                                <property name="resultSetColumn">availability_rate1_Month/yearmonth_Category/dap_category</property>
                                             </data>
                                             <label id="1758">
                                                 <property name="fontFamily">"Calibri"</property>
@@ -12494,7 +12494,7 @@ else "Accès utilisateurs";</expression>
                                             <text-data id="1750">
                                                 <property name="fontFamily">"Calibri"</property>
                                                 <property name="textAlign">center</property>
-                                                <expression name="valueExpr">"Maintenance\n inclue\n";</expression>
+                                                <expression name="valueExpr">"Maintenance\n incluse\n";</expression>
                                                 <property name="contentType">html</property>
                                             </text-data>
                                         </property>
@@ -13276,7 +13276,7 @@ else "Accès utilisateurs";</expression>
                                                             <property name="color">#0B65A2</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">Maintenance&#13;
- exclude&#13;
+ exclue&#13;
  (SLA)</text-property>
                                                         </label>
                                                     </property>
@@ -13352,7 +13352,7 @@ else "Accès utilisateurs";</expression>
                                                             <property name="color">#0B65A2</property>
                                                             <property name="textAlign">center</property>
                                                             <text-property name="text">Maintenance&#13;
- include</text-property>
+ incluse</text-property>
                                                         </label>
                                                     </property>
                                                     <property name="backgroundColor">#F0F1F2</property>
@@ -13600,21 +13600,31 @@ else "Accès utilisateurs";</expression>
                                         </structure>
                                         <structure>
                                             <property name="name">availability_rate_down1_Application_label/application_label</property>
-                                            <expression name="expression">measure["availability_rate_down1"]</expression>
                                             <property name="dataType">decimal</property>
                                             <simple-property-list name="aggregateOn">
                                                 <value>Application_label/application_label</value>
                                             </simple-property-list>
                                             <property name="aggregateFunction">SUM</property>
+                                            <list-property name="arguments">
+                                                <structure>
+                                                    <property name="name">Expression</property>
+                                                    <expression name="value" type="javascript">measure["availability_rate_down1"]</expression>
+                                                </structure>
+                                            </list-property>
                                         </structure>
                                         <structure>
                                             <property name="name">availability_rate2_Application_label/application_label</property>
-                                            <expression name="expression">measure["availability_rate2"]</expression>
                                             <property name="dataType">float</property>
                                             <simple-property-list name="aggregateOn">
                                                 <value>Application_label/application_label</value>
                                             </simple-property-list>
                                             <property name="aggregateFunction">MAX</property>
+                                            <list-property name="arguments">
+                                                <structure>
+                                                    <property name="name">Expression</property>
+                                                    <expression name="value" type="javascript">measure["availability_rate2"]</expression>
+                                                </structure>
+                                            </list-property>
                                         </structure>
                                         <structure>
                                             <property name="name">unavailability_seuil_Application_label/application_label</property>
@@ -13971,12 +13981,12 @@ else "Accès utilisateurs";</expression>
                         <property name="color">#0B65A2</property>
                         <property name="marginTop">5pt</property>
                         <property name="marginBottom">2pt</property>
-                        <expression name="valueExpr">"Taux de disponibilité mensuel -  " + BirtDateTime.month(BirtDateTime.addMonth(df.parse(params["Year"].value + "-" + params["Month"].value + "-01"),-12),2)  + " " +  BirtDateTime.year(BirtDateTime.addMonth(df.parse(params["Year"].value + "-" + params["Month"].value + "-01"),-12)) + " à "  + BirtDateTime.month( df.parse(params["Year"].value + "-" + params["Month"].value + "-01"), 2 ) + " " + params["Year"].value</expression>
+                        <expression name="valueExpr">"Taux de disponibilité mensuel : " + BirtDateTime.month(BirtDateTime.addMonth(df.parse(params["Year"].value + "-" + params["Month"].value + "-01"),-12),2)  + " " +  BirtDateTime.year(BirtDateTime.addMonth(df.parse(params["Year"].value + "-" + params["Month"].value + "-01"),-12)) + " à "  + BirtDateTime.month( df.parse(params["Year"].value + "-" + params["Month"].value + "-01"), 2 ) + " " + params["Year"].value</expression>
                         <property name="contentType">html</property>
                     </text-data>
                     <extended-item extensionName="Chart" id="600">
                         <xml-property name="xmlRepresentation"><![CDATA[<model:ChartWithAxes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:attribute="http://www.birt.eclipse.org/ChartModelAttribute" xmlns:data="http://www.birt.eclipse.org/ChartModelData" xmlns:layout="http://www.birt.eclipse.org/ChartModelLayout" xmlns:model="http://www.birt.eclipse.org/ChartModel" xmlns:type="http://www.birt.eclipse.org/ChartModelType">
-  <Version>2.6</Version>
+  <Version>2.6.1</Version>
   <Type>Line Chart</Type>
   <SubType>Overlay</SubType>
   <Block>
@@ -14614,7 +14624,7 @@ else "Accès utilisateurs";</expression>
             <Visible>false</Visible>
           </Label>
           <DataDefinition>
-            <Definition>row[&quot;availability_rate&quot;]</Definition>
+            <Definition>row[&quot;availability_rate_down&quot;]</Definition>
             <Grouping>
               <Enabled>true</Enabled>
               <GroupType>Text</GroupType>
@@ -14914,7 +14924,7 @@ else "Accès utilisateurs";</expression>
             <Visible>false</Visible>
           </Label>
           <DataDefinition>
-            <Definition>row[&quot;availability_rate_down&quot;]</Definition>
+            <Definition>row[&quot;availability_rate&quot;]</Definition>
             <Grouping>
               <Enabled>false</Enabled>
               <GroupType>Text</GroupType>
