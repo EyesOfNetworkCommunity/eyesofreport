@@ -8849,7 +8849,7 @@ else "Maintenance\n excluded\n (SLA)";</expression>
                         <property name="color">#0B65A2</property>
                         <property name="marginTop">5pt</property>
                         <property name="marginBottom">2pt</property>
-                        <expression name="valueExpr">"Taux de disponibilité mensuelle -  " + BirtDateTime.month(BirtDateTime.addMonth(df.parse(params["Year"].value + "-" + params["Month"].value + "-01"),-12),2)  + " " +  BirtDateTime.year(BirtDateTime.addMonth(df.parse(params["Year"].value + "-" + params["Month"].value + "-01"),-12)) + " à "  + BirtDateTime.month( df.parse(params["Year"].value + "-" + params["Month"].value + "-01"), 2 ) + " " + params["Year"].value</expression>
+                        <expression name="valueExpr">"Taux de disponibilité mensuel : " + BirtDateTime.month(BirtDateTime.addMonth(df.parse(params["Year"].value + "-" + params["Month"].value + "-01"),-12),2)  + " " +  BirtDateTime.year(BirtDateTime.addMonth(df.parse(params["Year"].value + "-" + params["Month"].value + "-01"),-12)) + " à "  + BirtDateTime.month( df.parse(params["Year"].value + "-" + params["Month"].value + "-01"), 2 ) + " " + params["Year"].value</expression>
                         <property name="contentType">html</property>
                     </text-data>
                     <extended-item extensionName="Chart" id="600">
