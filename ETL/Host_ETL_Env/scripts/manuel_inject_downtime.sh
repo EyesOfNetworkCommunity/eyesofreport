@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # Michael Aubertin Nov 2014
+# Jean-Philippe Levy May 2018
 
 export LANG=en_US
 
@@ -52,9 +53,6 @@ EPOCHEND="`date -d "${EYEAR}${EMONTH}${EDAY} ${EHOUR}${EMINUTE}" +%s 2> /dev/nul
 EPOCHSTART="$(($EPOCHSTART))"
 EPOCHEND="$(($EPOCHEND+ 60))"
 
-
-
-
 if [ ! -n "$EPOCHSTART" ]; then
 	echo ""
 	echo ""
@@ -71,7 +69,7 @@ if [ ! -n "$EPOCHEND" ]; then
 	echo ""
 	usage
 fi
-DIFFTime="`expr $EPOCHEND - $EPOCHSTART`"
+#DIFFTime="`expr $EPOCHEND - $EPOCHSTART`"
 #if [ $DIFFTime -lt 300 ]; then
 #	echo ""
 #	echo ""
@@ -194,22 +192,17 @@ if [ "$TYPE" = "Service" ]; then
 	if [ "$SERVICE" = "Hoststatus" ]; then
 		echo "insert into ${BACKEND}_plugin_output VALUES ($MAX_Message_id,'STARTED; Host has entered a corrected period of scheduled downtime');" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
 		echo "insert into ${BACKEND}_plugin_output VALUES ($MAX_Message_id_stop,'STOPPED; Host has exited a corrected period of scheduled downtime');" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
-	else
-		echo "insert into ${BACKEND}_plugin_output VALUES ($MAX_Message_id,'STARTED; Service has entered a corrected period of scheduled downtime');" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
-		echo "insert into ${BACKEND}_plugin_output VALUES ($MAX_Message_id_stop,'STOPPED; Service has exited a corrected period of scheduled downtime');" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
-	fi
-	
-	if [ "$SERVICE" = "Hoststatus" ]; then	
 		echo "delete from ${BACKEND}_log where host_id = $host_id and service_id is null and type like '%DOWNTIME%' and time between $EPOCHSTART and $EPOCHEND;" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
 		echo "insert into ${BACKEND}_log VALUE ($EPOCHSTART,1,'HOST DOWNTIME ALERT',NULL,'',NULL,$host_id,NULL,1,$MAX_Message_id);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
 		echo "insert into ${BACKEND}_log VALUE ($EPOCHEND,1,'HOST DOWNTIME ALERT',NULL,'',NULL,$host_id,NULL,1,$MAX_Message_id_stop);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
 	else
+		echo "insert into ${BACKEND}_plugin_output VALUES ($MAX_Message_id,'STARTED; Service has entered a corrected period of scheduled downtime');" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
+		echo "insert into ${BACKEND}_plugin_output VALUES ($MAX_Message_id_stop,'STOPPED; Service has exited a corrected period of scheduled downtime');" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
 		echo "delete from ${BACKEND}_log where host_id = $host_id and service_id = $service_id and type like '%DOWNTIME%' and time between $EPOCHSTART and $EPOCHEND;" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
 		echo "insert into ${BACKEND}_log VALUE ($EPOCHSTART,1,'SERVICE DOWNTIME ALERT',NULL,'',NULL,$host_id,$service_id,1,$MAX_Message_id);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
 		echo "insert into ${BACKEND}_log VALUE ($EPOCHEND,1,'SERVICE DOWNTIME ALERT',NULL,'',NULL,$host_id,$service_id,1,$MAX_Message_id_stop);" | mysql -u${USER} -p${PASSWD} thruk 2> /dev/null
 	fi
-
- 
+	
 	Mysql_Return="`echo $?`"
 	if [ $Mysql_Return -gt 0 ]; then
 			echo ""
