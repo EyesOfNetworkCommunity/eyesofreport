@@ -64,7 +64,7 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                 </ex-property>
             </list-property>
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://localhost:3306/e2p_log_etl</property>
+            <property name="odaURL">jdbc:mysql://127.0.0.1:3306/e2p_log_etl</property>
             <property name="odaUser">root</property>
             <encrypted-property name="odaPassword" encryptionID="base64">cGFzc3dvcmQ=</encrypted-property>
         </oda-data-source>

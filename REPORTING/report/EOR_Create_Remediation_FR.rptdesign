@@ -161,7 +161,7 @@
                 </ex-property>
             </list-property>
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://localhost:3306/eor_dwh</property>
+            <property name="odaURL">jdbc:mysql://127.0.0.1:3306/eor_dwh</property>
             <property name="odaUser">eyesofreport</property>
             <encrypted-property name="odaPassword" encryptionID="base64">U2FpbnRUaG9tYXMsMjAxNA==</encrypted-property>
             <property name="odaJndiName">java:jboss/datasources/DWH</property>

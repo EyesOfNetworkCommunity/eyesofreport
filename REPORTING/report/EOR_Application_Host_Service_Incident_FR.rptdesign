@@ -78,7 +78,7 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                     <property name="dataType">string</property>
                     <property name="distinct">true</property>
                     <simple-property-list name="defaultValue">
-                        <value type="constant">2016</value>
+                        <value type="javascript">BirtDateTime.year(BirtDateTime.now());</value>
                     </simple-property-list>
                     <list-property name="selectionList"/>
                     <property name="paramType">simple</property>
@@ -101,7 +101,10 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                     <property name="dataType">string</property>
                     <property name="distinct">true</property>
                     <simple-property-list name="defaultValue">
-                        <value type="constant">02</value>
+                        <value type="javascript">if (BirtDateTime.month(BirtDateTime.now(),1) &lt; 10 )&#13;
+	"0" + BirtDateTime.month(BirtDateTime.now(),1);&#13;
+else &#13;
+	BirtDateTime.month(BirtDateTime.now(),1);</value>
                     </simple-property-list>
                     <list-property name="selectionList"/>
                     <property name="paramType">simple</property>
@@ -155,7 +158,7 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                 </ex-property>
             </list-property>
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://localhost:3306/eor_dwh</property>
+            <property name="odaURL">jdbc:mysql://127.0.0.1:3306/eor_dwh</property>
             <property name="odaUser">eyesofreport</property>
             <encrypted-property name="odaPassword" encryptionID="base64">U2FpbnRUaG9tYXMsMjAxNA==</encrypted-property>
             <property name="odaJndiName">java:jboss/datasources/DWH</property>
@@ -1253,7 +1256,7 @@ and dap_name not like 'servicegroup_%']]></xml-property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select date,year,month
-from d_time_date]]></xml-property>
+from d_time_date where year >= 2016]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>

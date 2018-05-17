@@ -24,7 +24,7 @@
                 </ex-property>
             </list-property>
             <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
-            <property name="odaURL">jdbc:mysql://192.168.26.131:3306/global_nagiosbp</property>
+            <property name="odaURL">jdbc:mysql://127.0.0.1:3306/global_nagiosbp</property>
             <property name="odaUser">eyesofreport</property>
             <encrypted-property name="odaPassword" encryptionID="base64">U2FpbnRUaG9tYXMsMjAxNA==</encrypted-property>
         </oda-data-source>
@@ -1269,7 +1269,7 @@
     </body>
     <property name="pageVariables">
         <variable-element name="EOR_IP">
-            <expression name="value" type="javascript">"192.168.26.131"</expression>
+            <expression name="value" type="javascript">"127.0.0.1"</expression>
             <property name="type">report</property>
         </variable-element>
     </property>
