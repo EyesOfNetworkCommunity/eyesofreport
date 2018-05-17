@@ -77,24 +77,8 @@ CREATE TABLE "d_contract_month_comment" (
   "dcg_contract_context_id" int(11) NOT NULL,
   "dcg_comment" text NOT NULL,
   PRIMARY KEY ("dcg_id")
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 SELECT * FROM eor_dwh.d_contract_month_comment;
-
---
--- Table structure for table `d_appli_contract_month_comment`
---
-
-DROP TABLE IF EXISTS `d_appli_contract_month_comment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE "d_appli_contract_month_comment" (
-  "dca_contract_context_id" int(11) NOT NULL,
-  "dca_appli_id" int(11) NOT NULL,
-  "dca_year" int(11) NOT NULL,
-  "dca_month" varchar(2) NOT NULL,
-  "dca_comment" mediumtext,
-  PRIMARY KEY ("dca_contract_context_id","dca_appli_id","dca_year","dca_month")
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `d_application_contract_link`
