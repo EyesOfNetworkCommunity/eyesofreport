@@ -92,7 +92,7 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                     <property name="dataType">string</property>
                     <property name="distinct">true</property>
                     <simple-property-list name="defaultValue">
-                        <value type="constant">2016</value>
+                        <value type="javascript">BirtDateTime.year(BirtDateTime.now());</value>
                     </simple-property-list>
                     <list-property name="selectionList"/>
                     <property name="paramType">simple</property>
@@ -115,7 +115,10 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                     <property name="dataType">string</property>
                     <property name="distinct">true</property>
                     <simple-property-list name="defaultValue">
-                        <value type="constant">03</value>
+                        <value type="javascript">if (BirtDateTime.month(BirtDateTime.now(),1) &lt; 10 )&#13;
+	"0" + BirtDateTime.month(BirtDateTime.now(),1);&#13;
+else &#13;
+	BirtDateTime.month(BirtDateTime.now(),1);</value>
                     </simple-property-list>
                     <list-property name="selectionList"/>
                     <property name="paramType">simple</property>
@@ -4682,7 +4685,7 @@ and aam_contract_context_id=time_application.dcc_id;]]></xml-property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select distinct year, month
-from d_time_date
+from d_time_date where year >= 2016
 order by date]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
