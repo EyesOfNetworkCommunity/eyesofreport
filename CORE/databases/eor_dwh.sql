@@ -70,13 +70,13 @@ CREATE TABLE `d_application_complete_link` (
 DROP TABLE IF EXISTS `d_contract_month_comment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE "d_contract_month_comment" (
-  "dcg_id" int(11) NOT NULL AUTO_INCREMENT,
-  "dcg_year" int(11) NOT NULL,
-  "dcg_month" varchar(2) NOT NULL,
-  "dcg_contract_context_id" int(11) NOT NULL,
-  "dcg_comment" text NOT NULL,
-  PRIMARY KEY ("dcg_id")
+CREATE TABLE `d_contract_month_comment` (
+  `dcg_id` int(11) NOT NULL AUTO_INCREMENT,
+  `dcg_year` int(11) NOT NULL,
+  `dcg_month` varchar(2) NOT NULL,
+  `dcg_contract_context_id` int(11) NOT NULL,
+  `dcg_comment` text NOT NULL,
+  PRIMARY KEY (`dcg_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=`utf8_general_ci`;
 SELECT * FROM eor_dwh.d_contract_month_comment;
 
