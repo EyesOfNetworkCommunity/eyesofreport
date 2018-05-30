@@ -14,8 +14,12 @@
 	}
 
 	else{
-		$sql = "SELECT NAME,".$id. " FROM " . $table_name;
-	}
+		if ($table_name == 'step_group') {
+			$sql = "SELECT NAME,".$id. ", ID_KPI FROM " . $table_name;
+		} else {
+			$sql = "SELECT NAME,".$id. " FROM " . $table_name;
+		}
+}
   
 	$req = $bdd->query($sql);
 	$values = $req->fetchall();
