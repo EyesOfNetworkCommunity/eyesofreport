@@ -23,6 +23,10 @@ $(document).ready(function() {
 	$global_array = {};
 	$counter = 0;
 
+	if ($("#name_contract_context").val() != "") {
+		ChangeValue($("#name_contract_context").val());
+	}
+
 	$.get(
 		'./php/get_name_id.php',
 		{
@@ -111,14 +115,20 @@ $(document).ready(function() {
 			$('#application_name').html(dictionnary["label.manage_contracts.contract_context_select_application"] +' <span class="caret"></span>');
 		}
 	});
-
 });
+
+
+$("#name_contract_context").click(function(event){
+	$('#body_table').children().remove();
+});
+
 
 function ChangeValue(value){
 	$array_name_id = value.split("_-_");
 	$name = $array_name_id[0];
 	$id = $array_name_id[1];
 
+	$("#application_list").show();	
 	$("#name_contract_context").html($name+'  <span class="caret"></span></button>');
 	$("#id_contract_context").val($id);
 	$.get(
