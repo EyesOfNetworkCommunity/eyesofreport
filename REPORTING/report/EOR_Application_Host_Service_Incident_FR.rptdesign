@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
-    <property name="createdBy">Eclipse BIRT Designer Version 4.3.0.v201306041519 Build &lt;4.3.0.v20130613-1152></property>
+    <property name="createdBy">Eclipse BIRT Designer Version 4.7.0.v201706222054</property>
     <list-property name="userProperties">
         <structure>
             <property name="name">cube_appli_month.ds_appli_month.x</property>
@@ -102,9 +102,9 @@ reportContext.setPersistentGlobalVariable("RemoteHost", request.getRemoteHost())
                     <property name="distinct">true</property>
                     <simple-property-list name="defaultValue">
                         <value type="javascript">if (BirtDateTime.month(BirtDateTime.now(),1) &lt; 10 )&#13;
-	"0" + BirtDateTime.month(BirtDateTime.now(),1);&#13;
+    "0" + BirtDateTime.month(BirtDateTime.now(),1);&#13;
 else &#13;
-	BirtDateTime.month(BirtDateTime.now(),1);</value>
+    BirtDateTime.month(BirtDateTime.now(),1);</value>
                     </simple-property-list>
                     <list-property name="selectionList"/>
                     <property name="paramType">simple</property>
@@ -677,20 +677,20 @@ time_application.dsg_step_2_max,
 time_application.dsg_step_3_max,
 time_application.dsg_step_4_max
 FROM (Select a.*, b.dap_id, b.dap_name, b.dap_priority, b.dap_category, b.dap_source, c.dcc_id, d.dco_name,
-		     e.tpr_name, e.tpr_id, f.kpi_name, i.*
-	  from (select distinct epoch_month, year, month, last_day_month
-	  		from d_time_dimension) a,
-	   d_application b INNER JOIN d_application_contract_link on ack_appli_id = ? and ack_appli_id = b.dap_id
-	   INNER JOIN d_contract_context c on dcc_id = ? and dcc_id = ack_dcc_id
-	   inner join d_contract d on  dco_id = dcc_dco_id 
-	   inner join d_time_period e on tpr_id = dcc_tpr_id
-	   inner join d_kpi f on kpi_id = dcc_kpi_id
-	   inner join d_step_group i on dsg_id = dcc_dsg_id
-	   where dap_id in (SELECT ack_appli_id from d_application_contract_link)) time_application
-	   inner join (select *, nb_secondes as nb_seconds_month from d_time_period_month) b
-	    on tpm_year = time_application.year and tpm_month = time_application.month 
-	    and tpm_tpr_id = time_application.tpr_id
-	   left join
+             e.tpr_name, e.tpr_id, f.kpi_name, i.*
+      from (select distinct epoch_month, year, month, last_day_month
+            from d_time_dimension) a,
+       d_application b INNER JOIN d_application_contract_link on ack_appli_id = ? and ack_appli_id = b.dap_id
+       INNER JOIN d_contract_context c on dcc_id = ? and dcc_id = ack_dcc_id
+       inner join d_contract d on  dco_id = dcc_dco_id 
+       inner join d_time_period e on tpr_id = dcc_tpr_id
+       inner join d_kpi f on kpi_id = dcc_kpi_id
+       inner join d_step_group i on dsg_id = dcc_dsg_id
+       where dap_id in (SELECT ack_appli_id from d_application_contract_link)) time_application
+       inner join (select *, nb_secondes as nb_seconds_month from d_time_period_month) b
+        on tpm_year = time_application.year and tpm_month = time_application.month 
+        and tpm_tpr_id = time_application.tpr_id
+       left join
 eor_dwh.f_dtm_appli_unavailability_month on aum_appli = time_application.dap_id 
 and aum_epoch_month = epoch_month and aum_contract_context_id = time_application.dcc_id ;]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -1402,18 +1402,18 @@ case when link_app.dap_type = 'ET' THEN concat(link_app.dap_name,' (AND)')
 when link_app.dap_type = 'OU' THEN concat(link_app.dap_name,' (OR)') 
 else concat(link_app.dap_name,' (MIN(',case when link_app.dap_min is null then 0 else link_app.dap_min end,'))') end 
 as app_name, dho_name, dse_name from (
-	SELECT master, dhc_id, child from (
-	(SELECT dhc_id, dhc_lvl1_id master, dhc_lvl2_id as child, 1 as level FROM d_hierarchy_column)
+    SELECT master, dhc_id, child from (
+    (SELECT dhc_id, dhc_lvl1_id master, dhc_lvl2_id as child, 1 as level FROM d_hierarchy_column)
 UNION 
-	(SELECT dhc_id, dhc_lvl1_id master, dhc_lvl3_id as child, 2 as level FROM d_hierarchy_column)
+    (SELECT dhc_id, dhc_lvl1_id master, dhc_lvl3_id as child, 2 as level FROM d_hierarchy_column)
 UNION 
-	(SELECT dhc_id, dhc_lvl1_id master, dhc_lvl4_id as child, 3 as level FROM d_hierarchy_column)
+    (SELECT dhc_id, dhc_lvl1_id master, dhc_lvl4_id as child, 3 as level FROM d_hierarchy_column)
 UNION 
-	(SELECT dhc_id, dhc_lvl1_id master, dhc_lvl5_id as child, 4 as level FROM d_hierarchy_column)
+    (SELECT dhc_id, dhc_lvl1_id master, dhc_lvl5_id as child, 4 as level FROM d_hierarchy_column)
 UNION 
-	(SELECT dhc_id, dhc_lvl1_id master, dhc_lvl6_id as child, 5 as level FROM d_hierarchy_column)
+    (SELECT dhc_id, dhc_lvl1_id master, dhc_lvl6_id as child, 5 as level FROM d_hierarchy_column)
 UNION 
-	(SELECT dhc_id, dhc_lvl1_id master, dhc_lvl7_id as child, 6 as level FROM d_hierarchy_column)
+    (SELECT dhc_id, dhc_lvl1_id master, dhc_lvl7_id as child, 6 as level FROM d_hierarchy_column)
 ) hierarchy_column
 where child >= 0
 ) a 
@@ -1921,36 +1921,36 @@ inner join d_service on dse_id = g.hsa_service]]></xml-property>
                 </structure>
             </list-property>
             <xml-property name="queryText"><![CDATA[select distinct * from (
-	select 
-	dho_name, dse_name, dap_name, dap_priority, dap_id,
-	date_format(from_unixtime(hsittr_epoch_begin),'%Y-%m-%d') as date_begin,
-	date_format(from_unixtime(hsittr_epoch_end),'%Y-%m-%d') as date_end,
-	date_format(from_unixtime(hsittr_epoch_begin),'%H:%i:%s') as time_begin,
-	date_format(from_unixtime(hsittr_epoch_end),'%H:%i:%s') as time_end,
-	date_format(from_unixtime(hsittr_epoch_begin),'%Y') as year_begin,
-	date_format(from_unixtime(hsittr_epoch_end),'%Y') as year_end,
-	date_format(from_unixtime(hsittr_epoch_begin),'%m') as month_begin,
-	date_format(from_unixtime(hsittr_epoch_end),'%m') as month_end,
-	date_format(from_unixtime(hsittr_epoch_begin),'%d') as day_begin,
-	date_format(from_unixtime(hsittr_epoch_end),'%d') as day_end,
-	f_dtm_hs_ttr_interval.*,
-	source.thruk_idx
-	from f_dtm_hs_ttr_interval
-	inner join d_hierarchy_leaf on host_id = hsittr_host and service_id = hsittr_service
-	inner join d_host on dho_id = hsittr_host
-	inner join d_service on dse_id = hsittr_service
-	inner join (
-		select distinct dap_id as id_appli, dca_dcc_id
-		from d_contract_context_application 
-		inner join d_application on dca_appli_id = dap_id and dca_dcc_id = ?) a on id_appli = app_master
-	inner join d_application on dap_id = id_appli
-	inner join f_dtm_appli_unavailability_hour on auh_appli = dap_id and 
-	auh_contract_context_id = dca_dcc_id and 
-	auh_epoch_hour >= unix_timestamp(date_format(hsittr_epoch_begin,'%Y-%m-%d %H:00:00')) or auh_epoch_hour <= hsittr_epoch_end
-	inner join global_nagiosbp.bp_sources source on nick_name = dho_source
-	where from_unixtime(hsittr_epoch_begin) like concat(?,'-',?,'%') 
-	or from_unixtime(hsittr_epoch_end) like concat(?,'-',?,'%')
-) a	]]></xml-property>
+    select 
+    dho_name, dse_name, dap_name, dap_priority, dap_id,
+    date_format(from_unixtime(hsittr_epoch_begin),'%Y-%m-%d') as date_begin,
+    date_format(from_unixtime(hsittr_epoch_end),'%Y-%m-%d') as date_end,
+    date_format(from_unixtime(hsittr_epoch_begin),'%H:%i:%s') as time_begin,
+    date_format(from_unixtime(hsittr_epoch_end),'%H:%i:%s') as time_end,
+    date_format(from_unixtime(hsittr_epoch_begin),'%Y') as year_begin,
+    date_format(from_unixtime(hsittr_epoch_end),'%Y') as year_end,
+    date_format(from_unixtime(hsittr_epoch_begin),'%m') as month_begin,
+    date_format(from_unixtime(hsittr_epoch_end),'%m') as month_end,
+    date_format(from_unixtime(hsittr_epoch_begin),'%d') as day_begin,
+    date_format(from_unixtime(hsittr_epoch_end),'%d') as day_end,
+    f_dtm_hs_ttr_interval.*,
+    source.thruk_idx
+    from f_dtm_hs_ttr_interval
+    inner join d_hierarchy_leaf on host_id = hsittr_host and service_id = hsittr_service
+    inner join d_host on dho_id = hsittr_host
+    inner join d_service on dse_id = hsittr_service
+    inner join (
+        select distinct dap_id as id_appli, dca_dcc_id
+        from d_contract_context_application 
+        inner join d_application on dca_appli_id = dap_id and dca_dcc_id = ?) a on id_appli = app_master
+    inner join d_application on dap_id = id_appli
+    inner join f_dtm_appli_unavailability_hour on auh_appli = dap_id and 
+    auh_contract_context_id = dca_dcc_id and 
+    auh_epoch_hour >= unix_timestamp(date_format(hsittr_epoch_begin,'%Y-%m-%d %H:00:00')) or auh_epoch_hour <= hsittr_epoch_end
+    inner join global_nagiosbp.bp_sources source on nick_name = dho_source
+    where from_unixtime(hsittr_epoch_begin) like concat(?,'-',?,'%') 
+    or from_unixtime(hsittr_epoch_end) like concat(?,'-',?,'%')
+) a ]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
   <Version>2.0</Version>
@@ -2144,7 +2144,7 @@ from f_dtm_hs_ttr_interval
 inner join d_host on dho_id = hsittr_host
 inner join d_service on dse_id = hsittr_service
 where from_unixtime(hsittr_epoch_begin) like concat(?,'-',?,'%') 
-	  or from_unixtime(hsittr_epoch_end) like concat(?,'-',?,'%')
+      or from_unixtime(hsittr_epoch_end) like concat(?,'-',?,'%')
 group by hsittr_host,hsittr_service]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
@@ -2395,8 +2395,8 @@ from f_dtm_hs_ttr_interval
 inner join d_host on dho_id = hsittr_host
 inner join d_service on dse_id = hsittr_service
 where (from_unixtime(hsittr_epoch_begin) like concat(?,'-',?,'%') 
-	  or from_unixtime(hsittr_epoch_end) like concat(?,'-',?,'%'))
-	  and hsittr_epoch_end <> 1893452400
+      or from_unixtime(hsittr_epoch_end) like concat(?,'-',?,'%'))
+      and hsittr_epoch_end <> 1893452400
 group by hsittr_host,hsittr_service]]></xml-property>
             <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
 <model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
@@ -2583,9 +2583,9 @@ group by hsittr_host,hsittr_service]]></xml-property>
                                     <property name="levelType">dynamic</property>
                                     <property name="columnName">category_analysis_label</property>
                                     <expression name="displayColumnName" type="javascript">if(dataSetRow["category_analysis_label"] == "Global")&#13;
-	"Application availability rate\n (All components)";&#13;
+    "Application availability rate\n (All components)";&#13;
 else if(dataSetRow["category_analysis_label"] == "Core Infrastructure")&#13;
-	"Application Core Infrastructure\n Availability rate\n (Application components)";&#13;
+    "Application Core Infrastructure\n Availability rate\n (Application components)";&#13;
 else "Application Customer Access\n Availability rate\n (Application components)";</expression>
                                 </tabular-level>
                                 <tabular-level name="appli_month_state_statedown_state_cat" id="996">
@@ -2593,7 +2593,7 @@ else "Application Customer Access\n Availability rate\n (Application components)
                                     <property name="levelType">dynamic</property>
                                     <property name="columnName">state_cat_order</property>
                                     <expression name="displayColumnName" type="javascript">if(dataSetRow["appli_month_state_statedown_state_cat"] == 0)&#13;
-	"Maintenance\n included"&#13;
+    "Maintenance\n included"&#13;
 else "Maintenance\n excluded\n (SLA)";</expression>
                                 </tabular-level>
                             </property>
@@ -3370,14 +3370,15 @@ else "Maintenance\n excluded\n (SLA)";</expression>
                             <image id="3103">
                                 <property name="height">0.3333333333333333in</property>
                                 <property name="width">0.3333333333333333in</property>
+                                <structure name="toc"/>
                                 <property name="source">embed</property>
                                 <property name="imageName">engrenage.png</property>
                                 <list-property name="action">
                                     <structure>
                                         <property name="linkType">hyperlink</property>
                                         <property name="toolTip">Créer une remédiation pour cet incident</property>
-                                        <expression name="uri" type="javascript">"http://" + request.getServerName() + "/birt/run?__report=EOR_Create_Remediation_FR.rptdesign&amp;__format=HTML&amp;host_id=" +row["hsittr_host"] +"&amp;service_id=" + row["hsittr_service"] + "&amp;host_table=" +row["thruk_idx"] + "_host&amp;service_table=" + row["thruk_idx"] + "_service&amp;message_table=" + row["thruk_idx"] + "_plugin_output&amp;log_table=" + row["thruk_idx"] + "_log&amp;epoch_deb=" + row["hsittr_epoch_begin"] + "&amp;epoch_end="+row["hsittr_epoch_end"] + "&amp;source_prefix=" + row["thruk_idx"]</expression>
-                                        <property name="targetWindow">_blank</property>
+                                        <expression name="uri" type="javascript">"http://" + request.getServerName() + "/module/manage_remediation/remediation_action.php?source=" +row["thruk_idx"] + "&amp;host=" +row["dho_name"] +"&amp;service=" + row["dse_name"] + "&amp;start=" + row["date_begin"] + " " + row["time_begin"] + "&amp;end=" + row["date_end"] + " " + row["time_end"]</expression>
+                                        <property name="targetWindow">_self</property>
                                     </structure>
                                 </list-property>
                             </image>
