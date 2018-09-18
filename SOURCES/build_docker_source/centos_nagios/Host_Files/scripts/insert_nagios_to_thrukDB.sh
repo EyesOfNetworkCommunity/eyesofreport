@@ -46,11 +46,10 @@ if [ -n "`find /srv/eyesofnetwork/nagios/var/log/archives/ -type f -name nagios-
         cd /srv/eyesofnetwork/thruk/script/
         for file in `ls /srv/eyesofnetwork/nagios/var/log/archives/nagios-*.log`; do
                 ./thruk -a logcacheupdate --local $file -b ${UniqLiveStatusID}
-                ./thruk -a logcacheoptimize --local
         done
+        ./thruk -a logcacheoptimize --local
         cd -
-
-         mv /srv/eyesofnetwork/nagios/var/log/archives/nagios-*.log /srv/eyesofreport/external_depot/Archives/
+        mv /srv/eyesofnetwork/nagios/var/log/archives/nagios-*.log /srv/eyesofreport/external_depot/Archives/
 fi
 
 if [ -n "`find /srv/eyesofreport/external_depot/Archives/ -type f -name nagios-*.log -exec echo {} \;`" ]; then
